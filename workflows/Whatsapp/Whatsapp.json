@@ -1,0 +1,88 @@
+{
+  "active": false,
+  "connections": {
+    "AI/ML Chat Completion": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI/ML Chat Completion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-17T12:15:23.782Z",
+  "id": "LweThpFbbQZDMvk3",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Whatsapp",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "openai/gpt-4o",
+        "prompt": "Respond like a gen-z boss",
+        "extract": "raw",
+        "options": {
+          "maxTokens": 300,
+          "responseFormat": "default"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-aimlapi.aimlApi",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        0
+      ],
+      "id": "58422c19-eee4-4740-8bc9-b764e269456c",
+      "name": "AI/ML Chat Completion",
+      "credentials": {
+        "aimlApi": {
+          "id": "l169rCCEcUMyen5X",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "6d509492-8ca3-4ae2-9103-790b68484019",
+      "name": "When chat message received",
+      "webhookId": "12b11bc9-f606-47f2-b7ae-40e0f640c1e0"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-17T12:15:23.789Z",
+      "updatedAt": "2025-09-17T12:15:23.789Z",
+      "role": "workflow:owner",
+      "workflowId": "LweThpFbbQZDMvk3",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-17T18:09:46.000Z",
+  "versionId": "73b0cd72-b8c5-46cd-85f0-54f8f51c1ed2"
+}
