@@ -1,0 +1,300 @@
+{
+  "active": false,
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe audio or video": {
+      "main": [
+        [
+          {
+            "node": "Summarize the meeting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Transcribe audio or video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize the meeting": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-31T11:14:57.101Z",
+  "id": "QA9byMQzyHCsLzLe",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ElevenLabs Audio Transcriber",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "serviceAccount",
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1MARvgnW-bz_y6GRaX5PQ9VuKya4aodXz",
+          "mode": "list",
+          "cachedResultName": "Recordings",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1MARvgnW-bz_y6GRaX5PQ9VuKya4aodXz"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        208
+      ],
+      "id": "63097139-4960-4ef1-8afd-25f29bd40658",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -544,
+        208
+      ],
+      "id": "c4fbb1b1-0bac-4c56-99ac-8a62c7ace9b9",
+      "name": "Download file",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        208
+      ],
+      "id": "02e68530-3a4b-43ee-802a-a138cb3aa34d",
+      "name": "Transcribe audio or video",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "aprDcrMYlW9YaEFs",
+          "name": "arhamkh6969@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1v1da5EvCwkZrPXhnnQqrtcoG7o02maootaZZhE6p1T4",
+          "mode": "list",
+          "cachedResultName": "ElevenLabs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v1da5EvCwkZrPXhnnQqrtcoG7o02maootaZZhE6p1T4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1v1da5EvCwkZrPXhnnQqrtcoG7o02maootaZZhE6p1T4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Title": "={{ $json.title }}",
+            "Summary": "={{ $json.summary }}",
+            "Main Points": "={{ $json.main_points }}"
+          },
+          "matchingColumns": [
+            "Text"
+          ],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Main Points",
+              "displayName": "Main Points",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        624,
+        208
+      ],
+      "id": "16ee4096-af22-4972-b9f3-be8a8fdc06c6",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-1.5-flash-latest",
+          "mode": "list",
+          "cachedResultName": "models/gemini-1.5-flash-latest"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Transcript:  {{ $json.text }}"
+            },
+            {
+              "content": "Summarize the entire meeting audio clearly and concisely in plain text — under 1500 characters total — and return the output in the following format:\n\ntitle: [short meeting topic or theme]\nsummary: [brief overview of the meeting — 1–2 lines]\n\nmain_points:\n- [key point 1]\n- [key point 2]\n...\n\naction_items:\n- [task 1]\n- [task 2]\n...\n\nfollow_up:\n- [required follow-up actions or reminders]\n\nstories:\n- [real-world example or anecdote from the meeting]\n\nreferences:\n- [any documents, URLs, or data mentioned]\n\narguments:\n- [opinions or contrasting perspectives shared]\n\nrelated_topics:\n- [any related ideas or themes]"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        16,
+        208
+      ],
+      "id": "c78aefeb-6e86-443b-b7fa-92a27714529b",
+      "name": "Summarize the meeting",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Get raw output from Gemini node (adjust node name if needed)\nconst raw = $input.first().json.content.parts[0].text || '';\n\n// 2. Strip code fences if output is wrapped in markdown\nconst match = raw.match(/```(?:[a-z]*)\\n([\\s\\S]*?)\\n```/i);\nconst jsonString = match ? match[1].trim() : raw.trim();\n\n// 3. Parse JSON safely\nlet parsed;\ntry {\n  parsed = JSON.parse(jsonString);\n} catch (e) {\n  throw new Error(`Failed to parse JSON: ${e.message}\\nRaw JSON:\\n${jsonString}`);\n}\n\n// 4. Return structured fields for downstream use\nreturn [{\n  json: {\n    title: parsed.title,\n    summary: parsed.summary,\n    main_points: parsed.main_points,\n    action_items: parsed.action_items,\n    follow_up: parsed.follow_up,\n    stories: parsed.stories,\n    references: parsed.references,\n    arguments: parsed.arguments,\n    related_topics: parsed.related_topics\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        208
+      ],
+      "id": "0721fda1-02c5-45d8-9ce3-031ee16d810a",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-31T11:14:57.108Z",
+      "updatedAt": "2025-08-31T11:14:57.108Z",
+      "role": "workflow:owner",
+      "workflowId": "QA9byMQzyHCsLzLe",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-02T05:09:11.000Z",
+  "versionId": "100920cd-633a-4dda-ae40-afffe841ca9b"
+}
