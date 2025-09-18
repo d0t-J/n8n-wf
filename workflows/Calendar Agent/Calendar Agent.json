@@ -1,0 +1,256 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Event": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get events": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meeting with attendee": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Agent1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T11:27:00.937Z",
+  "id": "6NrFaxU3G6X8zQB7",
+  "isArchived": false,
+  "meta": null,
+  "name": "Calendar Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        176,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "start": "={{ $fromAI(\"starttime\",\"the time the user asks for the event to start\") }}",
+        "end": "={{ $fromAI(\"endtime\",\"the time the user asks for the event to end\") }}",
+        "additionalFields": {}
+      },
+      "id": "dda97b80-c747-465d-94d0-c0ca9fad4ce6",
+      "name": "Create Event",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        528,
+        416
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "returnAll": true,
+        "options": {
+          "timeMin": "={{ $fromAI(\"startDate\", \"the day before the requested date\") }}",
+          "timeMax": "={{ $fromAI(\"endDate\", \"the day after the requested date\") }}"
+        }
+      },
+      "id": "808bf6cd-5c0a-4124-88fe-56af753e506e",
+      "name": "get events",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        656,
+        416
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "start": "={{ $fromAI(\"starttime\",\"the time the user asks for the event to start\") }}",
+        "end": "={{ $fromAI(\"endtime\",\"the time the user asks for the event to end\") }}",
+        "additionalFields": {
+          "attendees": [
+            "{{ $fromAI(\"attendeeEmail\",\"the email of the user asks the event to be scheduled with\") }}"
+          ]
+        }
+      },
+      "id": "89483876-a85b-4a28-8ebe-96433f32c634",
+      "name": "Meeting with attendee",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        784,
+        416
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c19e1565-8baa-4eb0-ad6a-1c56adb3243c",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7b327d95-32ff-4ef1-a388-cdec0eb96f4e",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        992,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=You are a calendar assistant responsible for handling calendar-related tasks. The current date and time is: {{ $now }}\n\nCreating an Event\nIf no end time is given, set the event duration to 60 minutes by default.\nUse this function only when no attendee is involved.\nCreating an Event with an Attendee\nIf an end time is not specified, the event should default to 60 minutes.\nThis function should be used only when an attendee is included.\nRetrieving Events\nUse this function to fetch scheduled events for a specific date.\nExclude any canceled events from the results.\n\n\n\n\n\n\n"
+        }
+      },
+      "id": "7fe8925e-c427-4fac-b8ef-0cbb378e7dc3",
+      "name": "Calendar Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        528,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        400,
+        416
+      ],
+      "id": "55bb5a03-475f-4204-94a8-3f3dd670b08b",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-12T11:27:00.947Z",
+      "updatedAt": "2025-09-12T11:27:00.947Z",
+      "role": "workflow:owner",
+      "workflowId": "6NrFaxU3G6X8zQB7",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-12T12:06:47.000Z",
+  "versionId": "4c4cda37-17d7-4f82-b63c-4599326e330d"
+}
