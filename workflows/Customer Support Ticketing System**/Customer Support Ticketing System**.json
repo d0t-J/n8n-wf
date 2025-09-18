@@ -1,0 +1,233 @@
+{
+  "active": false,
+  "connections": {
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Support Ticket Database",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "For Error Handling",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Support Ticket Database": {
+      "main": [
+        [
+          {
+            "node": "Notifying Team",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-15T12:16:34.232Z",
+  "id": "OcqtX7wOF0vIttNo",
+  "isArchived": false,
+  "meta": null,
+  "name": "Customer Support Ticketing System**",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "254c6f52-268c-4eb3-8449-c753234728c3",
+              "name": "From",
+              "value": "={{ $json.From }}",
+              "type": "string"
+            },
+            {
+              "id": "ce2810c5-8d0e-4bb3-ba84-199bf0428e55",
+              "name": "Subject",
+              "value": "={{ $json.Subject }}",
+              "type": "string"
+            },
+            {
+              "id": "e4a153f1-645a-4f93-97b2-f9105da30103",
+              "name": "Description",
+              "value": "={{ $json.snippet }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -448,
+        112
+      ],
+      "id": "8cb143a0-dd64-4c6f-a88a-37c7ea8a9726",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e812078a-f018-417d-b498-e0e64cc4e2d8",
+              "leftValue": "={{ $json.From }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -224,
+        112
+      ],
+      "id": "70be20ab-e08a-4277-88de-088a968115d4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C090LF8DVFZ",
+          "mode": "list",
+          "cachedResultName": "n8n-testing"
+        },
+        "text": "Failed to create ticket – missing data from email.|",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        208
+      ],
+      "id": "141a9a54-c457-4e89-9cd9-6e74523d721c",
+      "name": "For Error Handling",
+      "webhookId": "f84fb339-1c26-45a2-8022-3e4004ef8f94"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C090LF8DVFZ",
+          "mode": "list",
+          "cachedResultName": "n8n-testing"
+        },
+        "text": "=📩 *New Support Ticket Received* \n*From:* {{ $json.property_requester_email }}\n*Subject:* {{ $json.name }}\n*Description:* {{ $json.property_description }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "09121a15-070f-4a74-bc72-f11e6a5c4759",
+      "name": "Notifying Team",
+      "webhookId": "831cd828-6195-4096-bbc1-6e8892fae9a0"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -656,
+        112
+      ],
+      "id": "2070476f-fed1-48a2-ab87-2214a37a13d4",
+      "name": "Gmail Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c1dba77e-6761-4cf0-8774-0f67b46faf4d",
+      "name": "Support Ticket Database"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-15T12:16:34.243Z",
+      "updatedAt": "2025-09-15T12:16:34.243Z",
+      "role": "workflow:owner",
+      "workflowId": "OcqtX7wOF0vIttNo",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-15T12:16:43.000Z",
+  "versionId": "1880086e-2cc3-44b2-8528-a825f24be087"
+}
