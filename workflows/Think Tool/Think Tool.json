@@ -1,0 +1,173 @@
+{
+  "active": false,
+  "connections": {
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-31T13:31:14.444Z",
+  "id": "qIls89I3OlqiRAWG",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Think Tool",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        704,
+        32
+      ],
+      "id": "aa378c06-0f95-4b54-96c3-8a02d9f02e24",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        880,
+        352
+      ],
+      "id": "6064ab72-86f4-46ff-a832-ce6bce1f48a2",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        512,
+        32
+      ],
+      "id": "4acd7ce0-46da-49a5-8661-a229f9d51ef5",
+      "name": "When chat message received",
+      "webhookId": "68072477-1fa4-4518-9ae8-7128661fd04f"
+    },
+    {
+      "parameters": {
+        "content": "## AI Agent",
+        "height": 280,
+        "width": 700
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -80
+      ],
+      "id": "fcec5714-ec1e-46b6-bfb9-8df4505253ba",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Model",
+        "height": 300,
+        "width": 340,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        224
+      ],
+      "id": "5cd4c9e7-124c-4f32-9b98-768035abe8f0",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Think Node",
+        "height": 300,
+        "width": 340,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        768,
+        224
+      ],
+      "id": "0a0d1e55-4b50-4b4d-85f4-e31eb9a8f38d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        528,
+        352
+      ],
+      "id": "018ad0c6-07ed-423d-872e-01bf0bfd5c0d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-31T13:31:14.450Z",
+      "updatedAt": "2025-08-31T13:31:14.450Z",
+      "role": "workflow:owner",
+      "workflowId": "qIls89I3OlqiRAWG",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-02T05:09:03.000Z",
+  "versionId": "5d480f5c-33a2-4ca8-aabf-f7d80215164a"
+}
