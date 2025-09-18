@@ -1,0 +1,418 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-31T15:28:55.474Z",
+  "id": "yElyd2LDt5uF8fla",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Finance Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        64,
+        128
+      ],
+      "id": "d898b9f4-4297-4ad3-8474-aa3f0b27a9ef",
+      "name": "When chat message received",
+      "webhookId": "e531ca0c-59c8-4abe-99e9-7bf32566a09f"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant. You are used to save expenses or income. Always refer to 2025 year.",
+          "maxIterations": 3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        288,
+        128
+      ],
+      "id": "0d225c61-0872-47df-8211-d13dcbbb5558",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        352
+      ],
+      "id": "2bbcecb8-9d4d-4b77-8811-af423a3966b1",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ca1c59e3-e8df-4425-b3c4-f9a91f90babe",
+              "name": "response",
+              "value": "=response {{ $('When chat message received').item.json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        128
+      ],
+      "id": "a47f7c61-7a39-4ab3-9eb7-49f81a53fe01",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "name": "expense_database",
+        "description": "call this tool to save the expences to database",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{$workflow.id}}",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        336
+      ],
+      "id": "12602c54-f8ca-4255-90da-e7b4ed20fb20",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "text": "=convert expense to JSON:\n\n {{ $json.query }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "cost",
+              "type": "number",
+              "description": "expense cost",
+              "required": true
+            },
+            {
+              "name": "description",
+              "description": "expense or income description",
+              "required": true
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "description": "date in UTC+2",
+              "required": true
+            },
+            {
+              "name": "type",
+              "description": "If is an expense or income",
+              "required": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        304,
+        704
+      ],
+      "id": "39efd05f-7532-4834-acb4-8351daf85268",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        64,
+        672
+      ],
+      "id": "cc17f65c-1cde-48e5-8bc4-2071ca96789d",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "content": "# Handle Expences or Income",
+        "height": 500,
+        "width": 840
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "00f2798e-efa0-4100-bf33-b4b2e8d89a03",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Save The Data",
+        "height": 500,
+        "width": 840,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        528
+      ],
+      "id": "0f11c25d-521f-4af2-a91d-9b2a0aea2462",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1wyv4S4zRXSm80or-4ZtMxsqWnwfnzN1Ue9DEtKIF3jU",
+          "mode": "list",
+          "cachedResultName": "Finance Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wyv4S4zRXSm80or-4ZtMxsqWnwfnzN1Ue9DEtKIF3jU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1wyv4S4zRXSm80or-4ZtMxsqWnwfnzN1Ue9DEtKIF3jU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Description": "={{ $json.output.description }}",
+            "Date": "={{ $json.output.date }}",
+            "Type": "={{ $json.output.type }}",
+            "Cost ": "={{ $json.output.cost }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cost ",
+              "displayName": "Cost ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Type",
+              "displayName": "Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        672,
+        672
+      ],
+      "id": "270507dd-3d41-4279-a49a-a2888e8fbf71",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        160,
+        336
+      ],
+      "id": "0ceafb3b-eb08-4252-8c94-fb57f440e139",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        880
+      ],
+      "id": "bb51bbde-a2a4-4a2f-9b25-78421a72ab30",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-31T15:28:55.479Z",
+      "updatedAt": "2025-08-31T15:28:55.479Z",
+      "role": "workflow:owner",
+      "workflowId": "yElyd2LDt5uF8fla",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-13T18:31:56.000Z",
+  "versionId": "585df971-d890-49c8-a4b1-d807ca26c5da"
+}
