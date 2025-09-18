@@ -1,0 +1,198 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Google Maps Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Google Maps Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Maps": {
+      "ai_tool": [
+        [
+          {
+            "node": "Google Maps Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Maps Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Maps Agent": {
+      "main": [
+        [
+          {
+            "node": "Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-15T12:17:53.303Z",
+  "id": "dA7UZEhzHoJIk2en",
+  "isArchived": false,
+  "meta": null,
+  "name": "Google Maps Agent**",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "48eef45d-9314-48b4-9366-7d37e2c9b634",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "7"
+      },
+      "id": "04f40571-790d-490f-80a5-61a3c8331b95",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "This bot help you to scrap all contact information for lead gen from google map. Input query \"q\" for search input, \"ll\" for latlng, \"page\" is for the current page.",
+        "url": "https://google.serper.dev/maps",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "q"
+            },
+            {
+              "name": "ll"
+            },
+            {
+              "name": "page"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "X-API-KEY",
+              "valueProvider": "fieldValue"
+            }
+          ]
+        }
+      },
+      "id": "6bee4fcb-516e-467e-aab4-cee9d8f35a1c",
+      "name": "Search Maps",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        240
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "95f8b6fe-cfa1-41ee-941a-33eeaf13436a",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "39c2f302-03be-4464-a17a-d7cc481d6d44",
+              "name": "=response",
+              "value": "={{$json.output}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ddd28671-6fe7-4be0-a89d-8d0a6e043742",
+      "name": "Success",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=# Role\nYou are an advanced research assistant specializing in finding contact details for businesses and locations using Google Maps or company websites. Your primary task is to gather, structure, and store this information in a human-readable format.\n\n# Task\nSearch for businesses, places, or contact details on Google Maps or company websites.\nOrganize the collected data in a structured format.\nStore the results in Google Sheets for easy access and use.\n# Output Requirements\nWhen saving results to Google Sheets, ensure the data is formatted in a structured JSON format.\nSubmit the data in a single call using the format below:\n\n[\n  {\n    \"json\": {\n      \"Name\": \"Business Name\",\n      \"Address\": \"123 Street, City, Country\",\n      \"Phone\": \"+123456789\",\n      \"Website\": \"https://businesswebsite.com\",\n      \"Rating\": \"4.5\",\n      \"Opening Hours\": \"Mon-Fri 9AM - 6PM\",\n      \"Email\": \"contact@business.com\"\n    }\n  },\n  {\n    \"json\": {\n      \"Name\": \"Another Business\",\n      \"Address\": \"456 Avenue, City, Country\",\n      \"Phone\": \"+987654321\",\n      \"Website\": \"https://anotherwebsite.com\",\n      \"Rating\": \"4.2\",\n      \"Opening Hours\": \"24/7\",\n      \"Email\": \"info@anotherbusiness.com\"\n    }\n  }\n]\n\n# Best Practices\nEnsure accurate and up-to-date information.\nIf a field is missing (e.g., no email found), return null instead of empty text.\nDo not make multiple API calls when sending data to Google Sheets—combine everything in a single request.\nOnly extract information relevant to the user’s query—avoid unnecessary data.\n\n# Tools Available\nSearch Maps → Extract business and contact details from Google Maps.\nGoogle Sheet Tool → Store the structured data in a Google Sheets document.\n# Final Notes\nBe precise and structured in your responses.\nMake the results easy to read and use.\nIf no relevant data is found, return null instead of leaving fields empty.\n"
+        }
+      },
+      "id": "8a2c8230-2f70-4f75-8994-b790cebe396a",
+      "name": "Google Maps Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        320,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-15T12:17:53.310Z",
+      "updatedAt": "2025-09-15T12:17:53.310Z",
+      "role": "workflow:owner",
+      "workflowId": "dA7UZEhzHoJIk2en",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-15T12:18:12.000Z",
+  "versionId": "e0959597-f64d-47fc-9fe8-786343f834a6"
+}
