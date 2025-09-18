@@ -1,0 +1,379 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-31T13:19:21.391Z",
+  "id": "1HmDJRQIac6Uz0sW",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Telegram Sports Inventory Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -896,
+        96
+      ],
+      "id": "6872ec31-1a93-4132-8e40-f981883385d3",
+      "name": "Telegram Trigger",
+      "webhookId": "f83f8c8a-be72-4cbf-b9a9-57efe23d46f2",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a polite, knowledgeable sports inventory assistant in a Telegram chat, helping Fahad with clear, brief answers.\nYou manage two Google Sheets: one for reading inventory data and one for writing/updating equipment name and total stock.\n\nRules:\n\nYou must always return your answer as pure JSON (no extra text, no markdown, no code blocks).\n\nThe JSON must always contain these keys:\n\n\"text_output\": Short summary/response message for Fahad.\n\n\"equipment_name\": Name of the equipment being referenced (empty string if not applicable).\n\n\"total_stock\": Number representing total stock (empty string if not applicable).\n\n\"request\": The exact original text from the user (verbatim).\n\nIf updating stock → include both \"equipment_name\" and \"total_stock\".\n\nIf not updating stock → set \"equipment_name\" and \"total_stock\" to empty strings.\n\nNo hallucinations. If the request is unclear, respond with a clarification question in \"text_output\" and keep other keys empty (except \"request\").\n\nExample Response:\n{\n\"text_output\": \"Added 3 footballs to inventory.\",\n\"equipment_name\": \"football\",\n\"total_stock\": \"27\",\n\"request\": \"Add 3 footballs to inventory\"\n}\n\nNote: No hallucinations, If not understand ask again to write clearly."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -640,
+        96
+      ],
+      "id": "bd5fa13a-34b9-4823-835f-4ec216c3ad31",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.text_output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a3bd900e-c441-44ee-9c56-70ec4bcdf0d7",
+      "name": "Send a text message",
+      "webhookId": "1427881c-3b8f-41bd-8acb-cf4ce6585350",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ",
+          "mode": "list",
+          "cachedResultName": "Sport Inventory",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Invo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Equipment Name": "={{ $json.equipment_name.toLowerCase() }}",
+            "Total Stock": "={{ $json.total_stock }}"
+          },
+          "matchingColumns": [
+            "Equipment Name"
+          ],
+          "schema": [
+            {
+              "id": "Equipment Name",
+              "displayName": "Equipment Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total Stock",
+              "displayName": "Total Stock",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "output",
+              "displayName": "output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        0,
+        208
+      ],
+      "id": "64e93d6c-1674-4038-877d-2be6eb9d9b4d",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let output = $input.first().json.output;\n\n// Remove markdown code block if present\nif (typeof output === \"string\") {\n  output = output.replace(/^\\s*```[a-zA-Z]*\\s*/, \"\");\n  output = output.replace(/\\s*```[\\s\\n]*$/, \"\");\n  output = output.trim();\n  output = JSON.parse(output);\n}\n\n// The AI Agent should return text_output, equipment_name, total_stock, request\nreturn [\n  {\n    json: {\n      text_output: output.text_output || \"\",\n      equipment_name: output.equipment_name || \"\",\n      total_stock: output.total_stock || \"\",\n      request: output.request || \"\"\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -272,
+        96
+      ],
+      "id": "a792f119-ba63-4df3-b046-12da16b1e8b2",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        400
+      ],
+      "id": "ade7904a-6cbe-4edb-82e3-3f08e3429161",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ",
+          "mode": "list",
+          "cachedResultName": "Sport Inventory",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Invo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Equipment Name"
+          ],
+          "schema": [
+            {
+              "id": "Equipment Name",
+              "displayName": "Equipment Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total Stock",
+              "displayName": "Total Stock",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -496,
+        432
+      ],
+      "id": "c2cc600d-673c-4b60-8b06-4003d9936af5",
+      "name": "Append or update row in sheet in Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ",
+          "mode": "list",
+          "cachedResultName": "Sport Inventory",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Invo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uxdcqEolRrd3njA2lRwx-gcWdyKi1i7IBG5-eaOSeIQ/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        -336,
+        304
+      ],
+      "id": "5b259c1c-5a61-4c2f-a9bf-2fb0e26f1d46",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-31T13:19:21.396Z",
+      "updatedAt": "2025-08-31T13:19:21.396Z",
+      "role": "workflow:owner",
+      "workflowId": "1HmDJRQIac6Uz0sW",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-02T05:08:53.000Z",
+  "versionId": "9bd98f3a-19cf-4cdf-a025-8e383d77a70f"
+}
