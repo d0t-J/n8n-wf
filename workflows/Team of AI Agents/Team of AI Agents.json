@@ -1,0 +1,1260 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download a file": {
+      "main": [
+        [
+          {
+            "node": "Transcribe audio or video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Contacts Database": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supervisor AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Audio Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe audio or video": {
+      "main": [
+        [
+          {
+            "node": "Supervisor AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audio Exists": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "download a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Event": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get events": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meeting with attendee": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Agent1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calendar Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Agent1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Messages": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Messages": {
+      "ai_tool": [
+        [
+          {
+            "node": "Email Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-05T12:30:16.698Z",
+  "id": "T09U2kp9bz3VXNGh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Team of AI Agents",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "6194b4c6-9cf8-4354-a528-65d9e08032c3",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1824,
+        320
+      ],
+      "webhookId": "667892ca-ca20-42ab-a97f-a70b01aa2887",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "id": "6f64ac3b-bb92-436e-a4c4-933e9c34e141",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.2,
+      "position": [
+        -576,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.audio.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "6878c198-b73f-409f-8682-81bb8568b77e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "12abfa22-3fb9-4943-9f03-d8e832b81242",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "89575fed-ce42-4f4d-9919-50b0835bcb49",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Voice Recording"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "407cedac-c36c-4f02-b047-2d87aa24c6a0",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1600,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json['Voice/Audio File ID'] }}",
+        "additionalFields": {}
+      },
+      "id": "fa048ddf-e0e6-4c78-a60b-10dd73a2e293",
+      "name": "download a file",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -1152,
+        224
+      ],
+      "webhookId": "d70c5eb7-afe3-4e87-a635-7abf581c2c06",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b06acbc-8ec3-43f6-9286-709f2ca80045",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7f8d6828-b8d0-47ba-8003-36648db2f0bc",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -928,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "88d3bcd7-a2be-42d7-ad9d-7738b444a1fd",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        416
+      ],
+      "webhookId": "348b7b4b-e063-49d7-8f49-a5978f580e6f",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "data.mpga"
+        }
+      },
+      "id": "459bacca-6b3b-4ecc-8f40-2104b411e6df",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        224
+      ],
+      "webhookId": "21f7b8af-6621-4089-8f9f-e7850190a38b",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/Xb7hH8MSUJpSbSDYk0k2",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "xi-api-key",
+              "value": "sk_2cba93f40c7b4639642679ad5d48444893a6572fa53390eb"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"{{ JSON.stringify($json.message.content).replace(/(^\\\"|\\\"$)/g, '') }}\"\n}",
+        "options": {}
+      },
+      "id": "88b0cf1f-2147-4c08-b2c6-eb4c9ee05f0f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1rP7rhJqPzOYO11UxARnceK46ViDhK56ikejVIDCke8o",
+          "mode": "list",
+          "cachedResultName": "Contact database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rP7rhJqPzOYO11UxARnceK46ViDhK56ikejVIDCke8o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1rP7rhJqPzOYO11UxARnceK46ViDhK56ikejVIDCke8o/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "5688e8ad-c05d-4779-a4b2-7a4c22648d64",
+      "name": "Contacts Database",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        -448,
+        544
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YAefgAsgr3ppFBcL",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "email_Agent",
+        "description": "Call this tool to ake action in email",
+        "workflowId": {
+          "__rl": true,
+          "value": "4wccy1iAYjzauyVp",
+          "mode": "list",
+          "cachedResultName": "Email Agent"
+        }
+      },
+      "id": "563ad8f8-24b0-4f30-80dc-f90d06f47d23",
+      "name": "Email Agent",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Calendar_Agent",
+        "description": "Call this tool to manage the calendar.",
+        "workflowId": {
+          "__rl": true,
+          "value": "6NrFaxU3G6X8zQB7",
+          "mode": "list",
+          "cachedResultName": "Calendar Agent"
+        }
+      },
+      "id": "46f583a2-c55c-4be2-ae8e-54509797a32a",
+      "name": "Calendar Agent",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -192,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Research_Agent",
+        "description": "Call this tool to search the internet and answer the user's questions.",
+        "workflowId": {
+          "__rl": true,
+          "value": "FdttbecDBs2XeE7g",
+          "mode": "list",
+          "cachedResultName": "Research Agent"
+        }
+      },
+      "id": "0d73097f-9e97-4399-864d-32e6fe374a01",
+      "name": "Research Agent",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gemma2-9b-it",
+        "options": {}
+      },
+      "id": "9d5f5f88-1e37-4a45-9349-ef96467481e5",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        544
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "jfWOgRjQ3fbTWtjA",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=Summarize the following incoming data: {{ $json.output }}.\n\nFor calendar events, include only the event name and time.\nFor emails, provide only the email title and a brief summary of the body, excluding any timestamps.\nEnsure the output is in plain text format, without any symbols or markdown formatting.\n\nYou should output if the operation was successful or not. If there is any error or conflict of interests, then write a message stating the problem "
+        }
+      },
+      "id": "da43c061-1a27-4f6e-91f5-141f9a6dec18",
+      "name": "Supervisor AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -448,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        224
+      ],
+      "id": "60fc368c-12ff-4997-a6c8-f4d7096533a8",
+      "name": "Transcribe audio or video",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "aprDcrMYlW9YaEFs",
+          "name": "arhamkh6969@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash-lite-preview-06-17",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash-lite-preview-06-17"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Summarize this incoming information:  {{ $json.output }}. if  asked forFor the calendar events provide only the name of the event and time. \n\nif asked for email provide just title of the email and summary of the body. no time\n\nOutput only plain text, there should be no markdown formatting or  any symbols."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        368,
+        224
+      ],
+      "id": "a97e0800-dd91-4f33-853f-4fcafcbc7ed9",
+      "name": "Summarize",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6ef42aa3-8cf6-4def-9e46-edf74bf2cd6f",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message.voice.file_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "037e23d0-ce58-4f4a-9075-4cf7775b5530",
+      "name": "Audio Exists",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        144,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d2959f76-7618-47b2-baf8-1c423173f144",
+              "name": "Voice/Audio File ID",
+              "value": "={{ $json.message.voice.file_id }}",
+              "type": "string"
+            },
+            {
+              "id": "af8fedaf-9ee0-4170-99fb-68fdcf523713",
+              "name": "Voice/Audio File ID",
+              "value": "={{ $json.message.audio.file_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1376,
+        224
+      ],
+      "id": "05372f05-e573-4207-bfb0-24c945ec01dc",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "content": "# Research Agent\n",
+        "height": 608,
+        "width": 912,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2064,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "e458d104-8e8d-4c39-ab18-d23fbc12c5d2",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "fb31562a-fc09-4f1a-a556-16127882e5e5",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        -1936,
+        960
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2a0409fc-9f36-40ce-92f4-22bcd3087fed",
+      "name": "Wikipedia",
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        1184
+      ]
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "id": "90f9a478-884a-4552-aba7-b12ced9aefba",
+      "name": "Groq Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -1808,
+        1248
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "jfWOgRjQ3fbTWtjA",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "You are a research assistant with access to Wikipedia. First, search Wikipedia. If you don’t find the answer, return"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1712,
+        960
+      ],
+      "id": "3afb8a33-7047-4eb1-8615-a82862e80e34",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        -1408,
+        1312
+      ],
+      "id": "d790badd-bb99-498b-97d9-ed25815839bd",
+      "name": "SerpAPI",
+      "credentials": {
+        "serpApi": {
+          "id": "LDf8kb8BJV0eNVAw",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Email Agent\n",
+        "height": 608,
+        "width": 912,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -944,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "60351bb3-3edf-4295-bb64-5ba5b7e56518",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Calendar Agent\n## Requires Sub Workflow execution trigger \n\n",
+        "height": 608,
+        "width": 912,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        112,
+        864
+      ],
+      "typeVersion": 1,
+      "id": "c2a67c8a-a7c1-4a6c-b61f-b16b33c6562f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "start": "={{ $fromAI(\"starttime\",\"the time the user asks for the event to start\") }}",
+        "end": "={{ $fromAI(\"endtime\",\"the time the user asks for the event to end\") }}",
+        "additionalFields": {}
+      },
+      "id": "97f05c78-e691-4e62-98ea-f9d93c69cef8",
+      "name": "Create Event",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        368,
+        1264
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "returnAll": true,
+        "options": {
+          "timeMin": "={{ $fromAI(\"startDate\", \"the day before the requested date\") }}",
+          "timeMax": "={{ $fromAI(\"endDate\", \"the day after the requested date\") }}"
+        }
+      },
+      "id": "4fd7d7e2-37cd-4f1f-8652-8d545cb45415",
+      "name": "get events",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        1264
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "j.ahmed.ja7a7@gmail.com",
+          "mode": "list",
+          "cachedResultName": "j.ahmed.ja7a7@gmail.com"
+        },
+        "start": "={{ $fromAI(\"starttime\",\"the time the user asks for the event to start\") }}",
+        "end": "={{ $fromAI(\"endtime\",\"the time the user asks for the event to end\") }}",
+        "additionalFields": {
+          "attendees": [
+            "{{ $fromAI(\"attendeeEmail\",\"the email of the user asks the event to be scheduled with\") }}"
+          ]
+        }
+      },
+      "id": "37dc9d10-e95f-49cf-a53d-711172a87929",
+      "name": "Meeting with attendee",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        1264
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Y5qJlQYsxirCJnGk",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c19e1565-8baa-4eb0-ad6a-1c56adb3243c",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ac4a121b-e01d-4a98-b29b-7afccb6d7f7a",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        832,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=You are a calendar assistant responsible for handling calendar-related tasks. The current date and time is: {{ $now }}\n\nCreating an Event\nIf no end time is given, set the event duration to 60 minutes by default.\nUse this function only when no attendee is involved.\nCreating an Event with an Attendee\nIf an end time is not specified, the event should default to 60 minutes.\nThis function should be used only when an attendee is included.\nRetrieving Events\nUse this function to fetch scheduled events for a specific date.\nExclude any canceled events from the results.\n\n\n\n\n\n\n"
+        }
+      },
+      "id": "318c2127-4037-4629-aa41-798f8ba13ad1",
+      "name": "Calendar Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        368,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        240,
+        1264
+      ],
+      "id": "2c61303a-55ee-4252-97ee-7fbef01ac524",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9cf98450-ed76-4877-b306-35351fae6ae8",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2e26959e-2187-4d0e-9755-adc6ef960684",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -224,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {}
+      },
+      "id": "071e9575-9269-425a-8fd1-71f9f2103fea",
+      "name": "Email Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -592,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "id": "4daad6c2-229e-41d2-bcce-49891251a188",
+      "name": "Groq Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -704,
+        1328
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "jfWOgRjQ3fbTWtjA",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": "={{ $fromAI('limit') }}",
+        "simple": false,
+        "filters": {
+          "sender": " {{ $fromAI('senderEmail') }}"
+        },
+        "options": {}
+      },
+      "id": "3689a7df-56ba-4afd-ae15-9d7eee989839",
+      "name": "Get Messages",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -352,
+        1328
+      ],
+      "webhookId": "9cb5abf2-f0e4-47ab-a965-0a4a0b9efe7e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "= {{ $fromAI('emailAddress', \"The receipient's email address\") }}",
+        "subject": "={{ $fromAI('emailSubject') }}",
+        "emailType": "text",
+        "message": "={{ $fromAI('emailBody') }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Damian"
+        }
+      },
+      "id": "532dfb2a-98aa-4561-bc59-126005a2b57e",
+      "name": "Send Messages",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        -496,
+        1328
+      ],
+      "webhookId": "cdf99f78-855f-4e09-af2f-637ab9981f40",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-05T12:30:16.705Z",
+      "updatedAt": "2025-09-05T12:30:16.705Z",
+      "role": "workflow:owner",
+      "workflowId": "T09U2kp9bz3VXNGh",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-13T18:47:26.000Z",
+  "versionId": "1ffd63f5-a0c3-4b2a-858e-05cd6839cefe"
+}
