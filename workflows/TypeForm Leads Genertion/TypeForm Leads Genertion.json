@@ -1,0 +1,142 @@
+{
+  "active": false,
+  "connections": {
+    "Collects lead information": {
+      "main": [
+        [
+          {
+            "node": "Logs lead into CRM sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T12:39:03.477Z",
+  "id": "eUUazXF7pCCdGwPI",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "TypeForm Leads Genertion",
+  "nodes": [
+    {
+      "parameters": {
+        "formId": "O9qwcuFj"
+      },
+      "id": "d5601bd3-b636-4cc7-bc8f-1d188fd45953",
+      "name": "Collects lead information",
+      "type": "n8n-nodes-base.typeformTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "typeform-webhook-id",
+      "credentials": {
+        "typeformApi": {
+          "id": "dpQeidiz1ryKQuim",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1yFMxXRCx9qUK9uFtMzv90Tbdg5UqzAscCsEV6VvAXg0",
+          "mode": "list",
+          "cachedResultName": "N8N Practice",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yFMxXRCx9qUK9uFtMzv90Tbdg5UqzAscCsEV6VvAXg0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yFMxXRCx9qUK9uFtMzv90Tbdg5UqzAscCsEV6VvAXg0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Booking",
+              "displayName": "Booking",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Start",
+              "displayName": "Start",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        272,
+        0
+      ],
+      "id": "f0adf7b6-a2b3-4f27-88d8-d10a4e28da41",
+      "name": "Logs lead into CRM sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YAefgAsgr3ppFBcL",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-12T12:39:03.489Z",
+      "updatedAt": "2025-09-12T12:39:03.489Z",
+      "role": "workflow:owner",
+      "workflowId": "eUUazXF7pCCdGwPI",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-13T18:24:36.000Z",
+  "versionId": "1a8494f0-0c52-470a-a90c-fc2514666cc0"
+}
