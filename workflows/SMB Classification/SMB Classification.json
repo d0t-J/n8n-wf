@@ -1,0 +1,744 @@
+{
+  "active": false,
+  "connections": {
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SMB ICP Classification Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SMB ICP Classification Agent": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "SMB ICP Classification Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "SMB ICP Classification Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SMB ICP Classification Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          },
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-12T11:57:34.941Z",
+  "id": "l2xDEvvvcKGM5018",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SMB Classification",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        64
+      ],
+      "id": "e6d49ed3-938b-4872-a746-829113caff8c",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs",
+          "mode": "list",
+          "cachedResultName": "Practice",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 671175856,
+          "mode": "list",
+          "cachedResultName": "SMB Write",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit#gid=671175856"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $('Get row(s) in sheet').item.json.title }}",
+            "address": "={{ $('Get row(s) in sheet').item.json.address }}",
+            "phone": "={{ $('Get row(s) in sheet').item.json.phone }}",
+            "website": "={{ $('Get row(s) in sheet').item.json.website }}",
+            "categories/0": "={{ $('Get row(s) in sheet').item.json['categories/0'] }}",
+            "categories/1": "={{ $('Get row(s) in sheet').item.json['categories/1'] }}",
+            "description": "={{ $('Get row(s) in sheet').item.json.description }}",
+            "Classified Businesses": "={{ $json.output['Classified Businesses'] }}",
+            "categories/2": "={{ $('Get row(s) in sheet').item.json['categories/2'] }}",
+            "categories/3": "={{ $('Get row(s) in sheet').item.json['categories/3'] }}",
+            "categories/4": "={{ $('Get row(s) in sheet').item.json['categories/4'] }}",
+            "categories/5": "={{ $('Get row(s) in sheet').item.json['categories/5'] }}",
+            "categories/6": "={{ $('Get row(s) in sheet').item.json['categories/6'] }}",
+            "categories/7": "={{ $('Get row(s) in sheet').item.json['categories/7'] }}",
+            "categories/8": "={{ $('Get row(s) in sheet').item.json['categories/8'] }}",
+            "categories/9": "={{ $('Get row(s) in sheet').item.json['categories/9'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/0",
+              "displayName": "categories/0",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/1",
+              "displayName": "categories/1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/2",
+              "displayName": "categories/2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/3",
+              "displayName": "categories/3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/4",
+              "displayName": "categories/4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/5",
+              "displayName": "categories/5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/6",
+              "displayName": "categories/6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/7",
+              "displayName": "categories/7",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/8",
+              "displayName": "categories/8",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "categories/9",
+              "displayName": "categories/9",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Classified Businesses",
+              "displayName": "Classified Businesses",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1968,
+        -160
+      ],
+      "id": "83c7eca8-1c65-4074-befc-18d19d4778a6",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YAefgAsgr3ppFBcL",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\nTITLE: {{$json[\"title\"]}}\nWEBSITE: {{$json[\"website\"]}}\nPHONE: {{$json[\"phone\"]}}\nCATEGORY 1: {{$json[\"categories/0\"]}}, \nCATEGORY 2:{{$json[\"categories/1\"]}}, \nCATEGORY 3:{{$json[\"categories/2\"]}}, \nCATEGORY 4:{{$json[\"categories/3\"]}}, \nCATEGORY 5:{{$json[\"categories/4\"]}}, \nCATEGORY 6:{{$json[\"categories/5\"]}}, \nCATEGORY 7:{{$json[\"categories/6\"]}}, \nCATEGORY 8:{{$json[\"categories/7\"]}}, \nCATEGORY 9:{{$json[\"categories/8\"]}}, \nCATEGORY 10:{{$json[\"categories/9\"]}}\nDESCRIPTION: {{$json[\"description\"]}}\n",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=### Role & Goals\nYou are a professional **Business Classifier Agent**.  \nYour goal is to analyze the given business information and classify the business into the **single most appropriate category** from the fixed allowed list.  \nYou must always return the result in the **exact JSON structure**.  \n\n---\n\n### Task Steps\n\n1. **Read Business Information**  \n   Extract the following fields from the input data:  \n   - Title  \n   - Address  \n   - Phone  \n   - Website  \n   - Categories (categories/0 ... categories/9)  \n   - Description  \n\n2. **Analyze Website (If Provided)**  \n   - Visit the homepage.  \n   - Check About/Services pages if accessible.  \n   - Understand the **core business activity** rather than relying on keywords only.  \n\n3. **Contextual Understanding**  \n   - Do not depend on exact word matches.  \n   - Use reasoning based on description, title, website, and categories.  \n   - Consider synonyms, related terms, and implied services.  \n\n4. **Category Selection**  \n   - Choose the **closest category** from the **Allowed Categories** list.  \n   - Select **exactly one category** that represents the business’s **primary service**.  \n   - If multiple categories seem valid, pick the one that best represents the **core function**.  \n\n5. **Fallback Rule**  \n   - If no exact category exists, select the **closest possible match** from the **Allowed Categories** based on meaning and intent.  \n\n6. **Final Classification Output**  \n   - Write the classification under `\"Classified Businesses\"`.  \n   - Ensure only **one final category** is chosen per business.  \n\n\n---\n### **Classification Rules**\n\n### 1. Exact Keyword Match\n* If the business name, description, or category contains an **exact match** to a category keyword (singular or plural), assign that category directly.  \n* Example:  \n  - \"ABC Dental Clinic\" → **Dentists**  \n  - \"XYZ Brewery\" → **Breweries**\n\n---\n\n### 2. Synonym & Alias Match\n* Maintain a **dictionary of synonyms and aliases** for each category.  \n* If any synonym is detected, map it to the main allowed category.  \n* Examples:  \n  - \"Law Office\" → **Law firms**  \n  - \"Assisted Living Facility\" / \"Senior Care Home\" → **Nursing homes / assisted living facilities**  \n  - \"Eye Doctor\" → **Optometry clinics**\n\n---\n\n### 3. Industry Context Clues\n* Use descriptive and contextual terms in the business description, website, or categories to guide classification.  \n* Examples:  \n  - Mentions \"elder care,\" \"senior living,\" \"memory care,\" \"retirement home\" → **Nursing homes / assisted living facilities**  \n  - Mentions \"shipping,\" \"freight,\" \"transport,\" \"trucking logistics\" → **Logistics companies**  \n  - Mentions \"wine tasting,\" \"vineyard,\" \"cellars\" → **Wineries**\n\n---\n\n### 4. Hierarchical Reasoning\n* If multiple categories apply, **choose the most specific category** over the general one.  \n* Examples:  \n  - \"Pediatric Dentistry Clinic\" → **Pediatric dentists** (not general **Dentists**)  \n  - \"Residential Construction Firm with 200 employees\" → **Residential construction companies (20+ employees)** (not general **Construction firms**)  \n  - \"Community Credit Union\" → **Credit unions** (not **Community banks**)\n\n---\n\n### 5. Business Size & Scale\n* Refine classification if the description includes business size, employee count, or facility type.  \n* Examples:  \n  - \"Regional Bank with 15 branches\" → **Community banks**  \n  - \"Residential contractor with 3 employees\" → Exclude from **Residential construction companies (20+ employees)**\n\n---\n\n### 6. Reasoning & Closest Match\n* If no **direct keyword or synonym match** is found:  \n  - Compare all extracted keywords with the Allowed Categories list.  \n  - Select the **closest semantic match** using context and meaning.  \n* Examples:  \n  - \"Memory Care Facility\" → **Nursing homes / assisted living facilities**  \n  - \"Visual Branding Studio\" → **Design studios**  \n  - \"Custom Metal Welding Shop\" → **Fabrication shops**\n\n---\n\n### Allowed Categories:\nAccountants\nCPA (Certified Public Accountants)\nBookkeepers\nWealth management firms\nFinancial advisory firms\nLaw firms\nAttorneys\nParalegals\nTitle companies\nEscrow companies\nInsurance agencies\nReal estate brokerages (multi-agent offices)\nCredit unions\nCommunity banks\nPayroll service providers\nDentists\nOrthodontists\nOral surgeons\nEndodontists\nPeriodontists\nPediatric dentists\nPhysical therapy practices\nChiropractic clinics\nOptometry clinics\nOphthalmologists\nPodiatrists\nDermatologists\nCounseling & therapy practices\nVeterinary clinics\nAnimal hospitals\nConstruction firms (general contractors)\nCommercial construction companies\nResidential construction companies (20+ employees)\nArchitecture firms\nCivil engineering firms\nMechanical engineering firms\nElectrical engineering firms\nProperty management companies\nLand surveying firms\nManufacturing plants\nFabrication shops\nCNC machining companies\nInjection molding companies\nAerospace component manufacturers\nPrinting companies\nPackaging companies\nFood manufacturing companies\nBreweries\nDistilleries\nWineries\nMarketing agencies\nAdvertising agencies\nPR agencies\nDesign studios\nStaffing agencies\nHR consulting firms\nTrucking companies\nFreight brokers\nLogistics companies\nWarehouses\nDistribution centers\nCar dealerships\nAppliance & furniture stores\nLarge pet supply stores\nLarge garden centers & nurseries\nFuneral homes\nNursing homes / assisted living facilities\nPrivate schools\nTutoring centers\nCharter schools\nTrade schools\nVocational training centers\nNonprofit organizations\nMarinas\nBrokerages\n\n---\n### Questions & Objections Handling\n- Always use all available resources (description, website content, title, categories, phone, etc.) to understand the business.\n- If some information is missing (e.g., no description or no website), still rely on the other available fields to determine the best match.\n- Combine signals from all fields instead of depending on a single one.\n-If the business is still ambiguous after reviewing everything, choose the closest match from the Allowed Categories.\n-Never assign anything outside the Allowed Categories.\n\n---\n\n### Guardrails\n- Do not return multiple categories.   \n- Do not add commentary or explanations — only output the structured JSON.  \n- Only classify into **one category** from the allowed list.  \n- Never create a new category outside the Allowed Categories.\n- If there’s no exact match, always pick the nearest logical category from the list.\n- Do not leave \"Classified Businesses\" empty unless the business truly does not fit anywhere in the allowed list.\n\n---\n\n### Agent Style\n- Precise, professional, and rule-based.  \n- No assumptions beyond provided data.  \n- Always structured and consistent.  \n\n---\n\n### Output Format\nThe output must strictly follow this JSON format:\n\n{\n  \"Classified Businesses\": \"<single category from allowed list or empty string>\"\n}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1408,
+        -160
+      ],
+      "id": "801ec6b5-0f71-4bea-9210-b5d95a08a5f2",
+      "name": "SMB ICP Classification Agent"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs",
+          "mode": "list",
+          "cachedResultName": "Practice",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 104833936,
+          "mode": "list",
+          "cachedResultName": "SMB Classification",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit#gid=104833936"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "status",
+              "lookupValue": "pending"
+            },
+            {}
+          ]
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        736,
+        -176
+      ],
+      "id": "5249fd03-f555-4dbc-a596-eff53be7817b",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YAefgAsgr3ppFBcL",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        960,
+        -176
+      ],
+      "id": "77c63437-22e9-46df-a9ab-82da6f716858",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1184,
+        -160
+      ],
+      "id": "df701b56-8761-4377-9fd0-c6b5743d8534",
+      "name": "Wait",
+      "webhookId": "1082ad28-23cf-4a79-95dc-6f42f46867fd"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs",
+          "mode": "list",
+          "cachedResultName": "Practice",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 104833936,
+          "mode": "list",
+          "cachedResultName": "SMB Classification",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1JELNZNOcSaVBlU2WgOQz3pvkZkXrlLPieQW8RAFwKVs/edit#gid=104833936"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "Completed",
+            "row_number": "={{ $('Wait').item.json.row_number }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/0",
+              "displayName": "categories/0",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/1",
+              "displayName": "categories/1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/2",
+              "displayName": "categories/2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/3",
+              "displayName": "categories/3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/4",
+              "displayName": "categories/4",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/5",
+              "displayName": "categories/5",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/6",
+              "displayName": "categories/6",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/7",
+              "displayName": "categories/7",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/8",
+              "displayName": "categories/8",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "categories/9",
+              "displayName": "categories/9",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1968,
+        256
+      ],
+      "id": "3d93d92d-6fcf-4d24-9047-b958ef6d308d",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YAefgAsgr3ppFBcL",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        512,
+        -176
+      ],
+      "id": "f751887e-c18a-436c-8bfa-0166c1d4f1ea",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"Classified Businesses\": \"\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1600,
+        64
+      ],
+      "id": "da014b35-4d3d-4150-b7b9-26fffc51529d",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-small-24b-instruct-2501:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        272
+      ],
+      "id": "416ec643-f907-4fa3-a2b7-db8645400289",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "jZBCMu8PGL0RFUPv",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Small to Medium Sized Businesses (SMB) Classification ",
+        "height": 848,
+        "width": 1760
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        448,
+        -320
+      ],
+      "typeVersion": 1,
+      "id": "b25daf8e-701b-4e7a-ba77-287fd427a468",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-12T11:57:34.949Z",
+      "updatedAt": "2025-09-12T11:57:34.949Z",
+      "role": "workflow:owner",
+      "workflowId": "l2xDEvvvcKGM5018",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-13T18:40:19.000Z",
+  "versionId": "a2347db9-99eb-4633-9343-4a96c56239b9"
+}
