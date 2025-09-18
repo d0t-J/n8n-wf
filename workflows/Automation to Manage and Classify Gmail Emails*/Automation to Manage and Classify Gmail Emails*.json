@@ -1,0 +1,618 @@
+{
+  "active": false,
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Clean Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Data": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Services Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Consultation Requests",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Payments",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Others",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Services Request": {
+      "main": [
+        [
+          {
+            "node": "Reply to services requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consultation Requests": {
+      "main": [
+        [
+          {
+            "node": "Reply to consultation requests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Payments": {
+      "main": [
+        [
+          {
+            "node": "Reply to payment-related questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-31T19:33:29.473Z",
+  "id": "4QedDfdptVa89DUT",
+  "isArchived": false,
+  "meta": null,
+  "name": "Automation to Manage and Classify Gmail Emails*",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2448,
+        208
+      ],
+      "id": "2b9889b3-84f6-4b62-9052-dff233a6073b",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c144ecb1-6b4a-40f2-85ef-858be919ae07",
+              "leftValue": "={{ $json.output.senderName }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1856,
+        208
+      ],
+      "id": "1a8b8ee5-6a65-4a90-b374-be03f66d4909",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "17c78a79-67a6-421a-b009-29dbd16844d5",
+              "name": "intro",
+              "value": "=Dear {{ $json.output.senderName }},",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1536,
+        0
+      ],
+      "id": "e025fe1f-2e36-426e-8150-dab00978eadc",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "455417c3-0694-47a0-99b4-7aaf76e7e6a4",
+              "name": "intro",
+              "value": "Hi, ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1536,
+        352
+      ],
+      "id": "20f92fed-e9ff-4d09-9ba9-ae4b557a0169",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "senderName",
+              "description": "Extract the sender's name from this email. If no name , return an empty string.",
+              "required": true
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an advanced extraction tool. Only pull out the relevant details from the text. If you're unsure about the value of any requested attribute, leave it as an empty string."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        -2224,
+        208
+      ],
+      "id": "d95c7f3a-a120-4e67-96e5-6d6df73dcad3",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "intro",
+        "joinMode": "keepNonMatches",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        -1168,
+        192
+      ],
+      "id": "fa9973f6-398c-44f7-841a-d354d5354228",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b3e26d0b-6136-413a-b6d5-af2ea75aaaca",
+              "name": "message_id",
+              "value": "={{ $('Gmail Trigger').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "7b33486f-7455-4ea7-b4ca-fe9331bf54ea",
+              "name": "intro",
+              "value": "={{ $json.intro }}",
+              "type": "string"
+            },
+            {
+              "id": "540f6707-d57e-487b-811c-e1ed5b1fd6e5",
+              "name": "threadId",
+              "value": "={{ $('Gmail Trigger').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "500fb0d7-544e-4ce9-ba58-e87773e1ddc6",
+              "name": "text",
+              "value": "={{ $('Gmail Trigger').item.json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -896,
+        192
+      ],
+      "id": "48cb67b3-3105-43ce-bb98-a0cb2a557c19",
+      "name": "Clean Data"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Services requests",
+              "description": "Questions about consulting services offered, rates, or availability."
+            },
+            {
+              "category": "Consultation requests",
+              "description": "Scheduling initial consultations or follow-up meetings."
+            },
+            {
+              "category": "Payments",
+              "description": "Questions about invoices, payments, or refunds"
+            },
+            {
+              "category": "Others",
+              "description": "Emails that don’t clearly fit into the other categories."
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Please classify the text provided by the user into one of the following categories: {categories}, and use the provided formatting instructions below. Don't explain, and only output the json."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        144
+      ],
+      "id": "8ff75ad4-70d7-48c9-b6a7-d48ffa8f1b5e",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.message_id }}",
+        "labelIds": [
+          "Label_8657794264598686600"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "09c0e02c-bb95-4906-8653-652e699af974",
+      "name": "Services Request",
+      "webhookId": "a96a31d4-4aee-4401-92c7-1496491ea923",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.message_id }}",
+        "labelIds": [
+          "Label_6654410539426272442"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        208
+      ],
+      "id": "a8a6fad9-b503-4946-891d-f6577af5edac",
+      "name": "Consultation Requests",
+      "webhookId": "f8de955e-79ca-4534-a146-fa288d53e9c3"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.message_id }}",
+        "labelIds": [
+          "Label_7342055048041165011"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        400
+      ],
+      "id": "aa4f465a-99a4-46d8-b7b5-cdcf7a45e73d",
+      "name": "Payments",
+      "webhookId": "dd72b9a7-7d14-472b-8d86-f7e1a9a0cd6e"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.message_id }}",
+        "labelIds": [
+          "SPAM"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        608
+      ],
+      "id": "8d7300fa-4b5c-4912-8836-9d89c2654c76",
+      "name": "Others",
+      "webhookId": "ba168146-c21b-46e1-b11d-85e17bbe8639",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel! We’re excited to learn about your needs and how we can assist you.\n\nYour inquiry has been received, and a member of our team is reviewing the details. We’ll get back to you within 24 hours with more information.\n\nIn the meantime, feel free to explore our website for additional details about our services and contact with us via WhatsApp: https://www.aztecintel.com\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "971257c0-f402-42a7-b52a-392af4876ddf",
+      "name": "Reply to services requests",
+      "webhookId": "5471569b-1d0a-4fb6-ad09-014516b6be94"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel. We’re excited to learn more about your needs and discuss how we can help.\n\nTo schedule your consultation, please reply to this email with your preferred date and time or use our online booking link here: https://www.aztecintel.com\n\nOnce we receive your preferred time, we’ll confirm the appointment or suggest alternative options if needed.\n\nIf you have any specific topics you’d like to discuss during the consultation, feel free to include them in your reply.\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        208
+      ],
+      "id": "0a22b0f8-ce87-42c0-8c05-792f1acb27bf",
+      "name": "Reply to consultation requests",
+      "webhookId": "413b9fcc-30ef-43fb-ae4f-125189ccfb4b"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=\nThank you for contacting us regarding your payment/billing inquiry. We’ve received your message and are working to address your request.\n\nA member of our team will get back to you within 2 working days to provide the necessary information or assistance.\n\nIf this matter is urgent, please call us directly at +92322*******.\n\nThank you for your patience and for choosing Aztec Intel.\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        400
+      ],
+      "id": "8bc822d1-0427-4e68-9753-f64f9cccc293",
+      "name": "Reply to payment-related questions",
+      "webhookId": "a0fda489-eb42-4d02-9157-4d9deaa521e1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2304,
+        416
+      ],
+      "id": "f0563615-611b-4558-b088-ea540bca0428",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        512
+      ],
+      "id": "9178f8e4-71ec-4a9b-b79f-d144e5370919",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# The labels that you want to set should be pre created in the Gmail \n",
+        "height": 1008,
+        "width": 816
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -272,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "992e93d5-dc97-4b22-93c0-a93e487e46af",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-31T19:33:29.484Z",
+      "updatedAt": "2025-08-31T19:33:29.484Z",
+      "role": "workflow:owner",
+      "workflowId": "4QedDfdptVa89DUT",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-13T18:24:01.000Z",
+  "versionId": "145e2f73-73f7-4201-922d-538ab0e91bea"
+}
