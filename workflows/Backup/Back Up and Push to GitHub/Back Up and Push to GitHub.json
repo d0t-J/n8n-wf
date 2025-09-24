@@ -112,32 +112,12 @@
       "main": [
         [
           {
-            "node": "Check Status",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Check Status": {
-      "main": [
-        [
-          {
             "node": "Same file - Do nothing",
             "type": "main",
             "index": 0
-          }
-        ],
-        [
+          },
           {
-            "node": "File is different",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "File is new",
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -278,6 +258,31 @@
           }
         ]
       ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Same file - Do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "File is different",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "File is new",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-18T14:19:42.723Z",
@@ -294,8 +299,8 @@
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        144,
-        368
+        320,
+        464
       ],
       "typeVersion": 1
     },
@@ -308,14 +313,14 @@
       "name": "n8n",
       "type": "n8n-nodes-base.n8n",
       "position": [
-        592,
-        464
+        768,
+        560
       ],
       "typeVersion": 1,
       "credentials": {
         "n8nApi": {
           "id": "eo6P5MTbGWhy1lsK",
-          "name": "n8n - j.ahmed.ja7a7@gmail.com"
+          "name": "n8n - [ j.ahmed.ja7a7@gmail.com ]"
         }
       }
     },
@@ -327,8 +332,8 @@
       "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
       "position": [
-        816,
-        464
+        992,
+        560
       ],
       "typeVersion": 3
     },
@@ -346,8 +351,8 @@
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
       "position": [
-        144,
-        560
+        320,
+        656
       ],
       "typeVersion": 1.2
     },
@@ -362,15 +367,15 @@
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -528,
-        288
+        -352,
+        304
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
         "content": "## Main workflow loop",
-        "height": 416,
+        "height": 512,
         "width": 1465,
         "color": 7
       },
@@ -378,7 +383,7 @@
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -96,
+        208,
         304
       ],
       "typeVersion": 1
@@ -402,8 +407,8 @@
       "name": "Starting Message",
       "type": "n8n-nodes-base.slack",
       "position": [
-        368,
-        464
+        544,
+        560
       ],
       "webhookId": "c02eb407-5547-4aa0-9ebf-46dab67b63b6",
       "typeVersion": 2.2,
@@ -431,8 +436,8 @@
       "name": "Completed Notification",
       "type": "n8n-nodes-base.slack",
       "position": [
-        1040,
-        240
+        1216,
+        288
       ],
       "webhookId": "a0c6e8c8-5d71-40fa-b02b-63a7ed5726c4",
       "executeOnce": true,
@@ -447,7 +452,7 @@
     {
       "parameters": {
         "content": "## Subworkflow",
-        "height": 732,
+        "height": 972,
         "width": 3111,
         "color": 6
       },
@@ -455,8 +460,8 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        880,
-        208
+        1056,
+        160
       ],
       "typeVersion": 1
     },
@@ -478,8 +483,8 @@
       "name": "Return",
       "type": "n8n-nodes-base.set",
       "position": [
-        3824,
-        672
+        3968,
+        896
       ],
       "typeVersion": 3.3
     },
@@ -492,8 +497,8 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        2160,
-        432
+        2464,
+        464
       ],
       "typeVersion": 4.2
     },
@@ -535,8 +540,8 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        1936,
-        432
+        2112,
+        480
       ],
       "typeVersion": 2
     },
@@ -546,8 +551,8 @@
       "name": "Merge Items",
       "type": "n8n-nodes-base.merge",
       "position": [
-        2384,
-        528
+        2656,
+        560
       ],
       "typeVersion": 2
     },
@@ -559,37 +564,8 @@
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
-        2608,
-        528
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
-        "dataType": "string",
-        "value1": "={{$json.github_status}}",
-        "rules": {
-          "rules": [
-            {
-              "value2": "same"
-            },
-            {
-              "value2": "different",
-              "output": 1
-            },
-            {
-              "value2": "new",
-              "output": 2
-            }
-          ]
-        }
-      },
-      "id": "5cb25201-9152-4bff-9b6c-e3ad15a9ecb8",
-      "name": "Check Status",
-      "type": "n8n-nodes-base.switch",
-      "position": [
         2832,
-        496
+        560
       ],
       "typeVersion": 1
     },
@@ -599,8 +575,8 @@
       "name": "Same file - Do nothing",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3504,
-        272
+        3376,
+        528
       ],
       "typeVersion": 1
     },
@@ -610,8 +586,8 @@
       "name": "File is different",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3280,
-        464
+        3248,
+        704
       ],
       "typeVersion": 1
     },
@@ -621,8 +597,8 @@
       "name": "File is new",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3072,
-        656
+        3248,
+        896
       ],
       "typeVersion": 1
     },
@@ -647,8 +623,8 @@
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        3296,
-        656
+        3456,
+        896
       ],
       "typeVersion": 1,
       "webhookId": "386c09c3-5fa0-4f28-b270-e52cb2f8f73d",
@@ -656,7 +632,7 @@
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "[ Token ] - d0t-J"
+          "name": "Token - [ d0t-J ]"
         }
       },
       "onError": "continueErrorOutput"
@@ -683,15 +659,15 @@
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        3504,
-        464
+        3456,
+        704
       ],
       "typeVersion": 1,
       "webhookId": "3d9aa79c-4b0e-448a-a2f7-e342a02234a7",
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "[ Token ] - d0t-J"
+          "name": "Token - [ d0t-J ]"
         }
       }
     },
@@ -717,8 +693,8 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        1712,
-        432
+        1888,
+        480
       ],
       "typeVersion": 1,
       "alwaysOutputData": true,
@@ -726,7 +702,7 @@
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "[ Token ] - d0t-J"
+          "name": "Token - [ d0t-J ]"
         }
       },
       "continueOnFail": true
@@ -761,8 +737,8 @@
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
-        1488,
-        432
+        1664,
+        480
       ],
       "typeVersion": 3.4
     },
@@ -784,8 +760,8 @@
       "name": "/",
       "type": "n8n-nodes-base.set",
       "position": [
-        1264,
-        432
+        1440,
+        480
       ],
       "typeVersion": 3.4
     },
@@ -851,8 +827,8 @@
       "name": "tag?",
       "type": "n8n-nodes-base.switch",
       "position": [
-        1040,
-        432
+        1216,
+        480
       ],
       "typeVersion": 3.2
     },
@@ -875,8 +851,8 @@
       "name": "Failed Flows",
       "type": "n8n-nodes-base.slack",
       "position": [
-        3504,
-        736
+        3680,
+        960
       ],
       "webhookId": "2a092edb-de12-490f-931b-34d70e7d7696",
       "typeVersion": 2.2,
@@ -886,6 +862,97 @@
           "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
         }
       }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.github_status}}",
+                    "rightValue": "same",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e8601f6a-7b2a-45d7-9cec-084a72fc6438"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Same"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4d978b24-8f43-4924-ba0c-c1f00d413a79",
+                    "leftValue": "",
+                    "rightValue": "different",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Different"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "982dd831-ad62-450d-8ec4-701b81e0be3e",
+                    "leftValue": "",
+                    "rightValue": "new",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "New"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        3024,
+        672
+      ],
+      "id": "21c79155-6613-4be2-84e6-be033db453cb",
+      "name": "Switch"
     }
   ],
   "pinData": {},
@@ -915,6 +982,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-18T19:06:23.000Z",
-  "versionId": "a2a40e3d-7e58-44e9-93c4-6284656d2582"
+  "updatedAt": "2025-09-24T10:59:52.000Z",
+  "versionId": "adc85ef5-cba0-4a7d-a57b-1fc86c0a42ae"
 }
