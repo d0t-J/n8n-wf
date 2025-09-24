@@ -1,0 +1,28 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-09-23T08:49:48.203Z",
+  "id": "5Mj6kxb1x42wfTPY",
+  "isArchived": false,
+  "meta": null,
+  "name": "n8n Workflow Builder",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-23T08:49:48.213Z",
+      "updatedAt": "2025-09-23T08:49:48.213Z",
+      "role": "workflow:owner",
+      "workflowId": "5Mj6kxb1x42wfTPY",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-23T08:49:48.000Z",
+  "versionId": "0e9f7630-0432-47c4-931f-df3b3a62ae0b"
+}
