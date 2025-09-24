@@ -506,11 +506,11 @@
       "parameters": {
         "conditions": {
           "options": {
-            "leftValue": "",
             "caseSensitive": true,
-            "typeValidation": "strict"
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
           },
-          "combinator": "and",
           "conditions": [
             {
               "id": "45ce825e-9fa6-430c-8931-9aaf22c42585",
@@ -532,7 +532,8 @@
               "leftValue": "={{ $json.error }}",
               "rightValue": ""
             }
-          ]
+          ],
+          "combinator": "and"
         },
         "options": {}
       },
@@ -902,7 +903,7 @@
                 "conditions": [
                   {
                     "id": "4d978b24-8f43-4924-ba0c-c1f00d413a79",
-                    "leftValue": "",
+                    "leftValue": "={{$json.github_status}}",
                     "rightValue": "different",
                     "operator": {
                       "type": "string",
@@ -927,7 +928,7 @@
                 "conditions": [
                   {
                     "id": "982dd831-ad62-450d-8ec4-701b81e0be3e",
-                    "leftValue": "",
+                    "leftValue": "={{$json.github_status}}",
                     "rightValue": "new",
                     "operator": {
                       "type": "string",
@@ -982,6 +983,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-24T10:59:52.000Z",
-  "versionId": "adc85ef5-cba0-4a7d-a57b-1fc86c0a42ae"
+  "updatedAt": "2025-09-24T11:07:30.000Z",
+  "versionId": "9a26cdae-c572-4794-a65a-9ca62a68f663"
 }
