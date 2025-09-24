@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-09-22T13:12:40.583Z",
+  "id": "RY93B8ZVUx65YTsy",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Practice",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-22T13:12:40.595Z",
+      "updatedAt": "2025-09-22T13:12:40.595Z",
+      "role": "workflow:owner",
+      "workflowId": "RY93B8ZVUx65YTsy",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-24T11:11:12.000Z",
+  "versionId": "3843297f-1455-4938-92b1-70989b66916f"
+}
