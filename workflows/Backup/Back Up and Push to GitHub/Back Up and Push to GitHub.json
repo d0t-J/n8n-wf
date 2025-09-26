@@ -577,7 +577,7 @@
       "type": "n8n-nodes-base.noOp",
       "position": [
         3376,
-        528
+        560
       ],
       "typeVersion": 1
     },
@@ -588,7 +588,7 @@
       "type": "n8n-nodes-base.noOp",
       "position": [
         3248,
-        704
+        736
       ],
       "typeVersion": 1
     },
@@ -661,7 +661,7 @@
       "type": "n8n-nodes-base.github",
       "position": [
         3456,
-        704
+        736
       ],
       "typeVersion": 1,
       "webhookId": "3d9aa79c-4b0e-448a-a2f7-e342a02234a7",
@@ -950,7 +950,7 @@
       "typeVersion": 3.2,
       "position": [
         3024,
-        672
+        736
       ],
       "id": "21c79155-6613-4be2-84e6-be033db453cb",
       "name": "Switch"
@@ -983,6 +983,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-09-24T11:07:30.000Z",
-  "versionId": "9a26cdae-c572-4794-a65a-9ca62a68f663"
+  "updatedAt": "2025-09-24T16:22:20.000Z",
+  "versionId": "5d24f5b8-a969-4e66-81bc-273a3ae13826"
 }
