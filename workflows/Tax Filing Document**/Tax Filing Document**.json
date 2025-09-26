@@ -1,0 +1,188 @@
+{
+  "active": false,
+  "connections": {
+    "Receives Tax File": {
+      "main": [
+        [
+          {
+            "node": "Create file from text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatting": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create file from text": {
+      "main": [
+        [
+          {
+            "node": "Formatting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-24T12:31:03.698Z",
+  "id": "I2f2pI9RoxDAIRd3",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Tax Filing Document**",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tax-doc-upload",
+        "options": {
+          "binaryPropertyName": "data",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "60ba8f63-1028-40b7-9ac3-67d5c03a25c4",
+      "name": "Receives Tax File",
+      "webhookId": "683240c7-3c27-47c7-9626-a4617a21e8fa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "981b9398-da94-492e-aa19-3e0842657fd7",
+              "name": "Name",
+              "value": "={{ $('Receives Tax File').item.json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "70f75547-d345-4a8f-bf3b-99d893ccc648",
+              "name": "Email",
+              "value": "={{ $('Receives Tax File').item.json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "6b3c52af-e1d0-406d-88f5-6d0b2efed087",
+              "name": "Uploaded File Name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "2f67caa8-79f6-4455-a3d8-a9b746cf7622",
+              "name": "Doc List Expected",
+              "value": "={{ $('Receives Tax File').item.json.body.docListExpected }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        0
+      ],
+      "id": "2015243a-f36e-45b0-90d9-2d17b497b72a",
+      "name": "Formatting"
+    },
+    {
+      "parameters": {
+        "sendTo": "j.ahmed.ja7a7@gmail.com",
+        "subject": "JJJ",
+        "message": "jJJJ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        688,
+        0
+      ],
+      "id": "10a432c9-408b-4cef-9c88-32449b575cfb",
+      "name": "Send a message",
+      "webhookId": "26a402ad-21a9-4f72-93a1-9adea0744eef",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $json.body }}",
+        "name": "POST Test file ",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        240,
+        0
+      ],
+      "id": "c560d26f-f575-4c64-872a-9315c4e739f1",
+      "name": "Create file from text",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "HFA8dFUuiJNxyN15",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-24T12:31:03.711Z",
+      "updatedAt": "2025-09-24T12:31:03.711Z",
+      "role": "workflow:owner",
+      "workflowId": "I2f2pI9RoxDAIRd3",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-09-24T13:06:22.000Z",
+  "versionId": "3e1e100d-2421-49c9-95f7-87b38d7079d6"
+}
