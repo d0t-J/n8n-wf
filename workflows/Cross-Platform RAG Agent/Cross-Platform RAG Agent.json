@@ -170,8 +170,8 @@
       "name": "Pinecone Vector Store",
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "position": [
-        400,
-        16
+        336,
+        -96
       ],
       "typeVersion": 1,
       "credentials": {
@@ -187,8 +187,8 @@
       "name": "Embeddings Google Gemini",
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "position": [
-        352,
-        304
+        304,
+        128
       ],
       "typeVersion": 1,
       "credentials": {
@@ -208,8 +208,8 @@
       "name": "Default Data Loader",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "position": [
-        560,
-        240
+        432,
+        128
       ],
       "typeVersion": 1
     },
@@ -222,23 +222,23 @@
       "name": "Recursive Character Text Splitter",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "position": [
-        544,
-        448
+        512,
+        336
       ],
       "typeVersion": 1
     },
     {
       "parameters": {
         "options": {
-          "systemMessage": "Answer according to the documents "
+          "systemMessage": "Answer according to the documents in the pinecone vector database"
         }
       },
       "id": "c542529a-ef5d-4ecd-a661-2f10924adfd7",
       "name": "AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
-        1344,
-        32
+        136,
+        856
       ],
       "typeVersion": 1.7
     },
@@ -251,8 +251,8 @@
       "name": "Vector Store Tool",
       "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
       "position": [
-        1744,
-        256
+        336,
+        1080
       ],
       "typeVersion": 1
     },
@@ -265,15 +265,15 @@
           "cachedResultName": "n8n"
         },
         "options": {
-          "pineconeNamespace": "test document"
+          "pineconeNamespace": "Emails"
         }
       },
       "id": "946539d9-625c-444d-ab21-1ed77bca83f9",
       "name": "Pinecone Vector Store (Retrieval)",
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "position": [
-        1632,
-        432
+        232,
+        1288
       ],
       "typeVersion": 1,
       "credentials": {
@@ -289,8 +289,8 @@
       "name": "Embeddings Google Gemini (retrieval)",
       "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
       "position": [
-        1616,
-        592
+        312,
+        1496
       ],
       "typeVersion": 1,
       "credentials": {
@@ -316,8 +316,8 @@
       "name": "Download File From Google Drive",
       "type": "n8n-nodes-base.googleDrive",
       "position": [
-        176,
-        16
+        80,
+        112
       ],
       "typeVersion": 3,
       "credentials": {
@@ -365,7 +365,7 @@
       "type": "n8n-nodes-base.googleDriveTrigger",
       "position": [
         -144,
-        160
+        208
       ],
       "typeVersion": 1,
       "credentials": {
@@ -402,7 +402,7 @@
       "type": "n8n-nodes-base.googleDriveTrigger",
       "position": [
         -144,
-        -96
+        16
       ],
       "typeVersion": 1,
       "credentials": {
@@ -420,8 +420,8 @@
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "position": [
-        992,
-        32
+        -144,
+        856
       ],
       "webhookId": "5f1c0c82-0ff9-40c7-9e2e-b1a96ffe24cd",
       "typeVersion": 1.1
@@ -449,8 +449,8 @@
       "name": "Google Gemini Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "position": [
-        1232,
-        336
+        80,
+        1080
       ],
       "typeVersion": 1,
       "credentials": {
@@ -469,8 +469,8 @@
       "name": "Google Gemini Chat Model (retrieval)",
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "position": [
-        2000,
-        432
+        520,
+        1288
       ],
       "typeVersion": 1,
       "credentials": {
@@ -503,8 +503,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        1360,
-        240
+        208,
+        1080
       ],
       "id": "b4c69c0c-453d-4032-bc93-27e5f6e69173",
       "name": "Simple Memory"
@@ -526,6 +526,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-23T08:27:45.000Z",
-  "versionId": "965257cc-1fbb-4809-ac7d-6a289c05c2b0"
+  "updatedAt": "2025-09-27T16:48:06.000Z",
+  "versionId": "616dd838-39bd-4bb7-a803-d721a26b5353"
 }
