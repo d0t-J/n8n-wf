@@ -91,6 +91,17 @@
           }
         ]
       ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-27T14:24:42.177Z",
@@ -112,7 +123,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        672,
+        752,
         -16
       ],
       "id": "97ce29b9-5866-4558-841f-a87716936dcf",
@@ -153,7 +164,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        752,
+        832,
         208
       ],
       "id": "7386ffdf-62b8-437f-89dd-ce4fa4560bb7",
@@ -260,11 +271,24 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2.2,
       "position": [
-        880,
+        1040,
         240
       ],
       "id": "ed77f5d8-b887-4b70-b1af-23df280edd3a",
       "name": "Send Email"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Suppose this is the string you got from the AI Agent node:\nconst aiOutput =$input.first().json.output ;\n\n// Function to extract with regex\nfunction extractParts(str) {\n  const result = {};\n\n  // Extract subject: between \"**Subject:**\" and newline\n  const subjMatch = str.match(/\\*\\*Subject:\\*\\*\\s*([^\\n]+)/);\n  if (subjMatch) {\n    result.subject = subjMatch[1].trim();\n  }\n\n  // Extract text: between \"**Text:**\" and the \"***\" divider\n  const textMatch = str.match(/\\*\\*Text:\\*\\*\\s*([\\s\\S]*?)\\n\\*\\*\\*/);\n  if (textMatch) {\n    result.text = textMatch[1].trim();\n  }\n\n  // Extract tool_code block content: inside <tool_code> ... </tool_code>\n  const toolMatch = str.match(/<tool_code>\\s*([\\s\\S]*?)\\s*<\\/tool_code>/);\n  if (toolMatch) {\n    result.toolCode = toolMatch[1].trim();\n  }\n\n  // If you also want to extract the send_mail parameters, parse inside toolCode:\n  if (result.toolCode) {\n    const sendMailMatch = result.toolCode.match(/send_mail\\s*\\(\\s*to\\s*=\\s*\"([^\"]+)\"\\s*,\\s*subject\\s*=\\s*\"([^\"]+)\"\\s*,\\s*body\\s*=\\s*\"([\\s\\S]*)\"\\s*\\)/);\n    if (sendMailMatch) {\n      result.to = sendMailMatch[1];\n      result.subject2 = sendMailMatch[2];\n      // Note: body may contain escaped newlines (“\\\\n”), so you may want to unescape\n      result.body = sendMailMatch[3].replace(/\\\\n/g, \"\\n\");\n    }\n  }\n\n  return result;\n}\n\n// Test extraction:\nconst parts = extractParts(aiOutput);\nconsole.log(parts);\n// Sample output:\n// {\n//   subject: \"Lock in\",\n//   text: \"Hello Junaid,\\n\\nJust a reminder to lock in.\\n\\nBest regards,\\nArnie\",\n//   toolCode: 'send_mail(to=\"j.ahmed.ja7a7@gmail.com\", subject=\"Lock in\", body=\"Hello Junaid,\\\\n\\\\nJust a reminder to lock in.\\\\n\\\\nBest regards,\\\\nArnie\")',\n//   to: \"j.ahmed.ja7a7@gmail.com\",\n//   subject2: \"Lock in\",\n//   body: \"Hello Junaid,\\n\\nJust a reminder to lock in.\\n\\nBest regards,\\nArnie\"\n// }\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        -16
+      ],
+      "id": "c29ee84a-cf6f-4207-a762-12bf8f8bd5f3",
+      "name": "Code in JavaScript"
     }
   ],
   "pinData": {},
@@ -283,6 +307,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-27T19:02:05.000Z",
-  "versionId": "12504130-7d0a-40d9-a311-7587f7a701ae"
+  "updatedAt": "2025-09-27T19:24:36.000Z",
+  "versionId": "9ba3aeb6-61f7-406d-8120-b25e94c3ea6e"
 }
