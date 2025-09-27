@@ -1,12 +1,178 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Create a workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-09-23T08:49:48.203Z",
   "id": "5Mj6kxb1x42wfTPY",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "n8n Workflow Builder",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -384,
+        -112
+      ],
+      "id": "d28c636e-da97-4302-911b-44c04018b00f",
+      "name": "When chat message received",
+      "webhookId": "3946ffd3-fe33-49ce-a957-5fb7fdda27af"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Expert n8n Workflow Developer Prompt\n\nYou are an expert AI workflow developer specializing in building comprehensive, production-ready workflows for n8n. Your primary objective is to translate natural language requests into fully functional n8n workflow JSON that can be directly imported and executed.\n\n## Core Responsibilities\n\nTransform human requests into:\n- **Syntactically perfect** n8n workflow JSON\n- **Functionally complete** automation sequences\n- **Production-ready** configurations with proper error handling\n- **Well-documented** workflows with explanatory sticky notes\n\n## Output Requirements\n\n### Format Specifications\n- **Pure JSON only**: Output must start with `{` and end with `}`\n- **No markdown formatting**: No code blocks, explanations, or additional text\n- **Direct import ready**: JSON must be valid for immediate n8n import\n- **Complete structure**: All required fields and valid node connections\n\n### Required JSON Structure\n```json\n{\n  \"name\": \"Descriptive Workflow Name\",\n  \"nodes\": [...],\n  \"connections\": {...},\n  \"settings\": {...},\n  \"staticData\": null,\n  \"tags\": [...],\n  \"triggerCount\": 1,\n  \"updatedAt\": \"2024-01-01T00:00:00.000Z\",\n  \"versionId\": \"1\"\n}\n```\n\n## Workflow Analysis Process\n\n### 1. Request Decomposition\n- Break down the request into logical automation steps\n- Identify data sources, transformations, and destinations\n- Determine trigger types and execution patterns\n- Map out decision points and error handling needs\n\n### 2. Node Selection Strategy\n- **Triggers**: Webhook, Schedule, Manual, Email, etc.\n- **Data Sources**: HTTP Request, Database, APIs, File systems\n- **Logic**: IF, Switch, Code, Set, Merge\n- **Transformations**: Function, Code, JSON, XML operations\n- **Destinations**: Email, Slack, Database, File storage, APIs\n- **Utilities**: Wait, Stop and Error, Sticky Note\n\n### 3. Connection Architecture\n- Map logical flow from trigger through all processing steps\n- Ensure proper error paths and fallback mechanisms\n- Validate that all node inputs have corresponding outputs\n- Include conditional branching where appropriate\n\n## Node Configuration Standards\n\n### Comprehensive Parameter Setting\n- **No placeholders**: Use realistic, functional values\n- **Proper authentication**: Include credential placeholders with clear naming\n- **Realistic data**: Sample data that reflects actual use cases\n- **Error handling**: Configure retry logic and error workflows\n\n### Sticky Notes Requirements\n- **Strategic placement**: Key decision points and complex operations\n- **Color variety**: Use different colors (red, yellow, blue, green, purple, orange)\n- **Clear explanations**: What each section does and why\n- **Configuration notes**: Credentials needed, manual setup requirements\n- **Troubleshooting tips**: Common issues and solutions\n\n## Advanced Features Integration\n\n### Error Handling\n- Include error capture nodes where failures are likely\n- Configure retry mechanisms for external API calls\n- Set up notification systems for critical failures\n- Implement graceful degradation paths\n\n### Performance Optimization\n- Use appropriate execution modes (sequential vs parallel)\n- Configure proper timeouts and limits\n- Include data validation and sanitization\n- Optimize for resource usage\n\n### Security Considerations\n- Use credential references instead of hardcoded values\n- Include data sanitization where needed\n- Configure appropriate permissions and access controls\n- Add logging for audit trails\n\n## Settings Configuration\n\n### Standard Settings Object\n```json\n\"settings\": {\n  \"executionOrder\": \"v1\",\n  \"saveManualExecutions\": true,\n  \"saveDataSuccessExecution\": \"all\",\n  \"saveExecutionProgress\": true,\n  \"saveDataErrorExecution\": \"all\",\n  \"errorWorkflow\": \"\",\n  \"timezone\": \"America/New_York\",\n  \"callerPolicy\": \"workflowsFromSameOwner\"\n}\n```\n\n### Execution Behavior\n- Set appropriate execution timeouts\n- Configure data retention policies\n- Enable/disable manual execution saving based on use case\n- Set timezone based on user context or UTC as default\n\n## Quality Assurance Checklist\n\n### Before Output Generation\n- [ ] All nodes have valid types and required parameters\n- [ ] Connections object properly maps all node relationships\n- [ ] No orphaned nodes (disconnected from workflow)\n- [ ] Trigger node present for automated workflows\n- [ ] Error handling paths included\n- [ ] Sticky notes explain complex logic\n- [ ] Credentials properly referenced\n- [ ] Settings configured for use case\n\n### JSON Validation\n- [ ] Valid JSON syntax (no trailing commas, proper quotes)\n- [ ] All required fields present\n- [ ] Node IDs are unique and properly referenced\n- [ ] Connection mappings are accurate\n- [ ] Parameter values are appropriate types\n\n## Ambiguity Resolution\n\nWhen requests lack specificity:\n1. **Make intelligent assumptions** based on common automation patterns\n2. **Choose popular integrations** (Gmail over obscure email services)\n3. **Include multiple options** via conditional logic when uncertain\n4. **Default to robust configurations** that handle edge cases\n5. **Add explanatory sticky notes** for assumed behaviors\n\n## Common Integration Patterns\n\n### Data Processing Workflows\n- Webhook → Validation → Transform → Multiple Destinations\n- Schedule → Data Fetch → Processing → Notification → Storage\n\n### Notification Systems\n- Trigger → Condition Check → Format Message → Multi-channel Delivery\n\n### Data Synchronization\n- Source → Extract → Transform → Validate → Load → Confirm\n\n### Approval Workflows\n- Trigger → Route → Approve/Reject → Action → Notify → Archive\n\n## Documentation Standards\n\n### Sticky Note Content Guidelines\n- **Purpose**: What this section accomplishes\n- **Configuration**: Required credentials or manual setup\n- **Data Flow**: What data is expected and produced\n- **Error Cases**: Common issues and resolutions\n- **Customization**: How to modify for different scenarios\n\nRemember: Your output should be a complete, importable n8n workflow that immediately provides value to the user with minimal additional configuration required. Keep the settings same as provided in the example by the user. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -208,
+        -112
+      ],
+      "id": "d21898df-60bf-4d28-845f-4e209a60ab2f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "workflowObject": "={{ $json.clearWorkflow }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        304,
+        -112
+      ],
+      "id": "67e13ebd-e573-4c76-8db3-71fd2d0b7a14",
+      "name": "Create a workflow",
+      "credentials": {
+        "n8nApi": {
+          "id": "eo6P5MTbGWhy1lsK",
+          "name": "n8n - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f8a59070-a091-4a84-bd86-92cdcba781f2",
+              "name": "Workflow Link",
+              "value": "=https://n8n.br3adko4e.tech/workflow/{{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        -112
+      ],
+      "id": "5b51640e-5350-41ee-a3cd-ae89272e64f2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Clean and extract JSON workflow from AI agent output\nfunction extractWorkflowJSON(aiOutput) {\n  try {\n    if (!aiOutput || typeof aiOutput !== 'string') {\n      throw new Error('Invalid input: expected string output from AI agent');\n    }\n    \n    // Remove various markdown code block markers\n    let cleanedOutput = aiOutput\n      .replace(/```json\\s*/gi, '')\n      .replace(/```javascript\\s*/gi, '')\n      .replace(/```\\s*/g, '')\n      .replace(/^json\\s*/gi, ''); // Remove standalone 'json' at start\n    \n    // Remove any explanatory text before the JSON\n    const lines = cleanedOutput.split('\\n');\n    let startIndex = -1;\n    \n    // Find the line that starts the JSON object\n    for (let i = 0; i < lines.length; i++) {\n      const trimmedLine = lines[i].trim();\n      if (trimmedLine.startsWith('{')) {\n        startIndex = i;\n        break;\n      }\n    }\n    \n    if (startIndex !== -1) {\n      cleanedOutput = lines.slice(startIndex).join('\\n');\n    }\n    \n    // Remove any trailing explanatory text after the JSON\n    cleanedOutput = cleanedOutput.trim();\n    \n    // Find the complete JSON object boundaries\n    const firstBrace = cleanedOutput.indexOf('{');\n    let braceCount = 0;\n    let lastBrace = -1;\n    \n    if (firstBrace === -1) {\n      throw new Error('No opening brace found in the output');\n    }\n    \n    // Find the matching closing brace\n    for (let i = firstBrace; i < cleanedOutput.length; i++) {\n      if (cleanedOutput[i] === '{') braceCount++;\n      if (cleanedOutput[i] === '}') {\n        braceCount--;\n        if (braceCount === 0) {\n          lastBrace = i;\n          break;\n        }\n      }\n    }\n    \n    if (lastBrace === -1) {\n      throw new Error('No matching closing brace found');\n    }\n    \n    // Extract the JSON string\n    const jsonString = cleanedOutput.substring(firstBrace, lastBrace + 1);\n    \n    // Validate JSON and clean up any formatting issues\n    const parsedJSON = JSON.parse(jsonString);\n    \n    // Ensure it has the basic workflow structure\n    if (!parsedJSON.nodes || !Array.isArray(parsedJSON.nodes)) {\n      throw new Error('Invalid workflow JSON: missing or invalid nodes array');\n    }\n    \n    if (!parsedJSON.connections || typeof parsedJSON.connections !== 'object') {\n      throw new Error('Invalid workflow JSON: missing or invalid connections object');\n    }\n    \n    // Return the parsed JSON object (not stringified) for n8n\n    return parsedJSON;\n    \n  } catch (error) {\n    console.error('Error extracting JSON:', error);\n    console.error('Input was:', aiOutput);\n    throw new Error(`Failed to extract valid JSON: ${error.message}`);\n  }\n}\n\n// CHANGE 1: Updated input variable reference\nconst rawOutput =$input.first().json.output\nconst cleanWorkflowJSON = extractWorkflowJSON(rawOutput);\nconst clearWorkflow = JSON.stringify(cleanWorkflowJSON);\n\n// CHANGE 2: Fixed return statement structure\nreturn {\n  json: {\n    clearWorkflow: clearWorkflow\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        -112
+      ],
+      "id": "cfd07a2d-ca37-400a-b286-c378f07c7ebb",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "model": "x-ai/grok-4-fast:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        144
+      ],
+      "id": "1d1f61c4-555a-42d8-a5f1-965f68866b6d",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "jZBCMu8PGL0RFUPv",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -23,6 +189,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-23T08:49:48.000Z",
-  "versionId": "0e9f7630-0432-47c4-931f-df3b3a62ae0b"
+  "updatedAt": "2025-09-27T13:23:29.000Z",
+  "versionId": "2ea7fe23-a999-49e7-aea9-bff53c646b7c"
 }
