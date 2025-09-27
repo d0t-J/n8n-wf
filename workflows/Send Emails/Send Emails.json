@@ -5,19 +5,8 @@
       "main": [
         [
           {
-            "node": "Code in JavaScript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send a message in Gmail": {
-      "ai_tool": [
-        [
-          {
             "node": "AI Agent",
-            "type": "ai_tool",
+            "type": "main",
             "index": 0
           }
         ]
@@ -34,12 +23,12 @@
         ]
       ]
     },
-    "Code in JavaScript": {
-      "main": [
+    "Send a message in Gmail": {
+      "ai_tool": [
         [
           {
             "node": "AI Agent",
-            "type": "main",
+            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -64,7 +53,7 @@
         0,
         0
       ],
-      "id": "a12b3b39-da3b-45e0-a4f0-2ebe2d40bfbe",
+      "id": "5d1adec3-133d-4ced-9fef-96602cbbc5ae",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -74,31 +63,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        448,
+        208,
         0
       ],
-      "id": "9bf94b15-2010-4da8-a77a-dfaf963b5004",
+      "id": "d8d20965-b088-499e-bbb6-6a9266d4b2ce",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "n8n-nodes-base.gmailTool",
-      "typeVersion": 2.1,
-      "position": [
-        584,
-        224
-      ],
-      "id": "51e3182d-594c-4280-a451-678662d95a8a",
-      "name": "Send a message in Gmail",
-      "webhookId": "b3afbc88-e0ed-4f9e-bf31-f14ebb546aa7",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "Q458x3HuWMnd4WaH",
-          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
-        }
-      }
     },
     {
       "parameters": {
@@ -107,10 +76,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        456,
-        224
+        80,
+        208
       ],
-      "id": "8b4b7bd2-839b-4600-8bb4-4d61e3968bc8",
+      "id": "9d6f5340-98c7-4636-bc19-bdeb418da5cc",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -121,16 +90,23 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
       "position": [
-        224,
-        0
+        368,
+        208
       ],
-      "id": "45e812cf-5881-4843-abe7-87b1a1afed11",
-      "name": "Code in JavaScript"
+      "id": "8d0965c3-bc38-4455-b7a9-0d8e31a412d7",
+      "name": "Send a message in Gmail",
+      "webhookId": "c2cdbb56-d57d-45b1-8ed9-c4247cd78e00",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -149,6 +125,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-27T19:06:48.000Z",
-  "versionId": "f4a75807-b865-4f0c-80e6-2debcfb501d6"
+  "updatedAt": "2025-09-27T19:21:13.000Z",
+  "versionId": "4b8056b7-f4bf-4aa8-8e51-72beb85c3caa"
 }
