@@ -1,0 +1,288 @@
+{
+  "active": false,
+  "connections": {
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        []
+      ],
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question and Answer Chain": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-27T14:24:42.177Z",
+  "id": "p4yfOWmaR0IdNeUh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Mail Agent Pinecone",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.response }}",
+        "options": {
+          "systemMessage": "Role:\nYou are an intelligent email agent that automatically sends personalized esails to recipients. Your task is to generate and send a clear, professional, and accurate email based on the provided names, email addresses, and desired content.\n#Bules & Behavior:\nYou have 2 Tools and neet to use them correctly.\n#Vectorstore nails\nUse this tool to get Email adresses\n# send mail\nUse this tool to send mails.\n# Email Format:\nThe email mest include a subject line**.\nIt should begin with an appropriate salutation** (e.g., \"Hello [Name]\" or \"Dear (Name]\").\nThe main content should be clear, concise, and friendly.\nThe email should end with a suitable closing phrase** (e.g., \"Best regards, Arnie\").\n#Dynamic Personalization:\nAutomatically replace the placeholder **[Name]** with the recipient's actual name.\nIf the name is missing, use a general salutation such as \"Hello, dear team***.\nReview & Optimization:\nAvoid unnecessary **repetitions or vague wording**.\nIf the message is too long or unstructured, summarize it clearly**.\n#Email Types (Adaptable Based on Context):\n- Standard information email\n- Reminder or follow-up\n- Offer or marketing email\n- Support or customer service request \n\n\n---- \n\n#### Example of a generated Email: \n\n\n**Subject:** Important Information for You, [Name]\n\n**Text:**\nHello [Name],\n\nI hope you are doing well. I wanted to quickly inform you about [Topic]. If you have any questions or need-further information, feel free to reach out. \n\nBest Regards, \nAnnie"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        -16
+      ],
+      "id": "97ce29b9-5866-4558-841f-a87716936dcf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "n8n",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "options": {
+          "pineconeNamespace": "test document"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        416
+      ],
+      "id": "2619284a-f062-4c42-bbd5-ea4591ecf07d",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "LurDFHAeAXxWd6ni",
+          "name": "j.ahmed.ja7a7@gmail.com - [ n8n ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-flash-latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        752,
+        208
+      ],
+      "id": "7386ffdf-62b8-437f-89dd-ce4fa4560bb7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        464,
+        624
+      ],
+      "id": "4f81b8e3-5a70-42cb-845d-df1380d8d0fc",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.6,
+      "position": [
+        288,
+        -16
+      ],
+      "id": "7c189c4f-f80f-4b4c-b55b-ba1e0b5a97f0",
+      "name": "Question and Answer Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        256,
+        208
+      ],
+      "id": "e40c57ae-dd94-40ae-b989-6369b4c036b7",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        384,
+        208
+      ],
+      "id": "ea7d420b-bb2b-46da-aa83-f30175be2312",
+      "name": "Vector Store Retriever"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        32,
+        -16
+      ],
+      "id": "fac98687-0d60-4e1e-84db-c8acee6db410",
+      "name": "When chat message received",
+      "webhookId": "7c9425b6-5ce4-496d-afc5-3c3bac79fa40"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "yhksxpPT3cGG5OOR",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/yhksxpPT3cGG5OOR",
+          "cachedResultName": "Send Emails"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        240
+      ],
+      "id": "ed77f5d8-b887-4b70-b1af-23df280edd3a",
+      "name": "Send Email"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-27T14:24:42.187Z",
+      "updatedAt": "2025-09-27T14:24:42.187Z",
+      "role": "workflow:owner",
+      "workflowId": "p4yfOWmaR0IdNeUh",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-27T19:02:05.000Z",
+  "versionId": "12504130-7d0a-40d9-a311-7587f7a701ae"
+}
