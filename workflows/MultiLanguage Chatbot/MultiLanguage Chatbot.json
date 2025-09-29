@@ -1,0 +1,184 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Multilingual Support Chatbot",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Multilingual Support Chatbot": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Translate": {
+      "main": [
+        [
+          {
+            "node": "Multilingual Support Chatbot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Translate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-24T12:10:16.682Z",
+  "id": "s7E1afUXG8LMCo6I",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "MultiLanguage Chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        384,
+        272
+      ],
+      "id": "fa1ed43f-b47e-4fe7-b7d5-3c41a7c2507e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "wNJ4kmgaGyK198C4",
+          "name": "blyt69kun@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.from.id }}",
+        "text": "Open ai output",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        816,
+        0
+      ],
+      "id": "9c22104a-5ce7-4add-a9d2-5473af5de00b",
+      "name": "Telegram",
+      "webhookId": "39412e25-047b-47a3-b488-23eb5192a3e7",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.input }}\n{{ $json.chat_id }}\n{{ $json.username }}",
+        "options": {
+          "systemMessage": "=You are a professional multilingual support agent. \nYou always answer clearly, respectfully, and helpfully in English.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "5ed24676-041f-4a38-8832-82d778625821",
+      "name": "Multilingual Support Chatbot"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "text": "{{$json.message.text}}",
+        "translateTo": "=English"
+      },
+      "type": "n8n-nodes-base.googleTranslate",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "8e16af0e-e635-4583-8041-f3e807075d73",
+      "name": "Google Translate",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f65cb7ce-0b0d-4bed-8999-e3f250d0ff63",
+      "name": "Telegram Trigger",
+      "webhookId": "71cca098-0689-4765-9208-3843c8c64465",
+      "credentials": {
+        "telegramApi": {
+          "id": "TrjCMA928DvkeABC",
+          "name": "n8n-P"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-24T12:10:16.708Z",
+      "updatedAt": "2025-09-24T12:10:16.708Z",
+      "role": "workflow:owner",
+      "workflowId": "s7E1afUXG8LMCo6I",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-09-29T10:59:20.000Z",
+  "versionId": "980310a6-49c7-4afd-acb7-6b26c6d86219"
+}
