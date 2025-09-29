@@ -76,7 +76,9 @@
   "createdAt": "2025-09-24T12:38:38.848Z",
   "id": "ux13WyNdrHUn0V1U",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Invoice Generator and Sender**",
   "nodes": [
     {
@@ -136,7 +138,13 @@
         112
       ],
       "id": "0a63bc68-13c2-4de1-ad1a-a48d157362e8",
-      "name": "PDFco Api"
+      "name": "PDFco Api",
+      "credentials": {
+        "pdfcoApi": {
+          "id": "EgiIT7sfrakSY12y",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
     },
     {
       "parameters": {
@@ -243,6 +251,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-09-24T13:06:05.000Z",
-  "versionId": "08b71e94-4984-48be-b17e-e2ecd2987c86"
+  "updatedAt": "2025-09-29T11:00:02.000Z",
+  "versionId": "09594042-946e-4db0-b9a7-171ab6beeea5"
 }
