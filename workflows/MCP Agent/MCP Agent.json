@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "MCP Client": {
       "ai_tool": [
@@ -377,6 +377,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-10T12:43:03.000Z",
+  "updatedAt": "2025-09-29T12:08:29.000Z",
   "versionId": "2e04a3ab-a814-4f04-8aba-864078c95d58"
 }
