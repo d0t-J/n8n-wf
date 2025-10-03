@@ -1,0 +1,78 @@
+{
+  "active": false,
+  "connections": {
+    "Get a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-03T18:44:04.168Z",
+  "id": "VLukScZkBL1xU0mc",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "MCP for Claude Desktop",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "claude"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b5cb53de-a80f-4c31-9184-dad394a23046",
+      "name": "MCP Server Trigger",
+      "webhookId": "6f83e866-f3ba-4912-98c0-4092204c3b11"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "=https://docs.google.com/document/d/1DVwuq2de5bZ6loWOjoNModJ8PNEuSANsKNuADl6lETc/edit?usp=drive_link"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        96,
+        208
+      ],
+      "id": "0222e928-7eb2-43d4-991b-21c29fcaec9b",
+      "name": "Get a document in Google Docs",
+      "credentials": {
+        "googleApi": {
+          "id": "wZNFtmT9Bl8TsFbg",
+          "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-03T18:44:04.176Z",
+      "updatedAt": "2025-10-03T18:44:04.176Z",
+      "role": "workflow:owner",
+      "workflowId": "VLukScZkBL1xU0mc",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-03T18:53:17.000Z",
+  "versionId": "7a04370f-dc05-4480-8014-0b11c7b9d2a0"
+}
