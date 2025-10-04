@@ -1,0 +1,280 @@
+{
+  "active": false,
+  "connections": {
+    "Typeform Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Item",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Item": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "PDFco Api",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDFco Api": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-24T12:38:38.848Z",
+  "id": "ux13WyNdrHUn0V1U",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Invoice Generator and Sender",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const name = $input.first().json['Full Name'];\nconst email = $input.first().json['Enter Your Email'];\nconst product = $input.first().json['Product Name'];\nconst amount = $input.first().json.Amount;\n\nconst invoiceNumber = `INV-${new Date().toISOString().slice(0,10).replace(/-/g, '')}-${Math.floor(Math.random()*1000)}`;\nconst date = new Date().toLocaleDateString();\n\nreturn [{\n  name,\n  email,\n  product,\n  amount,\n  invoiceNumber,\n  date\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        112
+      ],
+      "id": "3af809db-c2c9-4a94-af4f-8dec5b105f70",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "formId": "O9qwcuFj"
+      },
+      "type": "n8n-nodes-base.typeformTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1328,
+        112
+      ],
+      "id": "10387e2f-f671-4afe-b125-1b2ccb9e9e15",
+      "name": "Typeform Trigger",
+      "webhookId": "44a0f3f9-8625-45cf-a103-c47966c306c0",
+      "credentials": {
+        "typeformApi": {
+          "id": "dpQeidiz1ryKQuim",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "<html>\n  <head>\n    <style>\n      body { font-family: Arial, sans-serif; padding: 20px; }\n      h2 { color: #333; }\n      .section { margin-bottom: 15px; }\n      .label { font-weight: bold; }\n      .box { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }\n    </style>\n  </head>\n  <body>\n    <h2>Invoice: {{ $json.invoiceNumber }}</h2>\n\n    <div class=\"section\">\n      <span class=\"label\">Date:</span> {{ $json.date }}\n    </div>\n\n    <div class=\"section\">\n      <span class=\"label\">Customer Name:</span> {{ $json.name }}<br>\n      <span class=\"label\">Email:</span> {{ $json.email }}\n    </div>\n\n    <div class=\"section box\">\n      <p><span class=\"label\">Product:</span> {{ $json.product }}</p>\n      <p><span class=\"label\">Amount:</span> ${{ $json.amount }}</p>\n    </div>\n\n    <p>Thank you for your purchase!</p>\n  </body>\n</html>\n"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        -880,
+        112
+      ],
+      "id": "b151f404-b5d9-4521-a6a5-eb0d33c05f24",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "operation": "URL/HTML to PDF",
+        "convertType": "htmlToPDF",
+        "html": "={{ $json.html }}",
+        "advancedOptions": {}
+      },
+      "type": "n8n-nodes-pdfco.PDFco Api",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        112
+      ],
+      "id": "0a63bc68-13c2-4de1-ad1a-a48d157362e8",
+      "name": "PDFco Api",
+      "credentials": {
+        "pdfcoApi": {
+          "id": "EgiIT7sfrakSY12y",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "={{ $json.name }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        112
+      ],
+      "id": "01bb62b8-4274-40ed-852c-d8ceff993969",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "106fb770-b197-4b66-a6a7-8e45bf33b4ae",
+              "name": "Invoice",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -224,
+        112
+      ],
+      "id": "f9dd5be5-af0b-47b7-8a5e-2863155b34e3",
+      "name": "Split Item"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        0,
+        208
+      ],
+      "id": "557ad2d1-7e4f-40f7-8b7e-e9914868f23a",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "HFA8dFUuiJNxyN15",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "j.ahmed.ja7a7@gmail.com",
+        "subject": "Hello World ",
+        "message": "Way down we goo ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        -64
+      ],
+      "id": "0c9c1cb1-89fb-4655-86d7-6af688df7103",
+      "name": "Send a message",
+      "webhookId": "aa2b152f-32b9-47f6-aa06-d184423b6357",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Typeform Trigger": [
+      {
+        "json": {
+          "Full Name": "Junaid Ahmad",
+          "Enter Your Email": "abc@example.com",
+          "Product Name": "Jelly",
+          "Amount": 50
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-24T12:38:38.863Z",
+      "updatedAt": "2025-09-24T12:38:38.863Z",
+      "role": "workflow:owner",
+      "workflowId": "ux13WyNdrHUn0V1U",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-04T12:28:13.000Z",
+  "versionId": "fde8588f-ddd3-4a94-8508-77c5090db601"
+}
