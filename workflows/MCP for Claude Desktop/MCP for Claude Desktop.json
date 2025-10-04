@@ -1,7 +1,18 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Get a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a document in Google Docs": {
       "ai_tool": [
         [
           {
@@ -44,8 +55,8 @@
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        96,
-        208
+        16,
+        224
       ],
       "id": "0222e928-7eb2-43d4-991b-21c29fcaec9b",
       "name": "Get a document in Google Docs",
@@ -53,6 +64,34 @@
         "googleApi": {
           "id": "wZNFtmT9Bl8TsFbg",
           "name": "edify-automation - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "https://docs.google.com/document/d/1DVwuq2de5bZ6loWOjoNModJ8PNEuSANsKNuADl6lETc/edit?usp=drive_link",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('actionFields0_Text', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        144,
+        224
+      ],
+      "id": "21180dbc-3cf1-40d3-82fc-4efaa67fcf54",
+      "name": "Update a document in Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "T2XjwP9vHijIFUNw",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
         }
       }
     }
@@ -73,6 +112,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-10-03T18:53:17.000Z",
-  "versionId": "7a04370f-dc05-4480-8014-0b11c7b9d2a0"
+  "updatedAt": "2025-10-04T04:30:05.000Z",
+  "versionId": "eb0d45d5-8cd6-4b84-a5c8-51e795f60966"
 }
