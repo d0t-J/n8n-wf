@@ -1,0 +1,1192 @@
+{
+  "active": false,
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Label Checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Give a Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Leads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Client",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Admin related questions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Others",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Label Checker": {
+      "main": [
+        [
+          {
+            "node": "Give a Label2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Give a Label",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leads": {
+      "main": [
+        [
+          {
+            "node": "Reply to Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client": {
+      "main": [
+        [
+          {
+            "node": "Reply to Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Admin related questions": {
+      "main": [
+        [
+          {
+            "node": "Reply to admin-related questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leads1": {
+      "main": [
+        [
+          {
+            "node": "Reply to Leads1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client1": {
+      "main": [
+        [
+          {
+            "node": "Reply to Clients1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Admin related questions1": {
+      "main": [
+        [
+          {
+            "node": "Reply to admin-related questions1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Give a Label",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Leads1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Client1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Admin related questions1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Others1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Give a Label",
+            "type": "ai_languageModel",
+            "index": 1
+          },
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Give a Label": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Give a Label2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Give a Label2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Give a Label2",
+            "type": "ai_languageModel",
+            "index": 1
+          },
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Give a Label2": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-09-08T12:42:47.112Z",
+  "id": "fD2cQdfcARTz7CaP",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Inbox Label Manager v1.0",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "*/15 * * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1056,
+        208
+      ],
+      "id": "d3dedf81-82f4-4229-8f37-e83de109d8cd",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6c287523-4ae2-43c4-8f9a-faf756f01855",
+              "leftValue": "={{ $json.labelIds[0] }}",
+              "rightValue": "Label",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        3648,
+        208
+      ],
+      "id": "d2bb11d0-b3f4-4740-bfef-f9387937faea",
+      "name": "Filter"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        3200,
+        208
+      ],
+      "id": "13f1bf73-fcc7-4a20-a5ea-809a33457ade",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "84ec2be6-ad6b-4ad4-8f8b-d31fafbfad20",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "leads",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Leads"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9b600943-3604-4851-b84d-4da0948da2ef",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "client",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Client"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7f28656-aeab-4b2f-bd32-6111cb56ecc1",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "admin",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Admin related questions"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c14ca3c0-ef10-45b5-8acb-f0d0c1339624",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "other",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Others"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1840,
+        176
+      ],
+      "id": "c0f016fe-76ea-472a-8d7f-47df08184eff",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "content": "# Sort Old Emails",
+        "height": 1064,
+        "width": 2240,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3040,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "31c22e09-7acf-4f1d-8a57-e51376e8bb20",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6c287523-4ae2-43c4-8f9a-faf756f01855",
+              "leftValue": "={{ $json.labelIds[0] }}",
+              "rightValue": "Label",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        1280,
+        208
+      ],
+      "id": "bfd2dd31-3bd8-4164-a0bf-55bc844d8f55",
+      "name": "Label Checker"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"email_label\": \"leads\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        4080,
+        464
+      ],
+      "id": "c6356bde-426b-493a-89d7-78aa28045d48",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 15,
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        3424,
+        208
+      ],
+      "id": "51e76177-a57c-4b1b-9c05-ac892dd7a33e",
+      "name": "Get many messages",
+      "webhookId": "a0511bfe-4783-4d8a-a297-c1d75fba8f02",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel! We’re excited to learn about your needs and how we can assist you.\n\nYour inquiry has been received, and a member of our team is reviewing the details. We’ll get back to you within 24 hours with more information.\n\nIn the meantime, feel free to explore our website for additional details about our services and contact with us via WhatsApp: https://www.aztecintel.com\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2448,
+        16
+      ],
+      "id": "80d0e47e-e4c5-4ef9-a17f-19d46da64fc2",
+      "name": "Reply to Leads",
+      "webhookId": "5471569b-1d0a-4fb6-ad09-014516b6be94",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel. We’re excited to learn more about your needs and discuss how we can help.\n\nTo schedule your consultation, please reply to this email with your preferred date and time or use our online booking link here: https://www.aztecintel.com\n\nOnce we receive your preferred time, we’ll confirm the appointment or suggest alternative options if needed.\n\nIf you have any specific topics you’d like to discuss during the consultation, feel free to include them in your reply.\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2448,
+        176
+      ],
+      "id": "3dcb70be-4f4a-4157-893e-97a42661a273",
+      "name": "Reply to Clients",
+      "webhookId": "413b9fcc-30ef-43fb-ae4f-125189ccfb4b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=\nThank you for contacting us regarding your payment/billing inquiry. We’ve received your message and are working to address your request.\n\nA member of our team will get back to you within 2 working days to provide the necessary information or assistance.\n\nIf this matter is urgent, please call us directly at +92322*******.\n\nThank you for your patience and for choosing Aztec Intel.\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2448,
+        336
+      ],
+      "id": "e9392ce9-10f7-4a13-95d1-68a3a93e782f",
+      "name": "Reply to admin-related questions",
+      "webhookId": "a0fda489-eb42-4d02-9157-4d9deaa521e1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_5520920573895022431"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        16
+      ],
+      "id": "ed7c12a8-0bb3-460a-bfe1-55ba78414d63",
+      "name": "Leads",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_7365732214966985262"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        176
+      ],
+      "id": "e18d1cf6-7d02-4139-a84e-8cebb914ade0",
+      "name": "Client",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_3937818465436702467"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        336
+      ],
+      "id": "22c5597d-cb34-4f5a-b49e-a173d66b582f",
+      "name": "Admin related questions",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": [
+          "Label_4412668633193599577"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        512
+      ],
+      "id": "7bd2cdfa-3bb4-42d7-8772-9f60a5eeb183",
+      "name": "Others",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel! We’re excited to learn about your needs and how we can assist you.\n\nYour inquiry has been received, and a member of our team is reviewing the details. We’ll get back to you within 24 hours with more information.\n\nIn the meantime, feel free to explore our website for additional details about our services and contact with us via WhatsApp: https://www.aztecintel.com\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4912,
+        -48
+      ],
+      "id": "5e336d8a-7881-4de9-b156-aef558e9f060",
+      "name": "Reply to Leads1",
+      "webhookId": "5471569b-1d0a-4fb6-ad09-014516b6be94",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=Thank you for reaching out to Aztec Intel. We’re excited to learn more about your needs and discuss how we can help.\n\nTo schedule your consultation, please reply to this email with your preferred date and time or use our online booking link here: https://www.aztecintel.com\n\nOnce we receive your preferred time, we’ll confirm the appointment or suggest alternative options if needed.\n\nIf you have any specific topics you’d like to discuss during the consultation, feel free to include them in your reply.\n\nWe look forward to connecting with you!\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4912,
+        128
+      ],
+      "id": "20757033-3386-4368-ae13-78b8e51d622b",
+      "name": "Reply to Clients1",
+      "webhookId": "413b9fcc-30ef-43fb-ae4f-125189ccfb4b",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.id }}",
+        "emailType": "text",
+        "message": "=\nThank you for contacting us regarding your payment/billing inquiry. We’ve received your message and are working to address your request.\n\nA member of our team will get back to you within 2 working days to provide the necessary information or assistance.\n\nIf this matter is urgent, please call us directly at +92322*******.\n\nThank you for your patience and for choosing Aztec Intel.\n\nBest regards,\nFahad Warraich\nFounder & CEO at Aztec Intel",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4912,
+        288
+      ],
+      "id": "18e48bad-a6fe-44f1-9018-22ad17b20699",
+      "name": "Reply to admin-related questions1",
+      "webhookId": "a0fda489-eb42-4d02-9157-4d9deaa521e1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Get many messages').item.json.id }}",
+        "labelIds": [
+          "Label_5520920573895022431"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4624,
+        -48
+      ],
+      "id": "961ddd3e-ea97-45b5-a562-1b2035b76bc9",
+      "name": "Leads1",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Get many messages').item.json.id }}",
+        "labelIds": [
+          "Label_7365732214966985262"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4624,
+        128
+      ],
+      "id": "83e9d634-e23e-4cfb-9060-dea8864c7ebe",
+      "name": "Client1",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Get many messages').item.json.id }}",
+        "labelIds": [
+          "Label_3937818465436702467"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4624,
+        288
+      ],
+      "id": "a5e5fb13-f611-4bdd-84b2-6aa0f9d8f630",
+      "name": "Admin related questions1",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Get many messages').item.json.id }}",
+        "labelIds": [
+          "Label_4412668633193599577"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4624,
+        464
+      ],
+      "id": "b161b19a-75a5-42f3-ad90-894d00087520",
+      "name": "Others1",
+      "webhookId": "70219a19-4705-493c-9291-527655dd8099",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3824,
+        528
+      ],
+      "id": "88d9f432-f1fe-4b0f-ac9a-22618d395dd5",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "84ec2be6-ad6b-4ad4-8f8b-d31fafbfad20",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "leads",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Leads"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9b600943-3604-4851-b84d-4da0948da2ef",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "client",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Client"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d7f28656-aeab-4b2f-bd32-6111cb56ecc1",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "admin",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Admin related questions"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c14ca3c0-ef10-45b5-8acb-f0d0c1339624",
+                    "leftValue": "={{ $json.output.email_label }}",
+                    "rightValue": "other",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Others"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4336,
+        176
+      ],
+      "id": "570a88ce-b365-411f-abcf-e59d93b27de0",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.1-405b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3936,
+        528
+      ],
+      "id": "20c7be45-35d0-4863-af2d-95622b03c551",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "jZBCMu8PGL0RFUPv",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $json.subject }}\nDescription: {{ $json.text }}\nSender: {{ $json.from.text }}",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=** Your Role **\nYou are an intelligent email assistant responsible for sorting incoming messages. Your task is to analyze the content, subject, and sender of each email and assign it to the appropriate category.\n\n** Categories **\nCategories for sorting:\n\nleads: potential customer inquiries, prospects, partnership opportunities\n\nadmin: internal team or office management messages (scheduling, HR, internal coordination), invoices, contracts, formal documents\n\nclient: direct communication with existing clients regarding deliverables, updates, or support\n\nother: messages that don’t fit into any of the above categories\n\n** Instructions **\nFor each email:\n\nAnalyze the content, subject, and sender\n\nAssign it to the appropriate category\n\nAdd a label with the category\n\nIf you are unsure, do not label the message\n\n** Response Format **\nAlways return the result in JSON format. Your response should only include the following output. No extra explanatory text or anything \n\n{\n  \"email_label\": \"leads\"\n}\n\n\nIMPORTANT – the response must always be in lowercase. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        3888,
+        208
+      ],
+      "id": "03d0b392-fdf8-4bbe-a61c-9f23fd2ed4f0",
+      "name": "Give a Label"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"email_label\": \"leads\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1648,
+        480
+      ],
+      "id": "c37dc65c-387c-4ec4-9f20-2ede6dc27e94",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        544
+      ],
+      "id": "33acac40-bcd4-4f1e-850e-beefc1f2701d",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-3.1-405b-instruct:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        544
+      ],
+      "id": "893c17bb-6a25-428e-9479-c94ae5eb40fd",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "jZBCMu8PGL0RFUPv",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic: {{ $json.subject }}\nDescription: {{ $json.text }}\nSender: {{ $json.from.text }}",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "** Your Role **\nYou are an intelligent email assistant responsible for sorting incoming messages. Your task is to analyze the content, subject, and sender of each email and assign it to the appropriate category.\n\n** Categories **\nCategories for sorting:\n\nleads: potential customer inquiries, prospects, partnership opportunities\n\nadmin: internal team or office management messages (scheduling, HR, internal coordination), invoices, contracts, formal documents\n\nclient: direct communication with existing clients regarding deliverables, updates, or support\n\nother: messages that don’t fit into any of the above categories\n\n** Instructions **\nFor each email:\n\nAnalyze the content, subject, and sender\n\nAssign it to the appropriate category\n\nAdd a label with the category\n\nIf you are unsure, do not label the message\n\n** Response Format **\nAlways return the result in JSON format. Your response should only include the following output. No extra explanatory text or anything \n\n{\n  \"email_label\": \"leads\"\n}\n\n\nIMPORTANT – the response must always be in lowercase. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1456,
+        208
+      ],
+      "id": "6941fcc2-cbaa-49e6-84fa-c4af4bc56b58",
+      "name": "Give a Label2"
+    },
+    {
+      "parameters": {
+        "content": "# Manage Incoming Email\nNote: The labels must be pre-created before running the workflow.",
+        "height": 1064,
+        "width": 2240
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        720,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "3c706ee3-8008-4298-8f98-a302effdd631",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-09-08T12:42:47.117Z",
+      "updatedAt": "2025-09-08T12:42:47.117Z",
+      "role": "workflow:owner",
+      "workflowId": "fD2cQdfcARTz7CaP",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-05T12:47:51.000Z",
+  "versionId": "8f56a538-e8b0-468c-b94a-1a5594ad0c01"
+}
