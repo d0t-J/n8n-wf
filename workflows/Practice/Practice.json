@@ -8,6 +8,11 @@
             "node": "Scrape Leads",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Add Lead to Instantly",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -229,15 +234,8 @@
       "parameters": {
         "method": "POST",
         "url": "https://api.ampleleads.io/v1/apollo/scrape",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "api_key",
-              "value": "gGU2LZR6uN8w4zprnc5krK7XuU1VJyAk"
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -259,7 +257,17 @@
         752,
         -192
       ],
-      "typeVersion": 4.2
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "qjrdS2Qc5rGl0PJL",
+          "name": "AmpleLeads"
+        },
+        "httpBearerAuth": {
+          "id": "rN6sStOXwszIoBZE",
+          "name": "instantly.io"
+        }
+      }
     },
     {
       "parameters": {
@@ -791,14 +799,12 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://api.instantly.ai/api/v2/leads",
+        "url": "https://api.instantly.ai/api/v2/lead-lists",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Bearer YWE1MDYzNjAtYmQyZC00MjE1LWIyY2QtODEyNzA4NjcwMzFkOmJsY1ViREduSWF2bA=="
-            },
             {
               "name": "Content-Type",
               "value": "application/json"
@@ -807,7 +813,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"campaign\": \"{{ $('On form submission').item.json['Instantly Campaign ID'] }}\",\n  \"email\": \"{{ $('Extract from File').item.json.email ? $('Extract from File').item.json.email : 'test@example.com' }}\",\n  \"last_name\": \"{{ $('Extract from File').item.json.last_name }}\",\n  \"first_name\": \"{{ $('Extract from File').item.json.first_name }}\",\n  \"company_name\": \"{{ $('Extract from File').item.json.company_name }}\",\n  \"custom_variables\": {\n    \"icebreaker\": \"{{ $json.output.icebreaker }}\",\n    \"customCompanyName\": \"{{ $json.output.normalName }}\"\n  }\n}",
+        "jsonBody": "={\n  \"name\": \"Test\",\n  \"campaign\": \"{{ $('On form submission').item.json['Instantly Campaign ID'] }}\"\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -817,7 +823,13 @@
         96
       ],
       "id": "76b13fd3-96d3-47b6-832b-26cdbca00962",
-      "name": "Add Lead to Instantly"
+      "name": "Add Lead to Instantly",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rN6sStOXwszIoBZE",
+          "name": "instantly.io"
+        }
+      }
     },
     {
       "parameters": {
@@ -944,6 +956,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-05T18:15:54.000Z",
-  "versionId": "cfa156ca-9184-4eb9-a850-9a5aaf4975f2"
+  "updatedAt": "2025-10-06T11:36:47.000Z",
+  "versionId": "cabe8193-2f36-4354-bca5-8004f24bcdbe"
 }
