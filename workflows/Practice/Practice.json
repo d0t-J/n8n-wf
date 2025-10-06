@@ -8,11 +8,6 @@
             "node": "Scrape Leads",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Add Lead to Instantly",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -272,15 +267,8 @@
     {
       "parameters": {
         "url": "=https://api.ampleleads.io/v1/apollo/status/{{ $json.data.run_id }}",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "api_key",
-              "value": "gGU2LZR6uN8w4zprnc5krK7XuU1VJyAk"
-            }
-          ]
-        },
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -299,7 +287,17 @@
         -192
       ],
       "id": "b2bf13fd-984d-4c5a-ab7f-44903ded37ce",
-      "name": "Get Run Status"
+      "name": "Get Run Status",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "vPzXV53yQAAl6gFU",
+          "name": "unrealspeech.com - [ j.ahmed.ja7a7@gmail.com ]"
+        },
+        "httpQueryAuth": {
+          "id": "qjrdS2Qc5rGl0PJL",
+          "name": "AmpleLeads"
+        }
+      }
     },
     {
       "parameters": {
@@ -956,6 +954,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-06T11:36:47.000Z",
-  "versionId": "cabe8193-2f36-4354-bca5-8004f24bcdbe"
+  "updatedAt": "2025-10-06T11:41:06.000Z",
+  "versionId": "73c00807-9f21-42e3-a74b-cd906baf9e35"
 }
