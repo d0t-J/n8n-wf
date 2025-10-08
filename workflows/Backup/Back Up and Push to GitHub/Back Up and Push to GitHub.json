@@ -35,17 +35,6 @@
         ]
       ]
     },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "Starting Message",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Starting Message": {
       "main": [
         [
@@ -283,6 +272,17 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Starting Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-18T14:19:42.723Z",
@@ -336,26 +336,6 @@
         560
       ],
       "typeVersion": 3
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "triggerAtHour": 23,
-              "triggerAtMinute": 45
-            }
-          ]
-        }
-      },
-      "id": "62ae1dca-5ed5-4ba7-bcf3-38e85f5d31f0",
-      "name": "Schedule Trigger",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "position": [
-        320,
-        656
-      ],
-      "typeVersion": 1.2
     },
     {
       "parameters": {
@@ -955,6 +935,25 @@
       ],
       "id": "21c79155-6613-4be2-84e6-be033db453cb",
       "name": "Switch"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23
+            }
+          ]
+        }
+      },
+      "id": "ad02bd53-c93c-421b-a669-e8cd7e57a1f5",
+      "name": "Schedule Trigger1",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        320,
+        640
+      ],
+      "typeVersion": 1.2
     }
   ],
   "pinData": {},
@@ -976,6 +975,9 @@
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
     }
   },
   "tags": [
@@ -987,6 +989,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-08T18:54:27.000Z",
-  "versionId": "056ce146-2aae-4417-8779-8d6040ea5679"
+  "updatedAt": "2025-10-08T19:02:07.000Z",
+  "versionId": "ba4b772d-b581-4e56-baf2-384a384751f8"
 }
