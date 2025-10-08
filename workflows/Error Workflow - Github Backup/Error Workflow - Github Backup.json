@@ -1,0 +1,105 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-08T18:36:42.994Z",
+  "id": "GC8FO80NzZgZ3qlx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Error Workflow - Github Backup",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a12f5f05-900b-49a7-8806-c07a15347cb2",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>n8n Workflow Error</title>\n</head>\n<body style=\"margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f4f7f6;\">\n    <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"background-color: #f4f7f6;\">\n        <tr>\n            <td align=\"center\">\n                <table width=\"600\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;\">\n                    \n                    <tr>\n                        <td align=\"center\" style=\"background-color: #ff6d5a; padding: 25px 20px;\">\n                            <h1 style=\"color: #ffffff; font-size: 28px; font-weight: bold; margin: 0;\">🚨 Workflow Execution Failed</h1>\n                        </td>\n                    </tr>\n\n                    <tr>\n                        <td style=\"padding: 30px 40px;\">\n                            <h2 style=\"color: #333333; font-size: 20px; font-weight: bold; margin-top: 0;\">An error occurred in your n8n workflow.</h2>\n                            <p style=\"color: #555555; font-size: 16px; line-height: 1.5;\">\n                                The workflow <strong>\"{{ $json.workflow.name }}\"</strong> encountered an error during execution. Here are the details:\n                            </p>\n\n                            <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin: 25px 0;\">\n                                <tr>\n                                    <td align=\"center\" style=\"background-color: #007bff; border-radius: 5px;\">\n                                        <a href=\"{{ $json.execution.url }}\" target=\"_blank\" style=\"font-size: 16px; font-weight: bold; color: #ffffff; text-decoration: none; padding: 12px 25px; border-radius: 5px; display: inline-block;\">View Failed Execution</a>\n                                    </td>\n                                </tr>\n                            </table>\n\n                            <h3 style=\"color: #333333; font-size: 18px; border-bottom: 2px solid #eeeeee; padding-bottom: 5px; margin-top: 30px;\">Error Message</h3>\n                            <p style=\"background-color: #fff2f2; border-left: 4px solid #ff6d5a; padding: 15px; color: #c0392b; font-size: 15px; margin: 10px 0; border-radius: 0 4px 4px 0;\">\n                                {{ $json.execution.error.message }}\n                            </p>\n\n                            <h3 style=\"color: #333333; font-size: 18px; border-bottom: 2px solid #eeeeee; padding-bottom: 5px; margin-top: 30px;\">Stack Trace</h3>\n                            <div style=\"background-color: #2b2b2b; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; overflow-x: auto;\">\n                                <code>{{ $json.execution.error.stack }}</code>\n                            </div>\n                        </td>\n                    </tr>                   \n                </table>\n            </td>\n        </tr>\n    </table>\n</body>\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "b7797187-3e90-4e0d-8ce2-b14223b4536b",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "sendTo": "j.ahmed.ja7a7@gmail.com",
+        "subject": "=n8n Workflow Failed: {{ $('Error Trigger').item.json.workflow.name }}",
+        "message": "={{ $json.html }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "5d7452de-20fd-4174-8f73-3efa758f8eea",
+      "name": "Send a message",
+      "webhookId": "192c32b5-b7af-4ee2-8fa5-c87691bb44dc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Q458x3HuWMnd4WaH",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Karachi",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-08T18:36:42.999Z",
+      "updatedAt": "2025-10-08T18:36:42.999Z",
+      "role": "workflow:owner",
+      "workflowId": "GC8FO80NzZgZ3qlx",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-08T18:54:17.000Z",
+  "versionId": "47e4925f-b814-49fa-a5f8-49622c636f6d"
+}
