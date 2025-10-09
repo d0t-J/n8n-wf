@@ -41,25 +41,73 @@
             "node": "HTTP Request1",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "GraphQL",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
     },
     "HTTP Request1": {
       "main": [
-        []
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Create a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
   "createdAt": "2025-10-09T16:22:53.526Z",
   "id": "Pg626EU95nT2QDpQ",
   "isArchived": false,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Leetcode",
   "nodes": [
     {
@@ -184,16 +232,206 @@
       "parameters": {
         "endpoint": "https://leetcode.com/graphql",
         "query": "query submissionDetails($submissionId: Int!) {\n  submissionDetails(submissionId: $submissionId) {\n    code\nlang {\nname\n  }\n}",
-        "variables": "{\"variables\": {\n       \n    }}"
+        "variables": "={\n\"variables\": {\n        \"submissionId\": {{ $json.id }}\n  }\n}",
+        "responseFormat": "string",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Referer",
+              "value": "https://n8n.br3adko4e.tech/"
+            }
+          ]
+        }
       },
       "type": "n8n-nodes-base.graphql",
       "typeVersion": 1.1,
       "position": [
-        896,
-        96
+        912,
+        208
       ],
       "id": "12597ba4-4a34-42e9-b09e-230f0162dc26",
-      "name": "GraphQL"
+      "name": "GraphQL",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "038c4d34-583a-4756-8140-7996975228f9",
+              "name": "titleSlug",
+              "value": "={{ $('Split Out').item.json.titleSlug }}",
+              "type": "string"
+            },
+            {
+              "id": "6dffd74e-9879-4c88-af7a-972dc66ae468",
+              "name": "code",
+              "value": "={{ $json.data.submissionDetails.code }}",
+              "type": "string"
+            },
+            {
+              "id": "dc6eec1e-d38d-40b2-b9ff-2334839b0023",
+              "name": "language",
+              "value": "={{ $json.data.submissionDetails.lang.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1104,
+        -96
+      ],
+      "id": "f2f59094-92c1-41c1-9c15-5fa02c4796d0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37fd1815-fcf9-46f9-91e1-659679ed1596",
+              "name": "filename",
+              "value": "={{ $json.titleSlug }}.{{ \n  (() => {\n    switch($json.language) {\n      case 'python3': return 'py';\n      case 'python': return 'py';\n      case 'javascript': return 'js';\n      case 'typescript': return 'ts';\n      case 'java': return 'java';\n      case 'cpp': return 'cpp';\n      case 'csharp': return 'cs';\n      case 'golang': return 'go';\n      default: return 'txt';\n    }\n  })() \n}}",
+              "type": "string"
+            },
+            {
+              "id": "3a9862f2-496a-4daf-8f4a-ea480fe442bb",
+              "name": "content",
+              "value": "={{ $json.code }}",
+              "type": "string"
+            },
+            {
+              "id": "93fb7499-f0e9-4874-ac37-12cd33d3a681",
+              "name": "Commit",
+              "value": "=Accepted {{ $json.titleSlug }}.{{ $json.language }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1312,
+        -96
+      ],
+      "id": "8b05a67c-0a3f-4b21-a67f-5369818c8bd0",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "test",
+          "mode": "list",
+          "cachedResultName": "test",
+          "cachedResultUrl": "https://github.com/d0t-J/test"
+        },
+        "filePath": "={{ $json.filename }}",
+        "fileContent": "={{ $json.content }}",
+        "commitMessage": "={{ $json.Commit }}",
+        "additionalParameters": {
+          "branch": {
+            "branch": "main"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1936,
+        0
+      ],
+      "id": "1513404d-553d-4c3b-9dcf-740885031358",
+      "name": "Create a file",
+      "webhookId": "1399e821-cbc1-4ade-9a8e-c4eb41edc08e",
+      "credentials": {
+        "githubApi": {
+          "id": "wx1jyvjkrqHttL6i",
+          "name": "Token - [ n8n @ d0t-j ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "d0t-j",
+          "mode": "list",
+          "cachedResultName": "d0t-j",
+          "cachedResultUrl": "https://github.com/d0t-J/d0t-j"
+        },
+        "filePath": "README.md",
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        -96
+      ],
+      "id": "f4d3920a-826e-4629-a17b-c3e24ea35532",
+      "name": "Get a file",
+      "webhookId": "41077ada-0580-499b-8dc1-2311ea40b5d9",
+      "alwaysOutputData": false,
+      "credentials": {
+        "githubApi": {
+          "id": "wx1jyvjkrqHttL6i",
+          "name": "Token - [ n8n @ d0t-j ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ab8d38cf-4494-4969-b3be-2b034a4197d9",
+              "leftValue": "data",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1728,
+        -96
+      ],
+      "id": "64c6fd23-e137-40a3-ab88-3518166d4631",
+      "name": "If"
     }
   ],
   "pinData": {},
@@ -212,6 +450,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-10-09T17:46:07.000Z",
-  "versionId": "0c069d77-bda6-492a-a81a-6d4ce5d9f8b8"
+  "updatedAt": "2025-10-09T18:18:49.000Z",
+  "versionId": "9c84a51e-222b-4db2-8cbe-023257e5ba68"
 }
