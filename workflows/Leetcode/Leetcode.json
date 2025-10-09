@@ -1,0 +1,217 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Getting Metadata of submissions list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If Problem Accepted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Metadata of submissions list": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Problem Accepted": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GraphQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-10-09T16:22:53.526Z",
+  "id": "Pg626EU95nT2QDpQ",
+  "isArchived": false,
+  "meta": null,
+  "name": "Leetcode",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e5448de9-f4f5-4a1e-a4e6-064d0ea52658",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.recentAcSubmissionList",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "c6a3faeb-c136-461a-bd20-83a33bb9f595",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://leetcode.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "LEETCODE_SESSION=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYXV0aF91c2VyX2lkIjoiOTQ2NjUzMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImVhMDFhYTYwZmIyNDgxZGRmNmNmNjA1ZTgyY2IyOGVmOTJkNWVkODY4OTI3YzJmMTUzOGJhOGNlMWUxZmE2N2YiLCJzZXNzaW9uX3V1aWQiOiIxNTg4NTBmMiIsImlkIjo5NDY2NTMxLCJlbWFpbCI6ImouYWhtZWQuamE3YTdAZ21haWwuY29tIiwidXNlcm5hbWUiOiJicjNhZF9rbzRlIiwidXNlcl9zbHVnIjoiYnIzYWRfa280ZSIsImF2YXRhciI6Imh0dHBzOi8vYXNzZXRzLmxlZXRjb2RlLmNvbS91c2Vycy9icjNhZF9rbzRlL2F2YXRhcl8xNzQ5NjQxOTQ4LnBuZyIsInJlZnJlc2hlZF9hdCI6MTc2MDAyNzY0NCwiaXAiOiIyNDAwOmFkYzc6MTBlOjQyMDA6YTA0ZTplNzY1OjM1M2Y6OWM5ZSIsImlkZW50aXR5IjoiMjIwNGVlNjNiZWYyZjM1MTQ3MGE2NmZmZTFiYjAyMGUiLCJkZXZpY2Vfd2l0aF9pcCI6WyJjNTY5NDQ0ZmQ4Mzk1NTc3ZWQ0YjQyMTE3MDM4MGMyZiIsIjI0MDA6YWRjNzoxMGU6NDIwMDphMDRlOmU3NjU6MzUzZjo5YzllIl0sIl9zZXNzaW9uX2V4cGlyeSI6MTIwOTYwMH0.v3HkOFFD0vK2D3dpGKCF_ZPQKe61XY9n2DEJG4VEpog; csrftoken=4oDAHTyBN5q08IwSczJ3ixQtmAQAD6RRaJHBM0vQhIuFpF8UIPtwrhpULK3yItX5;"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"query\": \"query submissionDetails($submissionId: Int!) { submissionDetails(submissionId: $submissionId) {        code lang { name }}}\",\n    \"variables\": {\n        \"submissionId\": {{ $json.id }}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        896,
+        -96
+      ],
+      "id": "a98bbb76-6aa3-4eed-ae41-8cf9c56d11cd",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://leetcode.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "LEETCODE_SESSION=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYXV0aF91c2VyX2lkIjoiOTQ2NjUzMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImVhMDFhYTYwZmIyNDgxZGRmNmNmNjA1ZTgyY2IyOGVmOTJkNWVkODY4OTI3YzJmMTUzOGJhOGNlMWUxZmE2N2YiLCJzZXNzaW9uX3V1aWQiOiIxNTg4NTBmMiIsImlkIjo5NDY2NTMxLCJlbWFpbCI6ImouYWhtZWQuamE3YTdAZ21haWwuY29tIiwidXNlcm5hbWUiOiJicjNhZF9rbzRlIiwidXNlcl9zbHVnIjoiYnIzYWRfa280ZSIsImF2YXRhciI6Imh0dHBzOi8vYXNzZXRzLmxlZXRjb2RlLmNvbS91c2Vycy9icjNhZF9rbzRlL2F2YXRhcl8xNzQ5NjQxOTQ4LnBuZyIsInJlZnJlc2hlZF9hdCI6MTc2MDAyNzY0NCwiaXAiOiIyNDAwOmFkYzc6MTBlOjQyMDA6YTA0ZTplNzY1OjM1M2Y6OWM5ZSIsImlkZW50aXR5IjoiMjIwNGVlNjNiZWYyZjM1MTQ3MGE2NmZmZTFiYjAyMGUiLCJkZXZpY2Vfd2l0aF9pcCI6WyJjNTY5NDQ0ZmQ4Mzk1NTc3ZWQ0YjQyMTE3MDM4MGMyZiIsIjI0MDA6YWRjNzoxMGU6NDIwMDphMDRlOmU3NjU6MzUzZjo5YzllIl0sIl9zZXNzaW9uX2V4cGlyeSI6MTIwOTYwMH0.v3HkOFFD0vK2D3dpGKCF_ZPQKe61XY9n2DEJG4VEpog; csrftoken=4oDAHTyBN5q08IwSczJ3ixQtmAQAD6RRaJHBM0vQhIuFpF8UIPtwrhpULK3yItX5;"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"query\": \"query recentAcSubmissions($username: String!, $limit: Int!) { recentAcSubmissionList(username: $username, limit: $limit) { id statusDisplay lang title titleSlug } }\",\n    \"variables\": {\n        \"username\": \"br3ad_ko4e\",\n        \"limit\": 15\n    }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "24ef2d69-7211-4242-a474-0136400b442c",
+      "name": "Getting Metadata of submissions list"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8005bc9c-526b-480f-b378-bdfb7f281457",
+              "leftValue": "={{ $json.statusDisplay }}",
+              "rightValue": "Accepted",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        0
+      ],
+      "id": "73970885-1631-452d-a6ac-77cd4516de82",
+      "name": "If Problem Accepted"
+    },
+    {
+      "parameters": {
+        "endpoint": "https://leetcode.com/graphql",
+        "query": "query submissionDetails($submissionId: Int!) {\n  submissionDetails(submissionId: $submissionId) {\n    code\nlang {\nname\n  }\n}",
+        "variables": "{\"variables\": {\n       \n    }}"
+      },
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        96
+      ],
+      "id": "12597ba4-4a34-42e9-b09e-230f0162dc26",
+      "name": "GraphQL"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-09T16:22:53.536Z",
+      "updatedAt": "2025-10-09T16:22:53.536Z",
+      "role": "workflow:owner",
+      "workflowId": "Pg626EU95nT2QDpQ",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-09T17:46:07.000Z",
+  "versionId": "0c069d77-bda6-492a-a81a-6d4ce5d9f8b8"
+}
