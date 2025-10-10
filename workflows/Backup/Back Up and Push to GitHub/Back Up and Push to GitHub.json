@@ -356,7 +356,7 @@
     {
       "parameters": {
         "content": "## Main workflow loop",
-        "height": 512,
+        "height": 560,
         "width": 1465,
         "color": 7
       },
@@ -365,7 +365,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         208,
-        304
+        256
       ],
       "typeVersion": 1
     },
@@ -614,7 +614,7 @@
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "Token - [ d0t-J ]"
+          "name": "Token - [ n8n-test @ d0t-J ]"
         }
       },
       "onError": "continueErrorOutput"
@@ -649,7 +649,7 @@
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "Token - [ d0t-J ]"
+          "name": "Token - [ n8n-test @ d0t-J ]"
         }
       }
     },
@@ -684,7 +684,7 @@
       "credentials": {
         "githubApi": {
           "id": "iY7L3YMNJ7qgBjXW",
-          "name": "Token - [ d0t-J ]"
+          "name": "Token - [ n8n-test @ d0t-J ]"
         }
       },
       "continueOnFail": true
@@ -989,6 +989,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-08T19:02:07.000Z",
-  "versionId": "ba4b772d-b581-4e56-baf2-384a384751f8"
+  "updatedAt": "2025-10-10T10:29:03.000Z",
+  "versionId": "c0e77ae8-e75d-436c-aba8-39ada64ef365"
 }
