@@ -1,0 +1,1042 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Getting Metadata of submissions list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If Problem Accepted",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Getting Metadata of submissions list": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Problem Accepted": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get file data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File": {
+      "main": [
+        [
+          {
+            "node": "Merge Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If file too large": {
+      "main": [
+        [
+          {
+            "node": "Get File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Items": {
+      "main": [
+        [
+          {
+            "node": "isDiffOrNew",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isDiffOrNew": {
+      "main": [
+        [
+          {
+            "node": "Same file - Do nothing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File is different": {
+      "main": [
+        [
+          {
+            "node": "Edit existing file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File is new": {
+      "main": [
+        [
+          {
+            "node": "Create new file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get file data": {
+      "main": [
+        [
+          {
+            "node": "If file too large",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Same file - Do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "File is different",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "File is new",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit existing file": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Same file - Do nothing": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create new file": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-09T16:22:53.526Z",
+  "id": "Pg626EU95nT2QDpQ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Leetcode Submission Bot",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        72
+      ],
+      "id": "e5448de9-f4f5-4a1e-a4e6-064d0ea52658",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.recentAcSubmissionList",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        448,
+        72
+      ],
+      "id": "c6a3faeb-c136-461a-bd20-83a33bb9f595",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://leetcode.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "LEETCODE_SESSION=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYXV0aF91c2VyX2lkIjoiOTQ2NjUzMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImVhMDFhYTYwZmIyNDgxZGRmNmNmNjA1ZTgyY2IyOGVmOTJkNWVkODY4OTI3YzJmMTUzOGJhOGNlMWUxZmE2N2YiLCJzZXNzaW9uX3V1aWQiOiIxNTg4NTBmMiIsImlkIjo5NDY2NTMxLCJlbWFpbCI6ImouYWhtZWQuamE3YTdAZ21haWwuY29tIiwidXNlcm5hbWUiOiJicjNhZF9rbzRlIiwidXNlcl9zbHVnIjoiYnIzYWRfa280ZSIsImF2YXRhciI6Imh0dHBzOi8vYXNzZXRzLmxlZXRjb2RlLmNvbS91c2Vycy9icjNhZF9rbzRlL2F2YXRhcl8xNzQ5NjQxOTQ4LnBuZyIsInJlZnJlc2hlZF9hdCI6MTc2MDAyNzY0NCwiaXAiOiIyNDAwOmFkYzc6MTBlOjQyMDA6YTA0ZTplNzY1OjM1M2Y6OWM5ZSIsImlkZW50aXR5IjoiMjIwNGVlNjNiZWYyZjM1MTQ3MGE2NmZmZTFiYjAyMGUiLCJkZXZpY2Vfd2l0aF9pcCI6WyJjNTY5NDQ0ZmQ4Mzk1NTc3ZWQ0YjQyMTE3MDM4MGMyZiIsIjI0MDA6YWRjNzoxMGU6NDIwMDphMDRlOmU3NjU6MzUzZjo5YzllIl0sIl9zZXNzaW9uX2V4cGlyeSI6MTIwOTYwMH0.v3HkOFFD0vK2D3dpGKCF_ZPQKe61XY9n2DEJG4VEpog; csrftoken=4oDAHTyBN5q08IwSczJ3ixQtmAQAD6RRaJHBM0vQhIuFpF8UIPtwrhpULK3yItX5;"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"query\": \"query submissionDetails($submissionId: Int!) { submissionDetails(submissionId: $submissionId) {        code lang { name }}}\",\n    \"variables\": {\n        \"submissionId\": {{ $json.id }}\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        928,
+        64
+      ],
+      "id": "a98bbb76-6aa3-4eed-ae41-8cf9c56d11cd",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://leetcode.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Cookie",
+              "value": "LEETCODE_SESSION=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYXV0aF91c2VyX2lkIjoiOTQ2NjUzMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImFsbGF1dGguYWNjb3VudC5hdXRoX2JhY2tlbmRzLkF1dGhlbnRpY2F0aW9uQmFja2VuZCIsIl9hdXRoX3VzZXJfaGFzaCI6ImVhMDFhYTYwZmIyNDgxZGRmNmNmNjA1ZTgyY2IyOGVmOTJkNWVkODY4OTI3YzJmMTUzOGJhOGNlMWUxZmE2N2YiLCJzZXNzaW9uX3V1aWQiOiIxNTg4NTBmMiIsImlkIjo5NDY2NTMxLCJlbWFpbCI6ImouYWhtZWQuamE3YTdAZ21haWwuY29tIiwidXNlcm5hbWUiOiJicjNhZF9rbzRlIiwidXNlcl9zbHVnIjoiYnIzYWRfa280ZSIsImF2YXRhciI6Imh0dHBzOi8vYXNzZXRzLmxlZXRjb2RlLmNvbS91c2Vycy9icjNhZF9rbzRlL2F2YXRhcl8xNzQ5NjQxOTQ4LnBuZyIsInJlZnJlc2hlZF9hdCI6MTc2MDAyNzY0NCwiaXAiOiIyNDAwOmFkYzc6MTBlOjQyMDA6YTA0ZTplNzY1OjM1M2Y6OWM5ZSIsImlkZW50aXR5IjoiMjIwNGVlNjNiZWYyZjM1MTQ3MGE2NmZmZTFiYjAyMGUiLCJkZXZpY2Vfd2l0aF9pcCI6WyJjNTY5NDQ0ZmQ4Mzk1NTc3ZWQ0YjQyMTE3MDM4MGMyZiIsIjI0MDA6YWRjNzoxMGU6NDIwMDphMDRlOmU3NjU6MzUzZjo5YzllIl0sIl9zZXNzaW9uX2V4cGlyeSI6MTIwOTYwMH0.v3HkOFFD0vK2D3dpGKCF_ZPQKe61XY9n2DEJG4VEpog; csrftoken=4oDAHTyBN5q08IwSczJ3ixQtmAQAD6RRaJHBM0vQhIuFpF8UIPtwrhpULK3yItX5;"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"query\": \"query recentAcSubmissions($username: String!, $limit: Int!) { recentAcSubmissionList(username: $username, limit: $limit) { id statusDisplay lang title titleSlug } }\",\n    \"variables\": {\n        \"username\": \"br3ad_ko4e\",\n        \"limit\": 15\n    }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        80
+      ],
+      "id": "24ef2d69-7211-4242-a474-0136400b442c",
+      "name": "Getting Metadata of submissions list"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8005bc9c-526b-480f-b378-bdfb7f281457",
+              "leftValue": "={{ $json.statusDisplay }}",
+              "rightValue": "Accepted",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        72
+      ],
+      "id": "73970885-1631-452d-a6ac-77cd4516de82",
+      "name": "If Problem Accepted"
+    },
+    {
+      "parameters": {
+        "endpoint": "https://leetcode.com/graphql",
+        "query": "query submissionDetails($submissionId: Int!) {\n  submissionDetails(submissionId: $submissionId) {\n    code\nlang {\nname\n  }\n}",
+        "variables": "={\n\"variables\": {\n        \"submissionId\": {{ $json.id }}\n  }\n}",
+        "responseFormat": "string",
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Referer",
+              "value": "https://n8n.br3adko4e.tech/"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.graphql",
+      "typeVersion": 1.1,
+      "position": [
+        3232,
+        1056
+      ],
+      "id": "12597ba4-4a34-42e9-b09e-230f0162dc26",
+      "name": "GraphQL",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "038c4d34-583a-4756-8140-7996975228f9",
+              "name": "title",
+              "value": "={{ $('Split Out').item.json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "6dffd74e-9879-4c88-af7a-972dc66ae468",
+              "name": "code",
+              "value": "={{ $json.data.submissionDetails.code }}",
+              "type": "string"
+            },
+            {
+              "id": "dc6eec1e-d38d-40b2-b9ff-2334839b0023",
+              "name": "language",
+              "value": "={{ $json.data.submissionDetails.lang.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        -96
+      ],
+      "id": "f2f59094-92c1-41c1-9c15-5fa02c4796d0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37fd1815-fcf9-46f9-91e1-659679ed1596",
+              "name": "filename",
+              "value": "={{ $json.title }}.{{ \n  (() => {\n    switch($json.language) {\n      case 'python3': return 'py';\n      case 'python': return 'py';\n      case 'javascript': return 'js';\n      case 'typescript': return 'ts';\n      case 'java': return 'java';\n      case 'cpp': return 'cpp';\n      case 'csharp': return 'cs';\n      case 'golang': return 'go';\n      default: return 'txt';\n    }\n  })() \n}}",
+              "type": "string"
+            },
+            {
+              "id": "3a9862f2-496a-4daf-8f4a-ea480fe442bb",
+              "name": "content",
+              "value": "={{ $json.code }}",
+              "type": "string"
+            },
+            {
+              "id": "93fb7499-f0e9-4874-ac37-12cd33d3a681",
+              "name": "Commit",
+              "value": "=Accepted {{ $json.title }}.{{ $json.language }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1568,
+        -96
+      ],
+      "id": "8b05a67c-0a3f-4b21-a67f-5369818c8bd0",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/d0t-J",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://github.com/d0t-J/test",
+          "__regex": "https:\\/\\/(?:[^/]+)\\/(?:[-_0-9a-zA-Z]+)\\/([-_.0-9a-zA-Z]+)"
+        },
+        "filePath": "={{ $json.filename }}",
+        "fileContent": "={{ $json.content }}",
+        "commitMessage": "={{ $json.Commit }}",
+        "additionalParameters": {
+          "branch": {
+            "branch": "main"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        3600,
+        688
+      ],
+      "id": "1513404d-553d-4c3b-9dcf-740885031358",
+      "name": "Create a file",
+      "webhookId": "1399e821-cbc1-4ade-9a8e-c4eb41edc08e",
+      "credentials": {
+        "githubApi": {
+          "id": "wx1jyvjkrqHttL6i",
+          "name": "Token - [ n8n @ d0t-j ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "d0t-j",
+          "mode": "list",
+          "cachedResultName": "d0t-j",
+          "cachedResultUrl": "https://github.com/d0t-J/d0t-j"
+        },
+        "filePath": "={{ $json.filename }}",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        592
+      ],
+      "id": "f4d3920a-826e-4629-a17b-c3e24ea35532",
+      "name": "Get a file",
+      "webhookId": "41077ada-0580-499b-8dc1-2311ea40b5d9",
+      "alwaysOutputData": false,
+      "credentials": {
+        "githubApi": {
+          "id": "wx1jyvjkrqHttL6i",
+          "name": "Token - [ n8n @ d0t-j ]"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ab8d38cf-4494-4969-b3be-2b034a4197d9",
+              "leftValue": "={{ $json.sha }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3344,
+        592
+      ],
+      "id": "64c6fd23-e137-40a3-ab88-3518166d4631",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "test",
+          "mode": "list",
+          "cachedResultName": "test",
+          "cachedResultUrl": "https://github.com/d0t-J/test"
+        },
+        "filePath": "={{ $('Edit Fields1').item.json.filename }}",
+        "fileContent": "={{ $('Edit Fields1').item.json.content }}",
+        "commitMessage": "={{ $('Edit Fields1').item.json.Commit }}"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1.1,
+      "position": [
+        3600,
+        496
+      ],
+      "id": "927611dd-adee-4344-94a8-9a3f41c7a15b",
+      "name": "Edit a file",
+      "webhookId": "d2fbfb1e-d090-4813-93d6-1777d870086d",
+      "credentials": {
+        "githubApi": {
+          "id": "wx1jyvjkrqHttL6i",
+          "name": "Token - [ n8n @ d0t-j ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.download_url }}",
+        "options": {}
+      },
+      "id": "e2b451a9-eeab-40f5-9596-555ef8b48628",
+      "name": "Get File",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        2240,
+        -168
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "45ce825e-9fa6-430c-8931-9aaf22c42585",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.content }}",
+              "rightValue": ""
+            },
+            {
+              "id": "9619a55f-7fb1-4f24-b1a7-7aeb82365806",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.error }}",
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5d829be9-85ea-4af9-af36-71c0740e695a",
+      "name": "If file too large",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        2016,
+        -96
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {},
+      "id": "aaf43b81-320d-4743-bd82-3e9738b9c5c2",
+      "name": "Merge Items",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        2464,
+        -96
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "jsCode": "// The data from GitHub comes from the first input branch.\nconst githubData = $input.all()[0].json;\n\n// --- FIX ---\n// Get the leetcode code using the full, correct path from the 'Edit Fields1' node.\n// The '?.' prevents errors if any intermediate property (like 'data') doesn't exist.\nconst leetcodeCode = $('Edit Fields1').first().json.content;\n\n// Always check if the variable was found successfully before using it.\nif (!leetcodeCode) {\n  throw new Error(\"Could not find '.code' in the data from the 'Edit Fields1' node. Check the path.\");\n}\n\n// Check if the file already exists on GitHub.\nif (githubData.content) {\n  // The content is base64 encoded, so we need to decode it to a string.\n  const githubCode = Buffer.from(githubData.content, 'base64').toString();\n\n  // Compare the code from GitHub with the new code from LeetCode.\n  if (githubCode.trim() === leetcodeCode.trim()) {\n    // The code is the same, no need to update.\n    githubData.github_status = \"same\";\n  } else {\n    // The code is different, prepare it for an update.\n    githubData.github_status = \"different\";\n    githubData.new_code_content = leetcodeCode;\n  }\n} else {\n  // If no \"content\" key, the file doesn't exist on GitHub.\n  githubData.github_status = \"new\";\n  githubData.new_code_content = leetcodeCode;\n}\n\n// Return the modified data.\nreturn $input.all();"
+      },
+      "id": "1b7ee082-b3ca-4fbd-8e48-4bbe1f51ec3c",
+      "name": "isDiffOrNew",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        2688,
+        -96
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "80c41ec0-ceca-41e4-a51c-b909ff9b29aa",
+      "name": "Same file - Do nothing",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        3136,
+        -192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "1cb18831-5711-42d7-9f3d-a853d882e89b",
+      "name": "File is different",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        3136,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "e33c586e-a0dc-4e9b-a9b8-8154a8e74b1b",
+      "name": "File is new",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        3136,
+        192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "=d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "=test",
+          "mode": "name"
+        },
+        "filePath": "={{ $('Edit Fields1').item.json.filename }}",
+        "fileContent": "={{ $('Edit Fields1').item.json.content }}",
+        "commitMessage": "={{ $('Edit Fields1').item.json.Commit }} - ({{$json.github_status}})"
+      },
+      "id": "638ba03d-1254-4f00-a449-652265ec5f2e",
+      "name": "Create new file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        3360,
+        192
+      ],
+      "typeVersion": 1,
+      "webhookId": "386c09c3-5fa0-4f28-b270-e52cb2f8f73d",
+      "alwaysOutputData": false,
+      "credentials": {
+        "githubApi": {
+          "id": "iY7L3YMNJ7qgBjXW",
+          "name": "Token - [ n8n-test @ d0t-J ]"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "=d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "=test",
+          "mode": "name"
+        },
+        "filePath": "={{ $('Edit Fields1').item.json.filename }}",
+        "fileContent": "={{ $('Edit Fields1').item.json.content }}",
+        "commitMessage": "={{ $('Edit Fields1').item.json.Commit }} - ({{$json.github_status}})"
+      },
+      "id": "c7a92e84-43f8-4fd3-b711-1e2549034f19",
+      "name": "Edit existing file",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        3360,
+        0
+      ],
+      "typeVersion": 1,
+      "webhookId": "3d9aa79c-4b0e-448a-a2f7-e342a02234a7",
+      "credentials": {
+        "githubApi": {
+          "id": "iY7L3YMNJ7qgBjXW",
+          "name": "Token - [ n8n-test @ d0t-J ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "=d0t-J",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "=test",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.filename }}",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "id": "82d97b39-51ab-4a55-8fb0-bc7e1cee8c21",
+      "name": "Get file data",
+      "type": "n8n-nodes-base.github",
+      "position": [
+        1792,
+        -96
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "webhookId": "1513f777-7c6b-4cba-a0e1-84b4566aaddd",
+      "credentials": {
+        "githubApi": {
+          "id": "iY7L3YMNJ7qgBjXW",
+          "name": "Token - [ n8n-test @ d0t-J ]"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.github_status}}",
+                    "rightValue": "same",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e8601f6a-7b2a-45d7-9cec-084a72fc6438"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Same"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4d978b24-8f43-4924-ba0c-c1f00d413a79",
+                    "leftValue": "={{$json.github_status}}",
+                    "rightValue": "different",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Different"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "982dd831-ad62-450d-8ec4-701b81e0be3e",
+                    "leftValue": "={{$json.github_status}}",
+                    "rightValue": "new",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "New"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2912,
+        -16
+      ],
+      "id": "4da2feb2-6017-452b-9016-1a25cd94dee1",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        80
+      ],
+      "id": "c9047894-bc6c-44df-94f1-39ea30f0d242",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        3744,
+        192
+      ],
+      "id": "87d5d109-a996-45a8-829d-44bea98dba47"
+    },
+    {
+      "parameters": {
+        "content": "# Why this node isnt working but the node above is\n",
+        "height": 416,
+        "width": 832,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3056,
+        432
+      ],
+      "typeVersion": 1,
+      "id": "813e417e-4dc4-492a-8ad9-23c297e510c7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Try working with the GraphQL node instead of HTTP request\n",
+        "height": 384,
+        "width": 464,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3056,
+        880
+      ],
+      "typeVersion": 1,
+      "id": "9d108c08-a6e2-4f96-b9af-48a36a4f6ee5",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-10-09T16:22:53.536Z",
+      "updatedAt": "2025-10-09T16:22:53.536Z",
+      "role": "workflow:owner",
+      "workflowId": "Pg626EU95nT2QDpQ",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-10T10:29:25.000Z",
+  "versionId": "3ae0b561-605a-420d-8c81-d2c6a44eeece"
+}
