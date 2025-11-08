@@ -1,0 +1,673 @@
+{
+  "active": false,
+  "connections": {
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Whatsapp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Whatsapp": {
+      "main": [
+        [
+          {
+            "node": "Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Channel": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vector Store Tool",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get dataset items": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get last run": {
+      "main": [
+        [
+          {
+            "node": "Get dataset items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get last run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-07T10:21:26.300Z",
+  "id": "t989IP692dKo4kfr",
+  "isArchived": false,
+  "meta": null,
+  "name": "Edifyit.com ChatBot",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1632,
+        -960
+      ],
+      "id": "4b21343d-3654-4370-a921-59c9f8b1a6be",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f280f15e-aef6-447c-9061-bc2d4c2a879b",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        -1184
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "64d00da7-b8b8-41ea-8801-1c86bb710934",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        -976
+      ]
+    },
+    {
+      "parameters": {
+        "name": "company_knowledge_base",
+        "description": "this node connect to our company knowledge base",
+        "topK": 10
+      },
+      "id": "f0fcc6dc-169a-4331-accb-9b393bacb618",
+      "name": "Vector Store Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        -224
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "luffs",
+          "mode": "list",
+          "cachedResultName": "luffs"
+        },
+        "options": {}
+      },
+      "id": "0b3fca20-1b24-4ceb-830a-d56de1f67f01",
+      "name": "Pinecone Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "fb7a9dc5-bbd3-4535-9354-31658bbfe89a",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1488,
+        -544
+      ],
+      "webhookId": "fb46ee53-2b0b-4263-abec-72a870c104c8"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "={{ $('WhatsApp Trigger').first().json.metadata.phone_number_id }}",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').first().json.messages[0].from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "id": "9d90e3fc-14e1-4d62-a122-577248059606",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -544
+      ],
+      "webhookId": "e052891a-b620-4fe6-b379-e106fbbe6218"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "fbd3abb3-83d0-44a7-8b4d-63111228d747",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1488,
+        -352
+      ],
+      "webhookId": "2221c31f-62ba-49d7-9b33-0555b2dc4939"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "13c7f9b0-0dd2-4273-8015-458ceadfd0bc",
+                    "leftValue": "={{ $('Channel').item.json.channel }}",
+                    "rightValue": "whatsapp",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "whatsapp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b333793d-e787-493c-800d-ece001fb3930",
+                    "leftValue": "={{ $('Channel').item.json.channel }}",
+                    "rightValue": "telegram",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "telegram"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "abb6d43f-004a-4f0f-b405-3ab851b6deaa",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -304,
+        -448
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "luffs",
+          "mode": "list",
+          "cachedResultName": "luffs"
+        },
+        "options": {}
+      },
+      "id": "69acd1d4-ff32-4505-aa44-30c3ec31c532",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        -1408
+      ]
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {}
+      },
+      "id": "58a0c672-0702-45d7-a6db-52ed32efa236",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -784,
+        -448
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "88fe8e52-2aa8-444e-a4fa-50c458f3ff36",
+              "name": "message",
+              "value": "={{ $json.messages[0].text.body }}",
+              "type": "string"
+            },
+            {
+              "id": "59a991b6-e266-440e-8eaf-df68bfdba64d",
+              "name": "channel",
+              "value": "whatsapp",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a9a7138-730d-4c64-b0a6-1eb3960922d0",
+      "name": "Whatsapp",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1264,
+        -544
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b7e70825-797f-4a88-b32c-616e484cd086",
+              "name": "message",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "329151ff-c365-4bd5-a43e-328a2a6ef6bd",
+              "name": "channel",
+              "value": "telegram",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b4a1516f-6780-4cba-b4da-8e98bba426c9",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1264,
+        -352
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "id": "cd80df78-57e2-4fca-ac77-ccd90ee481a2",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -352
+      ],
+      "webhookId": "c8c69c26-453e-4c52-a26c-928ea36a504e"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe633b89-17d3-45e2-a296-67514075607f",
+              "name": "channel",
+              "value": "={{ $json.channel }}",
+              "type": "string"
+            },
+            {
+              "id": "22ac00c2-bd12-41bf-bb44-53971f733ef0",
+              "name": "message",
+              "value": "={{ $json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c17734a2-e23d-436f-a851-9b014b01935b",
+      "name": "Channel",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1040,
+        -448
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        -1184
+      ],
+      "id": "d74301ce-270d-4004-9364-50c82f2b7c65",
+      "name": "Embeddings Google Gemini"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        -224
+      ],
+      "id": "beb7f3b2-e6af-4715-9a09-aa837e2fa08f",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        192
+      ],
+      "id": "7dbabe25-8710-4e01-b2fd-e37ebdd535dc",
+      "name": "Embeddings Google Gemini1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        -16
+      ],
+      "id": "f5d6e0b9-cbbe-47dd-b6a7-74250dbcfdb6",
+      "name": "Google Gemini Chat Model1"
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "limit": null
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -960
+      ],
+      "id": "3f353c7d-2d41-4856-93d3-ffa2b473f8e2",
+      "name": "Get dataset items",
+      "credentials": {
+        "apifyApi": {
+          "id": "2sYSNTxvuxXbcuHe",
+          "name": "Access Token - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "Get last run",
+        "userActorId": {
+          "__rl": true,
+          "value": "moJRLRc85AitArpNN",
+          "mode": "list",
+          "cachedResultName": "Web Scraper (apify/web-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/moJRLRc85AitArpNN/input"
+        }
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -1424,
+        -960
+      ],
+      "id": "cafab976-5169-4333-bcb2-6b860cf8101d",
+      "name": "Get last run",
+      "credentials": {
+        "apifyApi": {
+          "id": "2sYSNTxvuxXbcuHe",
+          "name": "Access Token - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Function node JS - Cleaning Apify output (fixed require + safe fallback hash)\n\nlet crypto = null;\ntry {\n  // try to require built-in crypto; may throw in restricted n8n environments\n  if (typeof require === 'function') {\n    try { crypto = require('crypto'); } catch(e) { crypto = null; }\n  }\n} catch(e) {\n  crypto = null;\n}\n\nfunction normalize(s) {\n  if (!s) return \"\";\n  return s.replace(/\\s+/g, ' ').trim();\n}\n\n// FNV-1a 32-bit fallback (fast, stable, non-crypto) -> returns hex string\nfunction fnv1a32hex(str) {\n  let h = 0x811c9dc5 >>> 0;\n  for (let i = 0; i < str.length; i++) {\n    h ^= str.charCodeAt(i);\n    h = (h >>> 0) * 0x01000193 >>> 0; // multiply by FNV prime\n  }\n  // format as 8-digit hex\n  return ('00000000' + (h >>> 0).toString(16)).slice(-8);\n}\n\nfunction textHash(s){\n  if (!s) return \"\";\n  if (crypto && typeof crypto.createHash === 'function') {\n    try {\n      return crypto.createHash('sha256').update(s, 'utf8').digest('hex');\n    } catch(e) {\n      // fall through to fallback\n    }\n  }\n  // fallback stable hash\n  return fnv1a32hex(s);\n}\n\n// patterns to drop\nconst DIGEST_RE = /Digest:\\s*\\d+/i;\nconst APPLICATION_ERROR_RE = /Application error: a server-side exception/i;\nconst SHORT_PLACEHOLDER_RE = /^(Select Profile Picture|Apply Online|)$/i;\n\nconst cleaned = [];\n\nfor (const it of items) {\n  const page = it.json || {};\n  const url = page.url || page.loadedUrl || page.canonical || \"\";\n  const rawText = (page.rawText || \"\").toString();\n  const paragraphCount = Number(page.paragraphCount || 0);\n  const headings = Array.isArray(page.headings) ? page.headings.map(h => normalize(h.text || \"\")) : [];\n  const title = normalize(page.title || page.metaDescription || \"\");\n\n  // 1) drop rules\n  if (DIGEST_RE.test(rawText)) continue;\n  if (headings.some(h => APPLICATION_ERROR_RE.test(h))) continue;\n  if (paragraphCount <= 1 && (rawText.trim() === \"\" || SHORT_PLACEHOLDER_RE.test(rawText))) continue;\n\n  // 2) normalize internal links (unique)\n  const internalLinks = Array.isArray(page.internalLinks) ? [...new Set(page.internalLinks)] : [];\n\n  // 3) create cleaned text: prefer rawText; if empty, join headings and meta\n  let text = normalize(rawText);\n  if (!text) {\n    text = (title + \" \" + headings.join(\" \")).trim();\n  }\n\n  // 4) drop pages that are just nav lists (lots of internalLinks but no text)\n  if (!text && internalLinks.length > 10) continue;\n\n  // 5) compute hash for dedupe\n  const tHash = textHash(text);\n\n  cleaned.push({\n    json: {\n      url,\n      title,\n      text,\n      headings,\n      internalLinks,\n      paragraphCount,\n      text_hash: tHash,\n      _raw: page  // keep raw if you want for debugging (optional)\n    }\n  });\n}\n\nreturn cleaned;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -992,
+        -960
+      ],
+      "id": "addda114-dca2-439d-9e97-b6bccba151bc",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-07T10:21:26.311Z",
+      "createdAt": "2025-11-07T10:21:26.311Z",
+      "role": "workflow:owner",
+      "workflowId": "t989IP692dKo4kfr",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-07T18:50:08.000Z",
+  "versionId": "e8fe1744-c8e2-475d-87f8-18be9dcb3438"
+}
