@@ -1,0 +1,571 @@
+{
+  "active": false,
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store2": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Tool1",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get dataset items1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get last run1": {
+      "main": [
+        [
+          {
+            "node": "Get dataset items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Channel": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vector Store Tool1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get last run1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-09T17:06:03.783Z",
+  "id": "ymmrYG3T3Hx8lz81",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Ed RAG ChatBot",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.userId }}",
+        "contextWindowLength": 99
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -528,
+        1232
+      ],
+      "id": "203ed0e7-25f2-45fc-a09c-d1d934fcb559",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "name": "company_knowledge_base",
+        "description": "# VECTOR STORE QUERY PROCESSOR\n\nYou are a specialized query processor for Edify College's knowledge base. Your job is to understand user queries and retrieve the most relevant information from the vector database.\n\n## YOUR ROLE\n- Process natural language queries about courses, programs, and educational content\n- Retrieve relevant information from Edify's knowledge base\n- Synthesize results into clear, factual responses\n- Maintain high accuracy and relevance in information retrieval\n\n## QUERY UNDERSTANDING\nWhen processing queries, identify:\n1. **Primary intent**: What information is being requested?\n2. **Specific entities**: Course names, skills, technologies, durations\n3. **Implicit needs**: Context clues about user's level or goals\n4. **Scope**: Single course or comparison? Overview or deep dive?\n\n## RETRIEVAL STRATEGY\n- Prioritize exact matches for course names and specific terms\n- Include related content for broader queries\n- Return top 10 most relevant results (as configured)\n- Consider semantic similarity, not just keyword matching\n\n## RESPONSE SYNTHESIS\nWhen the main agent uses your results:\n- Provide factual, structured information\n- Include specific details: durations, modules, projects, technologies\n- Mention key differentiators and unique features\n- Keep information current and accurate per the database\n\n## INFORMATION CATEGORIES TO RETRIEVE\n- **Course Content**: Modules, curriculum, topics covered\n- **Duration & Format**: Weeks/months, class schedule, structure\n- **Projects & Outcomes**: What students build, portfolio items\n- **Prerequisites**: Required knowledge or education level\n- **Career Paths**: Job roles, industries, applications\n- **Instructors**: If available in database\n- **Fees**: If available in database\n- **Support**: Internships, placement, resources\n\n## QUALITY STANDARDS\n- Accuracy over quantity\n- Specific over vague\n- Current over outdated\n- Complete over partial\n\n## HANDLING EDGE CASES\n- **Query too broad**: Return overview of multiple relevant courses\n- **Query too specific**: Return exact match plus related content\n- **No perfect match**: Return closest semantic matches\n- **Ambiguous terms**: Return all possible interpretations\n\nYour retrieved information will be used by the main conversational agent, so prioritize accuracy and relevance above all else.",
+        "topK": 10
+      },
+      "id": "4590d4b6-2a3d-4112-9a4c-34de4b482025",
+      "name": "Vector Store Tool1",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        1232
+      ]
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "muffs",
+          "mode": "list",
+          "cachedResultName": "muffs"
+        },
+        "options": {}
+      },
+      "id": "2b732b2b-73b9-4b4c-aa1c-132ed6c8429d",
+      "name": "Pinecone Vector Store2",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        1440
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "dXlrQiaIHKllMnnh",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {}
+      },
+      "id": "33159750-feb1-4fac-a1c6-dcfe1681c302",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -608,
+        1008
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "39d2ce8e-663d-4d04-b2fc-3550159bce50",
+      "name": "Default Data Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "chunkSize": 1500,
+        "chunkOverlap": 150,
+        "options": {}
+      },
+      "id": "19492c9c-bb61-4455-a601-cf0920f95a70",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        0,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "muffs",
+          "mode": "list",
+          "cachedResultName": "muffs"
+        },
+        "options": {}
+      },
+      "id": "5d6bae90-238e-4109-b995-7831526c3cc4",
+      "name": "Pinecone Vector Store3",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        256
+      ],
+      "credentials": {
+        "pineconeApi": {
+          "id": "dXlrQiaIHKllMnnh",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "offset": {},
+        "limit": {}
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        256
+      ],
+      "id": "de5df6ed-4b77-4ad0-9a5f-876461f702aa",
+      "name": "Get dataset items1",
+      "credentials": {
+        "apifyApi": {
+          "id": "YcBWf1mX5RP5j8UQ",
+          "name": "JUNAID SCRAPPER"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "Get last run",
+        "userActorId": {
+          "__rl": true,
+          "value": "moJRLRc85AitArpNN",
+          "mode": "list",
+          "cachedResultName": "Web Scraper (apify/web-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/moJRLRc85AitArpNN/input"
+        }
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        256
+      ],
+      "id": "d519a727-5532-4f46-b7d6-2e400babe06f",
+      "name": "Get last run1",
+      "credentials": {
+        "apifyApi": {
+          "id": "YcBWf1mX5RP5j8UQ",
+          "name": "JUNAID SCRAPPER"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "22ac00c2-bd12-41bf-bb44-53971f733ef0",
+              "name": "message",
+              "value": "={{ $json.body.message }}",
+              "type": "string"
+            },
+            {
+              "id": "260fbb4b-ed29-41f6-94fc-7c07f5d4c524",
+              "name": "userId",
+              "value": "={{ $json.headers[\"user-agent\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d29766fa-b744-44c3-844a-d7e6ddddd5aa",
+              "name": "TimeStamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "42155e5f-ecfc-43f6-942c-9b7ae27a1aea",
+      "name": "Channel",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -880,
+        1008
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Enhanced chunking for better retrieval\nconst items = $input.all();\n\nconst processedChunks = items.flatMap((item, pageIndex) => {\n    const data = item.json;\n    const chunks = [];\n\n    // Create metadata base\n    const baseMeta = {\n        url: data.url || \"\",\n        title: data.title || \"Untitled\",\n        type: data.course?.courseTitle ? \"course\" : \"page\",\n        courseTitle: data.course?.courseTitle || \"\",\n        canonical: data.canonical || \"\",\n    };\n\n    // 1. Course Description (if exists) - High priority\n    if (data.course?.courseDesc) {\n        const desc = data.course.courseDesc;\n        const descChunks = chunkText(desc, 1200, 150);\n        descChunks.forEach((chunk, idx) => {\n            chunks.push({\n                json: {\n                    text: `Course: ${baseMeta.courseTitle}\\n\\n${chunk}`,\n                    metadata: {\n                        ...baseMeta,\n                        contentType: \"course_description\",\n                        chunkIndex: idx,\n                        priority: \"high\",\n                    },\n                },\n            });\n        });\n    }\n\n    if (data.outlineItems && data.outlineItems.length > 0) {\n        const outlineText =\n            `Course OUtline for ${baseMeta.courseTitle}:\\n` +\n            data.outlineItems.map((item, i) => `${i + 1}. ${item}`).join(\"\\n\");\n        const outlineChunks = chunkText(outlineText, 1000, 100);\n        outlineChunks.forEach((chunk, idx) => {\n            chunks.push({\n                json: {\n                    text: chunk,\n                    metadata: {\n                        ...baseMeta,\n                        contentType: \"course_outline\",\n                        chunkIndex: idx,\n                        priority: \"medium\",\n                    },\n                },\n            });\n        });\n    }\n\n    if (data.rawText || data.metaDescription) {\n        const mainContent = [\n            data.metaDescription ? `Description: ${data.metaDescription}` : \"\",\n            data.rawText || \"\",\n        ]\n            .filter(Boolean)\n            .join(\"\\n\\n\");\n\n        const contentChunks = chunkText(mainContent, 1200, 150);\n        contentChunks.forEach((chunk, idx) => {\n            chunks.push({\n                json: {\n                    text: `${baseMeta.title}\\n\\n${chunk}`,\n                    metadata: {\n                        ...baseMeta,\n                        contentType: \"main_content\",\n                        chunkIndex: idx,\n                        priority: \"medium\",\n                    },\n                },\n            });\n        });\n    }\n\n    if (data.headings && data.headings.length > 0) {\n        const headingsText = data.headings\n            .map((h) => `${h.tag}: ${h.text}`)\n            .join(\"\\n\");\n\n        if (headingsText.length > 100) {\n            chunks.push({\n                json: {\n                    text: `Page Structure: \\n${headingsText}`,\n                    metadata: {\n                        ...baseMeta,\n                        contentType: \"headings\",\n                        priority: \"low\",\n                    },\n                },\n            });\n        }\n    }\n\n    if (data.lists && data.lists.length > 0) {\n        data.lists.forEach((list, listIdx) => {\n            const listText =\n                `${list.nearestHeading || \"List\"}:\\n` +\n                list.items.map((item, i) => `• ${item}`).join(\"\\n\");\n            chunks.push({\n                json: {\n                    metadata: {\n                        ...baseMeta,\n                        contentType: \"list\",\n                        listIndex: listIdx,\n                        priority: \"low\",\n                    },\n                },\n            });\n        });\n    }\n\n    return chunks;\n});\n\nfunction chunkText(text, chunkSize = 1200, overlap = 150) {\n    if (!text || text.length <= chunkSize) return [text];\n\n    const chunks = [];\n    let start = 0;\n\n    while (start < text.length) {\n        let end = start + chunkSize;\n        const lastPeriod = text.lastIndexOf(\". \", end);\n        const lastNewLine = text.lastIndexOf(\"\\n\", end);\n        const breakPoint = Math.max(lastPeriod, lastNewLine);\n\n        if (breakPoint > start + chunkSize * 0.5) {\n            end = breakPoint + 1;\n        }\n\n        chunks.push(text.slice(start, end).trim());\n\n        start = end - overlap;\n    }\n\n    return chunks.filter((chunk) => chunks.length > 50);\n}\nreturn processedChunks;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -432,
+        256
+      ],
+      "id": "8cf0cb14-9d39-4190-9552-d68498baafa3",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "modelName": "embed-english-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        480
+      ],
+      "id": "9fb58bef-7992-4c42-87f5-e1185a7eb071",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "qM82BRiYi9xNnlOp",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "embed-english-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        1648
+      ],
+      "id": "6ca94155-9aa0-4eb2-82f4-5c42f4dd7fde",
+      "name": "Embeddings Cohere1",
+      "credentials": {
+        "cohereApi": {
+          "id": "qM82BRiYi9xNnlOp",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -224,
+        1440
+      ],
+      "id": "58e716cf-a6d3-4904-8952-802c8f969cc3",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "Btzo19Pm3rnWyDIE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -656,
+        1232
+      ],
+      "id": "fc5746a3-270e-4aa3-b815-52111299c76e",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "Btzo19Pm3rnWyDIE",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        256
+      ],
+      "id": "c5cd2706-3a71-4b48-bfd6-c28716889bb7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1136,
+        1008
+      ],
+      "id": "8e98bd2b-5a97-4fad-82d3-95c259147110",
+      "name": "WhatsApp Trigger",
+      "webhookId": "86e5cfc0-b352-4cba-aeb4-4879bf6e45f2",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "eYgmtaWjn1yzcOpI",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -256,
+        1008
+      ],
+      "id": "14214ad6-a11e-47b0-a19b-44ebff3d7681",
+      "name": "Send message",
+      "webhookId": "64ade79f-49c6-4b2c-95a6-bc2aad7297ed",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FPLKG4ghONxgLTi3",
+          "name": "WhatsApp account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-09T17:06:03.791Z",
+      "createdAt": "2025-11-09T17:06:03.791Z",
+      "role": "workflow:owner",
+      "workflowId": "ymmrYG3T3Hx8lz81",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-09T17:34:20.000Z",
+  "versionId": "26525bae-9a69-4c12-9b07-10bce7d63197"
+}
