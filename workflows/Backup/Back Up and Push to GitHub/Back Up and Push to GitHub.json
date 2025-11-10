@@ -364,7 +364,7 @@
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        208,
+        240,
         256
       ],
       "typeVersion": 1
@@ -522,7 +522,7 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        2112,
+        2240,
         480
       ],
       "typeVersion": 2
@@ -675,7 +675,7 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        1888,
+        2016,
         480
       ],
       "typeVersion": 1,
@@ -719,7 +719,7 @@
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
-        1664,
+        1776,
         480
       ],
       "typeVersion": 3.4
@@ -989,6 +989,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-10-10T10:29:03.000Z",
-  "versionId": "c0e77ae8-e75d-436c-aba8-39ada64ef365"
+  "updatedAt": "2025-11-10T10:14:06.000Z",
+  "versionId": "cf95d81a-1f33-4d81-8912-73759d6c864f"
 }
