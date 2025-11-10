@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-10T10:44:26.582Z",
+  "id": "iCq53SBExVUeW0dR",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f80eefee-dcd3-4719-8a49-6e94af07656a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://prod-1-data.ke.pinecone.io/assistant/chat/n8n",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "pcsk_4pyyK5_2KkSpmnQuUZHUFCuthUabkMmUA5qxg9T29MEpzvSyWBUxKonjhCdjQpQYkm4rwq"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Give me details on Ai Automation and who is the instructor for the course. List the members of Edify Team \"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3996de7b-03c3-4588-9c10-2169d5aaa55d",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-10T10:44:26.587Z",
+      "createdAt": "2025-11-10T10:44:26.587Z",
+      "role": "workflow:owner",
+      "workflowId": "iCq53SBExVUeW0dR",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-10T10:51:19.000Z",
+  "versionId": "3079a7f7-7c4d-432e-bf26-7847cf6cded1"
+}
