@@ -89,7 +89,7 @@
             {
               "id": "22ac00c2-bd12-41bf-bb44-53971f733ef0",
               "name": "message",
-              "value": "={{ $json.message.content }}",
+              "value": "=data : {{ $json.message.content }},  Actual question that the  user asked :{{ $('When chat message received').item.json.chatInput }}",
               "type": "string"
             },
             {
@@ -119,13 +119,14 @@
     },
     {
       "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        680,
-        224
+        624,
+        192
       ],
       "id": "99f8297c-019c-4643-8b3e-526a6ec7c75a",
       "name": "Google Gemini Chat Model",
@@ -186,8 +187,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
       "typeVersion": 1.5,
       "position": [
-        808,
-        224
+        752,
+        192
       ],
       "id": "ca118a74-821e-4db3-af33-f3429d2334db",
       "name": "Redis Chat Memory",
@@ -215,6 +216,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-10T11:48:36.000Z",
-  "versionId": "17e3fc59-8f99-4120-9462-dfc1d0bba4a8"
+  "updatedAt": "2025-11-11T17:46:32.000Z",
+  "versionId": "e1cda8d0-5bae-4b1b-bf82-444f14177fb7"
 }
