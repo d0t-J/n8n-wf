@@ -1,0 +1,89 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-12T11:23:40.114Z",
+  "id": "KzklEzSXZDaxUhu0",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8a581158-f83c-46f8-aac9-fb6651a0e1b1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": " https://graph.facebook.com/v21.0/745724988632147/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "bearer EAALFZBHrnD8kBPw1Esci3FyearLb3UPp9RDZBSB3NDRUIjeEtn5B09OBZAZBddcoZAsLPY1TpfIzdC5BTXMuqcX7ZCnXEUPG6jCgkH5JP31eVuWY9CH6PtPeHCt5TYVCBEOvyS7ZADSNPiUCgPp4emWERxyV2aALvmjRwqwh3jfOCsIlLOsMZB97SkMw3b3xVaOzoAFSWodESSOtbXI0rb08nVao8AMZBZALWS2kZBsn9FZAXReyd8OWZB2SWakJTPHT2LZBj7ekWUXl4byBgRu0We4EOuE25K"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"+923007991070\",\n    \"type\": \"text\",\n    \"text\": {\"body\": \"Hello from my WhatsApp bot!\"}\n\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1e4d7a05-0a18-47a4-825b-bf7351ec7077",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-12T11:23:40.123Z",
+      "createdAt": "2025-11-12T11:23:40.123Z",
+      "role": "workflow:owner",
+      "workflowId": "KzklEzSXZDaxUhu0",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-12T11:32:04.000Z",
+  "versionId": "839b76cd-00f8-4ed6-ada6-a76852761bcb"
+}
