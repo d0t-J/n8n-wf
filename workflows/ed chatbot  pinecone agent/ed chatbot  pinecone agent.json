@@ -1,11 +1,55 @@
 {
   "active": false,
   "connections": {
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Channel": {
       "main": [
         [
           {
             "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Channel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
             "type": "main",
             "index": 0
           }
@@ -23,17 +67,6 @@
         ]
       ]
     },
-    "HTTP Request": {
-      "main": [
-        [
-          {
-            "node": "Channel",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Postgres Chat Memory": {
       "ai_memory": [
         [
@@ -44,21 +77,10 @@
           }
         ]
       ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
-  "createdAt": "2025-11-10T10:54:13.244Z",
-  "id": "rZBqyenmoBEPApLj",
+  "createdAt": "2025-11-17T09:22:38.801Z",
+  "id": "ycOY0nlk8KNp1S6o",
   "isArchived": false,
   "meta": {
     "templateCredsSetupCompleted": true
@@ -73,13 +95,13 @@
           "systemMessage": "=# SYSTEM MESSAGE: EDIFY CIT AI ASSISTANT — CUSTOM RESPONSE VERSION  \n\n## ⚙️ INPUT-BASED MESSAGE HANDLER  \n\nYou are the Admissions Office — not a redirect bot.  \nYour task is to receive structured input messages and transform them into engaging, intelligent, and friendly responses that sound human, confident, and slightly tech-flavored.  \n\nYou do NOT need to fetch or query any data — everything you need will be provided in the input.  \nYour mission is to refine, personalize, and stylize the message according to your personality.  \n\n---\n\n## 🌟 IDENTITY & PERSONALITY  \n\nYou are **Edify Admissions AI**, representing **Edify College of IT** — the digital face of its admissions team.  \nYou’re a tech-savvy Gen Z professional: confident, witty, emotionally aware, and naturally caring.  \nYou balance IQ 250 brilliance with calm warmth — intellect means nothing without kindness.  \nYou sound like the cool, composed mentor everyone trusts — fun, capable, and human.  \n\n---\n\n## 🎯 PURPOSE  \n\nYour purpose is to:  \n- Reword and format admissions messages with clarity and personality.  \n- Keep responses engaging, short, and confidence-boosting for Edify.  \n- Represent Edify’s culture: modern, skilled, and student-centered.  \n- Make users feel guided, not lectured — entertained but respected.  \n\n---\n\n## 💬 COMMUNICATION FRAMEWORK  \n\n**Response Limit:** 10 lines maximum. No exceptions.  \n\n**Tone:**  \n- Modern, calm, and emotionally intuitive.  \n- Use Gen Z slang only when it feels natural.  \n- Professional enough for enterprise review, fun enough to keep users reading.  \n- Show quiet confidence — never defensive, never robotic.  \n\n**Style Rules:**  \n✅ Add subtle humor occasionally (not in every reply).  \n✅ Be concise but complete — say a lot with few words.  \n✅ Use short paragraphs or bullets for clarity.  \n✅ Reflect care subtly; never state awareness of emotions.  \n✅ Keep Edify’s voice smart, relatable, and trustworthy.  \n\n---\n\n## 🚫 RESTRICTIONS & BOUNDARIES  \n\n❌ Never mention databases, systems, or internal processes.  \n❌ Do not say “in our database,” “based on input,” or “I found.”  \n❌ Avoid overusing slang, emojis, or forced jokes.  \n❌ Maintain professionalism even when being funny.  \n❌ No filler or corporate clichés — sound real, not rehearsed.  \n\n---\n\n## 🧭 BEHAVIORAL BALANCE  \n\n- 60% Professional (informative, structured, credible)  \n- 30% Personality (Gen Z humor, confidence, creativity)  \n- 10% Emotional Intelligence (subtle care and warmth)  \n\nIf the message feels too cold → soften it.  \nIf it feels too goofy → ground it.  \nIf it feels too long → trim it.  \n\n---\n\n## 🎯 EXECUTION STANDARD  \n\nEvery message should sound like it’s from a high-IQ admissions rep who codes memes but also writes perfect emails.  \nSmart. Calm. Approachable.  \nYou’re the digital voice of Edify — bring brains, bring balance, bring vibe.  \n"
         }
       },
-      "id": "5ee8211f-d8fb-4d14-a6d3-2b8dcef08405",
+      "id": "3b2248d0-d6ff-4ad9-80b6-ed267a151454",
       "name": "AI Agent1",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        880,
-        -160
+        672,
+        0
       ]
     },
     {
@@ -89,13 +111,7 @@
             {
               "id": "22ac00c2-bd12-41bf-bb44-53971f733ef0",
               "name": "message",
-              "value": "=data : {{ $json.message.content }},  Actual question that the  user asked :{{ $('When chat message received').item.json.chatInput }}",
-              "type": "string"
-            },
-            {
-              "id": "260fbb4b-ed29-41f6-94fc-7c07f5d4c524",
-              "name": "userId",
-              "value": "={{ $('When chat message received').item.json.sessionId }}",
+              "value": "=data :{{ $json.message.content }} , Actual question that the user asked :{{ $('Webhook').item.json.body.messages[0].content }}",
               "type": "string"
             },
             {
@@ -103,19 +119,97 @@
               "name": "TimeStamp",
               "value": "={{ $now }}",
               "type": "string"
+            },
+            {
+              "id": "81dad154-15b1-42ba-b5f7-fdaa6ade0297",
+              "name": "UserId",
+              "value": "={{ $('Webhook').item.json.body.messages[0].userid }}",
+              "type": "string"
             }
           ]
         },
         "options": {}
       },
-      "id": "a356d1b9-0487-43ed-b807-d8890e12a6b2",
+      "id": "f55e062d-2e37-4de9-b95a-a71bb4be223e",
       "name": "Channel",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        656,
-        -160
+        448,
+        0
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://prod-1-data.ke.pinecone.io/assistant/chat/edifycit",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "pcsk_2S28Kq_DyLzwwYspybk3cZMinLpWrSvyUfF324GFrh6KC1N9hdykf59nwbCXFPNWSBJJVg"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.body.messages[0].content }}\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "1fac29d0-7abf-46f4-b0a7-fc0f88896fe3",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "e6333b0a-74e4-40b5-a16e-9f758f0fc035",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f5de57cf-ccac-4fce-84c5-0905a9ed06eb",
+      "name": "Webhook",
+      "webhookId": "e6333b0a-74e4-40b5-a16e-9f758f0fc035"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "fa8606a7-28c5-465d-b01a-e000f8c95785",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "\nconst aiOutput = $input.item.json.output;\nreturn {\n  myField: aiOutput\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        0
+      ],
+      "id": "9d0de302-4485-4d36-ad90-8e77fa76695f",
+      "name": "Code in JavaScript"
     },
     {
       "parameters": {
@@ -125,10 +219,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        848,
-        64
+        680,
+        224
       ],
-      "id": "99f8297c-019c-4643-8b3e-526a6ec7c75a",
+      "id": "9f9c9e6c-f9ca-4a5d-9d3a-8e1eb624d6df",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -139,44 +233,17 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://prod-1-data.ke.pinecone.io/assistant/chat/n8n",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Api-Key",
-              "value": "pcsk_4pyyK5_2KkSpmnQuUZHUFCuthUabkMmUA5qxg9T29MEpzvSyWBUxKonjhCdjQpQYkm4rwq"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.chatInput }}\"\n    }\n  ],\n  \"stream\": false,\n  \"model\": \"gpt-4o\"\n}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        432,
-        -160
-      ],
-      "id": "fc0999bd-c39b-4c42-89d0-42b676f17631",
-      "name": "HTTP Request"
-    },
-    {
-      "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.userId }}",
+        "sessionKey": "={{ $json.UserId }}",
         "contextWindowLength": 1500
       },
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        1024,
-        64
+        808,
+        224
       ],
-      "id": "71a624a4-7055-46ad-be29-7ae0e259dc8c",
+      "id": "7b7a9180-3b77-481b-8268-32ee005cb0d1",
       "name": "Postgres Chat Memory",
       "credentials": {
         "postgres": {
@@ -184,22 +251,6 @@
           "name": "Postgres account"
         }
       }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "0c9765b9-f6af-45ff-921b-bdeaf4120737",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        208,
-        -160
-      ],
-      "id": "11ed11a3-f1c0-4730-801e-e985e370543e",
-      "name": "Webhook",
-      "webhookId": "0c9765b9-f6af-45ff-921b-bdeaf4120737"
     }
   ],
   "pinData": {},
@@ -208,16 +259,16 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-11-10T10:54:13.251Z",
-      "createdAt": "2025-11-10T10:54:13.251Z",
+      "updatedAt": "2025-11-17T09:22:38.812Z",
+      "createdAt": "2025-11-17T09:22:38.812Z",
       "role": "workflow:owner",
-      "workflowId": "rZBqyenmoBEPApLj",
+      "workflowId": "ycOY0nlk8KNp1S6o",
       "projectId": "POJtR4euQRkudXYs"
     }
   ],
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-14T11:50:00.000Z",
-  "versionId": "8b206895-b2d4-4843-82c7-60d435476d18"
+  "updatedAt": "2025-11-17T09:51:49.000Z",
+  "versionId": "f707ae13-b622-4f1c-98f9-c29674c21ba6"
 }
