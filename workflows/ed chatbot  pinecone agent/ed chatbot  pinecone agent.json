@@ -219,8 +219,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        680,
-        224
+        464,
+        240
       ],
       "id": "9f9c9e6c-f9ca-4a5d-9d3a-8e1eb624d6df",
       "name": "Google Gemini Chat Model",
@@ -240,8 +240,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.3,
       "position": [
-        808,
-        224
+        640,
+        240
       ],
       "id": "7b7a9180-3b77-481b-8268-32ee005cb0d1",
       "name": "Postgres Chat Memory",
@@ -269,6 +269,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-17T09:51:49.000Z",
-  "versionId": "f707ae13-b622-4f1c-98f9-c29674c21ba6"
+  "updatedAt": "2025-11-18T09:22:01.000Z",
+  "versionId": "a12fa6ff-b4e9-4ac5-8073-6add32414695"
 }
