@@ -1,0 +1,208 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Binance 24h Price Change",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Split output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Binance 24h Price Change": {
+      "main": [
+        [
+          {
+            "node": "filter by 15% change rate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message": {
+      "main": [
+        []
+      ]
+    },
+    "Split output": {
+      "main": [
+        []
+      ]
+    },
+    "filter by 15% change rate": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-14T08:45:42.634Z",
+  "id": "ZNalse890ZcOmolM",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "trends analyzer",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 7
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        32,
+        544
+      ],
+      "id": "25098f41-4fc6-406f-b8c3-c517a608d307"
+    },
+    {
+      "parameters": {
+        "chatId": "=6558921702",
+        "text": "={{ $json.data.replaceAll(/(Last Price: \\S+)$/gm,\"$1\\n\").slice(0,1000) }}",
+        "additionalFields": {}
+      },
+      "name": "Send Telegram Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        0,
+        320
+      ],
+      "id": "e9ca2633-6928-4640-842f-38e23eefe6d6",
+      "webhookId": "f8f123ee-abd9-423a-a273-2f3e5eba4887",
+      "credentials": {
+        "telegramApi": {
+          "id": "CAmKdkeYqbICBMGu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        624,
+        576
+      ],
+      "notesInFlow": true,
+      "id": "8c3f0b7b-2e47-43bf-aeb7-fb207528a961"
+    },
+    {
+      "parameters": {
+        "url": "https://api.binance.com/api/v1/ticker/24hr",
+        "options": {}
+      },
+      "name": "Binance 24h Price Change",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        224,
+        576
+      ],
+      "notesInFlow": true,
+      "id": "afee6ac7-aa8b-428b-ab07-faaa485e68a2"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "+923007991070",
+        "textBody": "={{ $json.data.replaceAll(/(Last Price: \\S+)$/gm,\"$1\\n\").slice(0,1000) }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        96
+      ],
+      "id": "2d9b59e3-2012-4e73-b658-d72ad456f54f",
+      "name": "Send message",
+      "webhookId": "9d49e7d7-b502-4372-9e00-1f200bada23b",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function to split the data into chunks of approximately 1000 characters\nfunction splitDataIntoChunks(data) {\n    const chunks = [];\n    let currentChunk = \"\";\n\n    data.forEach(item => {\n        // Ensure that each item has a 'message' property\n        if (item && item.message) {\n            const message = item.message + \"\\n\"; // Adding a newline for separation\n            // Check if adding this message to the current chunk would exceed the 1000 characters limit\n            if (currentChunk.length + message.length > 1000) {\n                // If so, push the current chunk to the chunks array and start a new chunk\n                chunks.push({ json: { data: currentChunk } });\n                currentChunk = message;\n            } else {\n                // Otherwise, add the message to the current chunk\n                currentChunk += message;\n            }\n        }\n    });\n\n    // Add the last chunk if it's not empty\n    if (currentChunk) {\n        chunks.push({ json: { data: currentChunk } });\n    }\n\n    return chunks;\n}\n\n// The input data is passed from the previous node\nconst inputData = items[0].json.data; // Accessing the 'data' property\n\n// Process the data\nconst result = splitDataIntoChunks(inputData);\n\n// Output the result\nreturn result;\n"
+      },
+      "name": "Split output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        512
+      ],
+      "notesInFlow": true,
+      "id": "c6fabc61-acfb-4582-8360-9761da3cf95e"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Iterate over all coins and check for 10% price change\nconst significantChanges = [];\nfor (const coin of items[0].json) {\n  const priceChangePercent = parseFloat(coin.priceChangePercent);\n  if (Math.abs(priceChangePercent) >= 15) {\n    significantChanges.push({ \n      symbol: coin.symbol, \n      priceChangePercent, \n      lastPrice: coin.lastPrice \n    });\n  }\n}\n\n// Sort the items by percent rate from high to low\nsignificantChanges.sort((a, b) => b.priceChangePercent - a.priceChangePercent);\n\n// Format the sorted data for output\nconst sortedOutput = significantChanges.map(change => ({\n  json: { message: `\\`\\`\\`${change.symbol} Price changed by ${change.priceChangePercent}% \\n Last Price: ${change.lastPrice}\\`\\`\\`` }\n}));\n\nreturn sortedOutput;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        512
+      ],
+      "id": "4c5e1a22-ee6e-4e26-b268-6c43b8c8976c",
+      "name": "filter by 15% change rate"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-14T08:45:42.639Z",
+      "createdAt": "2025-11-14T08:45:42.639Z",
+      "role": "workflow:owner",
+      "workflowId": "ZNalse890ZcOmolM",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-19T08:05:23.000Z",
+  "versionId": "5252caf5-8652-40af-a104-8f979c652c2c"
+}
