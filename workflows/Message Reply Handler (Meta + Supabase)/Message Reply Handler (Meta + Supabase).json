@@ -1,0 +1,214 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook - WhatsApp Reply": {
+      "main": [
+        [
+          {
+            "node": "Find Contact (placeholder)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Contact (placeholder)": {
+      "main": [
+        [
+          {
+            "node": "Analyze Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Intent": {
+      "main": [
+        [
+          {
+            "node": "Route By Intent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log Inbound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route By Intent": {
+      "main": [
+        [
+          {
+            "node": "Trigger Meeting Scheduler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Trigger FAQ Matcher",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Trigger Operator Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Inbound",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-21T18:06:52.202Z",
+  "id": "Gy0A5rJnp9PJ81xH",
+  "isArchived": false,
+  "meta": null,
+  "name": "Message Reply Handler (Meta + Supabase)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whatsapp/reply",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "name": "Webhook - WhatsApp Reply",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -2432,
+        16
+      ],
+      "id": "5ea11d61-6216-4857-8e26-204643ca3875",
+      "webhookId": "394c165f-3ffa-4b07-ae68-97d1978db88b"
+    },
+    {
+      "parameters": {
+        "functionCode": "// find contact by phone via supabase\nconst phone = $json.from || $json.phone; return [{json:{phone}}];"
+      },
+      "name": "Find Contact (placeholder)",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -2192,
+        16
+      ],
+      "id": "ea1eb399-d725-47a0-86fb-20b6ca0160fa"
+    },
+    {
+      "parameters": {
+        "functionCode": "const text=($json.messageText||$json.body||'').toLowerCase();let intent='unknown';if(text.match(/paid|settled|pagou|liquidado/)) intent='payment_confirmed';else if(text.match(/yes|sim|accept|schedule|1|2|3/)) intent='meeting_acceptance';else if(text.match(/no|não|not connected|deny/)) intent='denial';else if(text.match(/\\+?[0-9]{9,15}/) || text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/)) intent='new_contact_info';else if(text.includes('?')||text.match(/how|when|what|quando|como/)) intent='question';return [{json:{...$json,intent}}];"
+      },
+      "name": "Analyze Intent",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1936,
+        16
+      ],
+      "id": "349ca958-f3b2-4690-a8c3-46269e62311f"
+    },
+    {
+      "parameters": {},
+      "name": "Route By Intent",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        16
+      ],
+      "id": "1e300fa3-e1c4-480a-b684-7e80b6e4e30e"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://{{SUPABASE_PROJECT_ID}}.supabase.co/rest/v1/messages",
+        "options": {}
+      },
+      "name": "Log Inbound",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -1392,
+        400
+      ],
+      "id": "c840a6cd-b192-40c5-b328-acf1c9d6f371"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "{{$env.N8N_BASE_URL}}/webhook/meeting-scheduler",
+        "options": {}
+      },
+      "name": "Trigger Meeting Scheduler",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        -80
+      ],
+      "id": "68f54c7e-db1d-472d-a16b-9889af944367"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "{{$env.N8N_BASE_URL}}/webhook/faq-matcher",
+        "options": {}
+      },
+      "name": "Trigger FAQ Matcher",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        128
+      ],
+      "id": "dcc67683-a8dc-4b61-bc4b-c65dda9fcc5d"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "{{$env.N8N_BASE_URL}}/webhook/operator-escalation",
+        "options": {}
+      },
+      "name": "Trigger Operator Escalation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        288
+      ],
+      "id": "3bb32e30-a9a7-4f31-b8a7-243e46f31e82"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-21T18:06:52.210Z",
+      "createdAt": "2025-11-21T18:06:52.210Z",
+      "role": "workflow:owner",
+      "workflowId": "Gy0A5rJnp9PJ81xH",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-21T18:38:28.000Z",
+  "versionId": "a54760c4-8bf3-40b9-b596-335b92d05a3d"
+}
