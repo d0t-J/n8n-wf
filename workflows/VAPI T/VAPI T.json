@@ -1,0 +1,240 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-26T16:23:40.382Z",
+  "id": "e5RFVLOeUD6mWroO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "VAPI T",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4e9f8c85-7742-4d28-84f8-2baef43bb986",
+      "name": "Webhook",
+      "webhookId": "bc4d6889-4404-411b-873a-4213ec4c7e1f"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Find the weather for the place: {{ $json.Place }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        504,
+        0
+      ],
+      "id": "f39367a3-e484-4745-a88b-57fb8c5f3160",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1b7799c-2b7e-4c81-9ca7-27318fc1c8fc",
+              "name": "Place",
+              "value": "={{ $json.body.message.toolCallList[0].function.arguments.place }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "5f20db47-81da-4bb4-8d79-57c144a8d191",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        448,
+        224
+      ],
+      "id": "4a2dd8bb-35ce-4365-b37a-51b6ec471e73",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "CUz8utBxtWQreX8c",
+          "name": "j.ahmed.ja7a7@gmail.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n    \"results\": [\n        {\n            \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCallList[0].id }}\",\n            \"result\": \"{{ $json.output.weather }}\"\n        }\n    ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1136,
+        0
+      ],
+      "id": "5f9ba3e7-aaca-43fd-9714-7e0cbde703ce",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"weather\": \"20 celsius\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        224
+      ],
+      "id": "315e5519-fedd-4f7e-9292-d5ea16b0df93",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        912,
+        0
+      ],
+      "id": "f7dba839-102a-404d-8cce-bc91d8223efd",
+      "name": "Wait",
+      "webhookId": "f03ea8d3-a3eb-47bb-bbb2-87d243650f7a"
+    },
+    {
+      "parameters": {
+        "url": "{     \"results\": [         {             \"toolCallId\": \"X\",             \"result\": \"Y\"         }     ] }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        576,
+        224
+      ],
+      "id": "80b78ba1-98d1-4eef-9c20-23322f5c3ca9",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-26T16:23:40.392Z",
+      "createdAt": "2025-11-26T16:23:40.392Z",
+      "role": "workflow:owner",
+      "workflowId": "e5RFVLOeUD6mWroO",
+      "projectId": "2lFcYqGDoW8pSvlN"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-26T17:13:06.000Z",
+  "versionId": "adcfe1bd-5902-444b-8893-7ac8e6925059"
+}
