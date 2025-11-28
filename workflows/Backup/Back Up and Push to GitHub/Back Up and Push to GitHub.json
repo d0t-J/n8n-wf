@@ -339,22 +339,6 @@
     },
     {
       "parameters": {
-        "content": "## Backup to GitHub \nThis workflow will backup all instance workflows to GitHub every 24 hours.\n\nThe files are saved into folders using `YYYY/MM/` for the directory path and `ID.json` for the filename.\n\nThe Repo Owner, Repo Name and Main folder are set using the **Variables** feature but can be replaced with the `Config` node in the subworkflow. \n\nThe workflow runs calls itself to help reduce memory usage, Once the workflow has completed it will send an optional notification to Slack.\n\n### Time to Run\nTested with 1423 workflows on `1.44.1` it took under 30 minutes for the first run and under 12 minutes once the initial run is complete.",
-        "height": 417,
-        "width": 385,
-        "color": 4
-      },
-      "id": "2870bdca-f45a-4cd6-8aa9-7fe3bb4082c2",
-      "name": "Sticky Note1",
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -352,
-        304
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "content": "## Main workflow loop",
         "height": 560,
         "width": 1465,
@@ -434,7 +418,7 @@
       "parameters": {
         "content": "## Subworkflow",
         "height": 972,
-        "width": 3111,
+        "width": 2951,
         "color": 6
       },
       "id": "83df8f3d-03ad-4d23-8f8f-3e18e39efcb1",
@@ -464,7 +448,7 @@
       "name": "Return",
       "type": "n8n-nodes-base.set",
       "position": [
-        3968,
+        3808,
         896
       ],
       "typeVersion": 3.3
@@ -478,7 +462,7 @@
       "name": "Get File",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        2464,
+        2336,
         464
       ],
       "typeVersion": 4.2
@@ -522,7 +506,7 @@
       "name": "If file too large",
       "type": "n8n-nodes-base.if",
       "position": [
-        2240,
+        2112,
         480
       ],
       "typeVersion": 2
@@ -533,7 +517,7 @@
       "name": "Merge Items",
       "type": "n8n-nodes-base.merge",
       "position": [
-        2656,
+        2496,
         560
       ],
       "typeVersion": 2
@@ -546,7 +530,7 @@
       "name": "isDiffOrNew",
       "type": "n8n-nodes-base.code",
       "position": [
-        2832,
+        2672,
         560
       ],
       "typeVersion": 1
@@ -557,7 +541,7 @@
       "name": "Same file - Do nothing",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3376,
+        3216,
         560
       ],
       "typeVersion": 1
@@ -568,7 +552,7 @@
       "name": "File is different",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3248,
+        3088,
         736
       ],
       "typeVersion": 1
@@ -579,7 +563,7 @@
       "name": "File is new",
       "type": "n8n-nodes-base.noOp",
       "position": [
-        3248,
+        3088,
         896
       ],
       "typeVersion": 1
@@ -605,7 +589,7 @@
       "name": "Create new file",
       "type": "n8n-nodes-base.github",
       "position": [
-        3456,
+        3296,
         896
       ],
       "typeVersion": 1,
@@ -641,7 +625,7 @@
       "name": "Edit existing file",
       "type": "n8n-nodes-base.github",
       "position": [
-        3456,
+        3296,
         736
       ],
       "typeVersion": 1,
@@ -675,7 +659,7 @@
       "name": "Get file data",
       "type": "n8n-nodes-base.github",
       "position": [
-        2016,
+        1888,
         480
       ],
       "typeVersion": 1,
@@ -719,7 +703,7 @@
       "name": "Globals",
       "type": "n8n-nodes-base.set",
       "position": [
-        1776,
+        1648,
         480
       ],
       "typeVersion": 3.4
@@ -833,7 +817,7 @@
       "name": "Failed Flows",
       "type": "n8n-nodes-base.slack",
       "position": [
-        3680,
+        3520,
         960
       ],
       "webhookId": "2a092edb-de12-490f-931b-34d70e7d7696",
@@ -930,7 +914,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        3024,
+        2864,
         736
       ],
       "id": "21c79155-6613-4be2-84e6-be033db453cb",
@@ -989,6 +973,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-11-10T10:14:06.000Z",
-  "versionId": "cf95d81a-1f33-4d81-8912-73759d6c864f"
+  "updatedAt": "2025-11-27T19:03:18.000Z",
+  "versionId": "8915e14c-100a-423c-bf3d-56b71db8f3f6"
 }
