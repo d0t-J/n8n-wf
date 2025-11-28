@@ -1,0 +1,682 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Runner": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Throttling Node": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Update a row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send template": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send template",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send template1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send template2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send template3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send template4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send template1": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send template2": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send template3": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send template4": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a row": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-27T21:09:40.627Z",
+  "id": "EzhuU6ncELJ0BRyY",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Scheduler",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "d96120b9-0d4f-4573-98cb-ee48945bd6a5",
+      "name": "Schedule Runner",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        -1584,
+        816
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "9902fe6f-f1c4-4932-98cb-8dd6d0c2c333",
+      "name": "Throttling Node",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        1600
+      ],
+      "webhookId": "31a8a5ff-fd86-418c-bc28-015e2e208d5c"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -912,
+        816
+      ],
+      "id": "c200cc03-d781-4380-9003-8dc9c6ea0c5f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "payment_reminder|en_US",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.name }}"
+                  },
+                  {
+                    "text": "={{ $json.Company_Name }}"
+                  },
+                  {
+                    "text": "={{ $json.Body }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        800
+      ],
+      "id": "a45e2c44-79d1-4d2e-9821-75fbcd0e324e",
+      "name": "Send template",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "events",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "status",
+              "condition": "eq",
+              "keyValue": "pending"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        816
+      ],
+      "id": "6a658f75-3a4b-41e2-bd29-724cabf0bc5d",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\n// Prewritten messages\nconst msgPrematurity = `\nMr. {{name}}, good morning.\nThis is the BDA Credit Department.\nThe credit of the company {{company}} is due on {{due_date}}, in {{days_remaining}} days.\nWe kindly ask you to proceed with the settlement of {{amount}} {{currency}}.\nDo you have any questions we can help clarify?\n`;\n\nconst msgPostmaturity = `\nMr. {{name}}, good afternoon.\nThis is the BDA Credit Department.\nWe inform you that the credit of {{company}}, overdue for more than {{years_overdue}} years, with a current amount of {{amount}} {{currency}}, is under litigation process.\nCan we schedule an urgent meeting to find an amicable solution?\n`;\n\nconst msgRelated = `\nMr. {{name}}, good afternoon.\nThe BDA is contacting you due to your link with the company {{company}}.\nCould you please help us reach the company’s responsible representatives?\n{{company}} has had a significant debt with the Bank for over {{years_overdue}} years, currently in a litigation process.\nThe goal is to find amicable solutions to regularize this situation.\n`;\n\n// Helper: Days left or overdue\nfunction calculateDays(dueDateStr) {\n  const due = new Date(dueDateStr);\n  const now = new Date();\n  const diff = Math.floor((due - now) / (1000 * 60 * 60 * 24));\n  return diff;\n}\n\n// Helper: Overdue in years\nfunction overdueYears(dueDateStr) {\n  const due = new Date(dueDateStr);\n  const now = new Date();\n  const diffYears = (now - due) / (1000 * 60 * 60 * 24 * 365);\n  return Math.max(0, diffYears.toFixed(1));\n}\n\nreturn items.map(item => {\n  const data = item.json;\n\n  // Extract values\n  const name = data.full_name;\n  const company = data.company;\n  const amount = data.outstanding_amount;\n  const dueDate = data.credit_due_date;\n  const currency = \"AKZ\"; // Set currency here if fixed\n\n  const daysRemaining = calculateDays(dueDate);\n  const yearsOverdue = overdueYears(dueDate);\n\n  let message = \"\";\n\n  if (data.type === \"prematurity\") {\n    message = msgPrematurity\n      .replace(\"{{name}}\", name)\n      .replace(\"{{company}}\", company)\n      .replace(\"{{due_date}}\", dueDate)\n      .replace(\"{{days_remaining}}\", daysRemaining)\n      .replace(\"{{amount}}\", amount)\n      .replace(\"{{currency}}\", currency);\n  }\n\n  else if (data.type === \"postmaturity\") {\n    message = msgPostmaturity\n      .replace(\"{{name}}\", name)\n      .replace(\"{{company}}\", company)\n      .replace(\"{{years_overdue}}\", yearsOverdue)\n      .replace(\"{{amount}}\", amount)\n      .replace(\"{{currency}}\", currency);\n  }\n\n  else if (data.type === \"related\") {\n    message = msgRelated\n      .replace(\"{{name}}\", name)\n      .replace(\"{{company}}\", company)\n      .replace(\"{{years_overdue}}\", yearsOverdue);\n  }\n\n  return {\n    json: {\n      ...data,\n      generated_message: message.trim()\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1136,
+        816
+      ],
+      "id": "2a241e1d-cdf0-48ac-bec0-f2c5e5634ce2",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.server_id }}",
+                    "rightValue": 1,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    },
+                    "id": "013409a6-56c7-4c62-a059-36b9d2ab76f4"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pre-maturity1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "900137bc-19cf-4355-9e72-2bd3b96c51c8",
+                    "leftValue": "={{ $json.server_id }}",
+                    "rightValue": 2,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Pre-maturity2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0628479e-3d51-4b50-984c-1b25473bb62f",
+                    "leftValue": "={{ $json.server_id }}",
+                    "rightValue": 3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "post-maturity1"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a00519ff-7b62-41ef-8b94-da6f3787917f",
+                    "leftValue": "={{ $json.server_id }}",
+                    "rightValue": 4,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "post-maturity2"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a54c7557-999b-4954-aac5-703cbdbd38ee",
+                    "leftValue": "={{ $json.server_id }}",
+                    "rightValue": 5,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "related"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -624,
+        1136
+      ],
+      "id": "06028379-0143-40cb-9dee-bb5c44fecb37",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "payment_reminder|en_US",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.name }}"
+                  },
+                  {
+                    "text": "={{ $json.Company_Name }}"
+                  },
+                  {
+                    "text": "={{ $json.Body }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        992
+      ],
+      "id": "3e2f5dd9-427e-4ae6-b69a-4ae223b36364",
+      "name": "Send template1",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "payment_reminder|en_US",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.name }}"
+                  },
+                  {
+                    "text": "={{ $json.Company_Name }}"
+                  },
+                  {
+                    "text": "={{ $json.Body }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        1184
+      ],
+      "id": "ffb912e1-c162-4217-9080-337a387213c0",
+      "name": "Send template2",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "payment_reminder|en_US",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.name }}"
+                  },
+                  {
+                    "text": "={{ $json.Company_Name }}"
+                  },
+                  {
+                    "text": "={{ $json.Body }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        1376
+      ],
+      "id": "45093f3e-002a-4a27-9b68-2c12acfc7cda",
+      "name": "Send template3",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "payment_reminder|en_US",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.name }}"
+                  },
+                  {
+                    "text": "={{ $json.Company_Name }}"
+                  },
+                  {
+                    "text": "={{ $json.Body }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -400,
+        1568
+      ],
+      "id": "1264e2ea-75ad-445b-b174-d0f836695fe7",
+      "name": "Send template4",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "events",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "sent"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        608
+      ],
+      "id": "05ba45ea-39fa-44ff-b5c3-caf8c1e97298",
+      "name": "Update a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -48,
+        608
+      ],
+      "id": "daefdb8f-4b74-4fc8-9883-621ba3f7ea35",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-27T21:09:40.634Z",
+      "createdAt": "2025-11-27T21:09:40.634Z",
+      "role": "workflow:owner",
+      "workflowId": "EzhuU6ncELJ0BRyY",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-28T17:53:12.000Z",
+  "versionId": "85d23c26-2cb0-4385-b455-3438e0f54f6d"
+}
