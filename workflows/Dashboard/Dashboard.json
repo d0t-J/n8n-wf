@@ -1,0 +1,941 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Get a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update a row1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook1": {
+      "main": [
+        []
+      ]
+    },
+    "Respond to Webhook2": {
+      "main": [
+        []
+      ]
+    },
+    "Update a row1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Create a row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Create a row2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-27T19:40:17.321Z",
+  "id": "Ui4upS6ZPG8xj4eF",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Dashboard",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Adminhook2555",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        16
+      ],
+      "id": "1f0c3bfc-e124-4c55-ab65-0e971ef82d7b",
+      "name": "Webhook",
+      "webhookId": "8847d6e7-8196-422e-b46a-1e1d63a4d062"
+    },
+    {
+      "parameters": {
+        "tableId": "events",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $json.body.full_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $json.body.company }}"
+            },
+            {
+              "fieldId": "outstanding_amount",
+              "fieldValue": "={{ $json.body.outstanding_amount }}"
+            },
+            {
+              "fieldId": "credit_due_date",
+              "fieldValue": "={{ $json.body.credit_due_date }}"
+            },
+            {
+              "fieldId": "planned_datetime",
+              "fieldValue": "={{ $json.body.planned_datetime }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $json.body.type }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "pending"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $json.body.server_id }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        16
+      ],
+      "id": "58636110-cf98-411b-b908-a4f602a05ddf",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -64,
+        16
+      ],
+      "id": "8ad9e156-2892-4fdb-a420-55e1611827fa",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Auth2555",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        -304
+      ],
+      "id": "e7271354-b874-416b-a54d-0678b58678de",
+      "name": "Webhook1",
+      "webhookId": "ccd63448-4cfe-4c28-9c23-5195a08abb30"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.email }}"
+            },
+            {
+              "keyName": "password_hash",
+              "keyValue": "={{ $json.body.password }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -304
+      ],
+      "id": "241ad294-1aee-46a9-a3b1-c170fb5f0c7b",
+      "name": "Get a row",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ea3251ac-b1f4-4517-939f-99c9161777cc",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "={{ $('Webhook1').item.json.body.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "27ebe175-3d28-47b0-9f22-599df23c4205",
+              "leftValue": "={{ $json.password_hash }}",
+              "rightValue": "={{ $('Webhook1').item.json.body.password }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        -304
+      ],
+      "id": "1d8cbf08-accb-4d9d-bf40-a733e6e6c117",
+      "name": "If",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Authentication successful ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        384,
+        -400
+      ],
+      "id": "17846bf1-e71d-4dc6-bbfe-2e69ea33808b",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Authentication failed ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        160,
+        -208
+      ],
+      "id": "57c3c7a3-9b69-4df2-8bd7-77bd3ae4470c",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "last_seen",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -400
+      ],
+      "id": "2e3b8cb6-7d60-4907-b46c-781b7ca1074b",
+      "name": "Update a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "CSVupload2555",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "data"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        240
+      ],
+      "id": "d51e2e70-b893-44d1-be14-1a3b49d8f8d6",
+      "name": "Webhook2",
+      "webhookId": "6af27e3d-463a-49d0-867d-de0a31761f43"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "data0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -288,
+        240
+      ],
+      "id": "2bc72cb5-3621-4175-9746-50c88a28c474",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "tableId": "events",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "outstanding_amount",
+              "fieldValue": "={{ $json.amount }}"
+            },
+            {
+              "fieldId": "credit_due_date",
+              "fieldValue": "={{ $json['due date'] }}"
+            },
+            {
+              "fieldId": "planned_datetime",
+              "fieldValue": "={{ $json.planned_datetime }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "=borrower"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "pending"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $json.server_id }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        384,
+        240
+      ],
+      "id": "b6c087b1-23d6-4abf-b723-cfe67d9d55d3",
+      "name": "Create a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map(item => {\n  // --- 1. Extract due date from CSV ---\n  // Make sure the key here matches your CSV header EXACTLY:\n  const dueRaw = item.json[\"Credit due date\"] || item.json.credit_due_date;\n\n  // Parse due date (DD/MM/YYYY expected)\n  let dueDate = null;\n  if (dueRaw && dueRaw.includes(\"/\")) {\n    const [d, m, y] = dueRaw.split(\"/\");\n    dueDate = new Date(`${y}-${m}-${d}T23:59:00`); // latest possible time\n  }\n\n  // --- 2. Generate tomorrow with random time ---\n  const now = new Date();\n  const tomorrow = new Date(now);\n  tomorrow.setDate(now.getDate() + 1);\n\n  const randomHour = Math.floor(Math.random() * 24);\n  const randomMinute = Math.floor(Math.random() * 60);\n\n  tomorrow.setHours(randomHour, randomMinute, 0, 0);\n\n  // --- 3. Ensure planned date is BEFORE due date ---\n  let planned = tomorrow;\n\n  if (dueDate && planned > dueDate) {\n    // pick a random time BEFORE the due date\n    const safeHour = Math.floor(Math.random() * 12); // 0–11\n    const safeMinute = Math.floor(Math.random() * 60);\n    planned = new Date(dueDate);\n    planned.setHours(safeHour, safeMinute, 0, 0);\n  }\n\n  // --- 4. Return updated item ---\n  return {\n    json: {\n      ...item.json,\n      planned_datetime: planned.toISOString()\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -64,
+        240
+      ],
+      "id": "f6bfa284-9846-4136-a683-4059349a6716",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map((item, index) => {\n  // --- 1. Parse due date ---\n  const rawDue = item.json[\"Credit due date\"] || item.json.credit_due_date; // update if needed\n  let dueDate = null;\n\n  if (rawDue && rawDue.includes(\"/\")) {\n    const [d, m, y] = rawDue.split(\"/\");\n    dueDate = new Date(`${y}-${m}-${d}T00:00:00`);\n  }\n\n  const today = new Date();\n  let overdueDays = 0;\n\n  if (dueDate) {\n    const diff = dueDate.getTime() - today.getTime();\n    overdueDays = Math.floor(diff / (1000 * 60 * 60 * 24));\n  }\n\n  // --- 2. Smart server assignment rules ---\n  let allowedServers = [1, 2, 3, 4]; // never use server 5\n\n  let serverId;\n\n  if (overdueDays < 0) {\n    // Overdue account\n    if (overdueDays <= -15) {\n      // Overdue by more than 15 days → stronger servers\n      const strongServers = [3, 4];\n      serverId = strongServers[index % strongServers.length];\n    } else {\n      // Slightly overdue (0 to -15 days)\n      const normalServers = [2, 3];\n      serverId = normalServers[index % normalServers.length];\n    }\n  } else {\n    // Not overdue yet → lighter servers\n    const lightServers = [1, 2];\n    serverId = lightServers[index % lightServers.length];\n  }\n\n  // --- 3. Return item ---\n  return {\n    json: {\n      ...item.json,\n      server_id: serverId\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        240
+      ],
+      "id": "2f28c512-c9cf-4083-a738-33d9e8fa0860",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        608,
+        240
+      ],
+      "id": "a2b00f80-f517-4cf2-9ec5-87d49d6be125",
+      "name": "Respond to Webhook3"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "CreateUser",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        -720
+      ],
+      "id": "480641f2-827c-4dd1-96f9-47b6bc2619a8",
+      "name": "Webhook3",
+      "webhookId": "d16ea7f9-2657-4bdf-9b9b-e0ea296e5d58"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $('Webhook3').item.json.body.full_name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook3').item.json.body.email }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "={{ $('Webhook3').item.json.body.role }}"
+            },
+            {
+              "fieldId": "password_hash",
+              "fieldValue": "={{ $('Webhook3').item.json.body.password }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -912
+      ],
+      "id": "4afef7cc-a5cd-4549-b643-e2a7dc72d5e3",
+      "name": "Create a row2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "96196946-0ffd-434f-ab0c-f915f8206495",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_email }}",
+              "rightValue": "={{ $json.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "4c006b22-b888-44a1-b14b-4b8da53f37f0",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_password }}",
+              "rightValue": "={{ $json.password_hash }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "2c00ca27-257c-47e6-9ac4-fc94cda1846c",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_role }}",
+              "rightValue": "={{ $json.role }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        -720
+      ],
+      "id": "462e1210-c5b3-4450-a986-fb5a0f25eb60",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Error Check Admin Credentials ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        160,
+        -624
+      ],
+      "id": "c2146a0b-495f-4cdd-9f35-651e313b918d",
+      "name": "Respond to Webhook4"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "User created successfully  ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        608,
+        -912
+      ],
+      "id": "efc3505d-df01-44b3-b4f6-471bff61e6a5",
+      "name": "Respond to Webhook5"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true,
+        "filterType": "none"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -720
+      ],
+      "id": "aebfe8ed-ff76-46e6-9e26-4f4c0ab62505",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "52be5784-fdb1-4824-b9bb-ceb5d26f6e95",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "82420897-e6e5-423a-a3d0-939e7a67948b",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_password }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "1d173eaa-0a08-497d-8994-359111886849",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e415a892-c4b5-4aa7-9f7e-849d3295ea88",
+              "leftValue": "={{ $('Webhook3').item.json.body.full_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "99321206-f4e6-4725-94dd-949e88baaf90",
+              "leftValue": "={{ $('Webhook3').item.json.body.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ef03764d-0d49-4515-a3bc-be3c17085e8a",
+              "leftValue": "={{ $('Webhook3').item.json.body.phone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e2631c93-7c67-4937-b130-b151081b24fd",
+              "leftValue": "={{ $('Webhook3').item.json.body.password }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "83da2224-01d2-4b96-b56d-1f25ef27c46e",
+              "leftValue": "={{ $('Webhook3').item.json.body.role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f88698e1-477f-451a-b5ce-9e736a307185",
+              "leftValue": "={{ $('Webhook3').item.json.body.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        -816
+      ],
+      "id": "4fd84473-058b-40b3-b49a-1edb1a21e09b",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Error : Fill all details ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        384,
+        -720
+      ],
+      "id": "0f62024c-bbc7-4af9-8e50-bfe8d91f2f23",
+      "name": "Respond to Webhook6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-27T19:40:17.335Z",
+      "createdAt": "2025-11-27T19:40:17.335Z",
+      "role": "workflow:owner",
+      "workflowId": "Ui4upS6ZPG8xj4eF",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-28T12:47:36.000Z",
+  "versionId": "7d4fae07-35d6-4950-813d-3f1adcbca76c"
+}
