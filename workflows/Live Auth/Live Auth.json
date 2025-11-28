@@ -1,0 +1,604 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Get a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Update a row1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a row1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Create a row2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-28T11:50:22.474Z",
+  "id": "XlG91XCUEQSiE2F7",
+  "isArchived": false,
+  "meta": null,
+  "name": "Live Auth",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Auth2555",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -672,
+        96
+      ],
+      "id": "902ac646-931b-4245-89fa-c324ab9dc8ff",
+      "name": "Webhook1",
+      "webhookId": "ccd63448-4cfe-4c28-9c23-5195a08abb30"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.email }}"
+            },
+            {
+              "keyName": "password_hash",
+              "keyValue": "={{ $json.body.password }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        96
+      ],
+      "id": "de6159f8-88da-4208-bc9a-79bf40ec7840",
+      "name": "Get a row",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ea3251ac-b1f4-4517-939f-99c9161777cc",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "={{ $('Webhook1').item.json.body.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "27ebe175-3d28-47b0-9f22-599df23c4205",
+              "leftValue": "={{ $json.password_hash }}",
+              "rightValue": "={{ $('Webhook1').item.json.body.password }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": false
+        }
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -224,
+        96
+      ],
+      "id": "7d0c7afe-5f72-4bb5-ba54-2ca8e78b279b",
+      "name": "If",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Authentication successful ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "d0ae7c5d-f579-4bec-824f-9e29527214fd",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Authentication failed ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        192
+      ],
+      "id": "58c67f6c-ee0e-4a21-bc76-56284d1a635f",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "last_seen",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5301715e-4070-4208-bc60-ca91969fd197",
+      "name": "Update a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "CreateUser",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -704,
+        640
+      ],
+      "id": "45b30010-44d6-47a2-8113-89a69ccd2b5e",
+      "name": "Webhook3",
+      "webhookId": "d16ea7f9-2657-4bdf-9b9b-e0ea296e5d58"
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $('Webhook3').item.json.body.full_name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook3').item.json.body.email }}"
+            },
+            {
+              "fieldId": "role",
+              "fieldValue": "={{ $('Webhook3').item.json.body.role }}"
+            },
+            {
+              "fieldId": "password_hash",
+              "fieldValue": "={{ $('Webhook3').item.json.body.password }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        192,
+        448
+      ],
+      "id": "3b44510f-c998-43f2-af30-23602e3ff9f5",
+      "name": "Create a row2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "96196946-0ffd-434f-ab0c-f915f8206495",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_email }}",
+              "rightValue": "={{ $json.email }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "4c006b22-b888-44a1-b14b-4b8da53f37f0",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_password }}",
+              "rightValue": "={{ $json.password_hash }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "2c00ca27-257c-47e6-9ac4-fc94cda1846c",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_role }}",
+              "rightValue": "={{ $json.role }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -256,
+        640
+      ],
+      "id": "0eb25060-f657-4f5b-bb1e-623967565180",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Error Check Admin Credentials ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -32,
+        736
+      ],
+      "id": "656fda42-c051-467d-866d-d9eba5277445",
+      "name": "Respond to Webhook4"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "User created successfully  ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        416,
+        448
+      ],
+      "id": "3045b7f4-4d55-4c76-b800-4e19cd6e9f82",
+      "name": "Respond to Webhook5"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true,
+        "filterType": "none"
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        640
+      ],
+      "id": "9e796cb2-1c78-4dd9-b083-9f4875a637c3",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "52be5784-fdb1-4824-b9bb-ceb5d26f6e95",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "82420897-e6e5-423a-a3d0-939e7a67948b",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_password }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "1d173eaa-0a08-497d-8994-359111886849",
+              "leftValue": "={{ $('Webhook3').item.json.body.admin_role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e415a892-c4b5-4aa7-9f7e-849d3295ea88",
+              "leftValue": "={{ $('Webhook3').item.json.body.full_name }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "99321206-f4e6-4725-94dd-949e88baaf90",
+              "leftValue": "={{ $('Webhook3').item.json.body.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ef03764d-0d49-4515-a3bc-be3c17085e8a",
+              "leftValue": "={{ $('Webhook3').item.json.body.phone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e2631c93-7c67-4937-b130-b151081b24fd",
+              "leftValue": "={{ $('Webhook3').item.json.body.password }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "83da2224-01d2-4b96-b56d-1f25ef27c46e",
+              "leftValue": "={{ $('Webhook3').item.json.body.role }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "f88698e1-477f-451a-b5ce-9e736a307185",
+              "leftValue": "={{ $('Webhook3').item.json.body.status }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -32,
+        544
+      ],
+      "id": "22d3ffa1-d006-4555-8165-c295854e320b",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "Error : Fill all details ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        192,
+        640
+      ],
+      "id": "d58cc913-abb2-44cc-8e95-4433062e6b74",
+      "name": "Respond to Webhook6"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-28T11:50:22.493Z",
+      "createdAt": "2025-11-28T11:50:22.493Z",
+      "role": "workflow:owner",
+      "workflowId": "XlG91XCUEQSiE2F7",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-11-28T12:48:21.000Z",
+  "versionId": "2640fe32-ac8a-4de9-b24d-7de2342c7bb4"
+}
