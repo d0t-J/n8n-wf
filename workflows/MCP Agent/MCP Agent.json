@@ -36,7 +36,13 @@
     },
     "Append or update row in sheet in Google Sheets": {
       "ai_tool": [
-        []
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
       ]
     },
     "Get row(s) in sheet in Google Sheets": {
@@ -71,6 +77,61 @@
           }
         ]
       ]
+    },
+    "MCP Client1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload a file in Dropbox": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file in Google Drive": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a file in GitHub": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-09-05T12:28:17.567Z",
@@ -88,8 +149,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
       "typeVersion": 2,
       "position": [
-        832,
-        0
+        528,
+        -288
       ],
       "id": "5bdfcbd1-16be-42a3-869e-3c8f9f21729d",
       "name": "MCP Server Trigger",
@@ -103,8 +164,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
       "position": [
-        416,
-        224
+        688,
+        464
       ],
       "id": "9afe3147-0198-495e-88d5-6cd80cdf0d89",
       "name": "MCP Client"
@@ -118,8 +179,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        224,
-        0
+        496,
+        240
       ],
       "id": "ad8c9cd2-1c80-4ee5-bfe7-60711ba10090",
       "name": "AI Agent"
@@ -131,8 +192,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        288,
-        224
+        560,
+        464
       ],
       "id": "e16d630d-d733-4bb7-8b24-c9120f3e6bf6",
       "name": "Simple Memory"
@@ -146,8 +207,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.3,
       "position": [
-        0,
-        0
+        112,
+        192
       ],
       "id": "51782ef7-4ad9-489b-b015-ec0296d7cb21",
       "name": "When chat message received",
@@ -218,8 +279,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        1072,
-        240
+        400,
+        -64
       ],
       "id": "526d43fb-2be5-4de1-97ba-5b3cf6fa4316",
       "name": "Append or update row in sheet in Google Sheets",
@@ -251,8 +312,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        912,
-        240
+        528,
+        -64
       ],
       "id": "db1b4830-af37-46d0-9499-b187f391b378",
       "name": "Get row(s) in sheet in Google Sheets",
@@ -270,8 +331,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        128,
-        208
+        432,
+        464
       ],
       "id": "665a4bae-0073-492c-8047-ea9d84b16477",
       "name": "Google Gemini Chat Model",
@@ -348,8 +409,8 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.7,
       "position": [
-        768,
-        240
+        656,
+        -64
       ],
       "id": "0ebf815d-38c8-4539-af30-0e27b896864d",
       "name": "Append or update row in sheet in Google Sheets1",
@@ -357,6 +418,139 @@
         "googleSheetsOAuth2Api": {
           "id": "YAefgAsgr3ppFBcL",
           "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://n8n.br3adko4e.tech/mcp-test/azure",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        784,
+        -64
+      ],
+      "id": "c4b9a6ab-d9b2-48f3-aa12-00f678c6aa9f",
+      "name": "MCP Client1"
+    },
+    {
+      "parameters": {
+        "path": "azure"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        -288
+      ],
+      "id": "20fc91eb-26b5-44b1-96e6-57667b77622d",
+      "name": "MCP Server Trigger1",
+      "webhookId": "3f84896c-1462-4761-a156-811eeb54e7a0"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.dropboxTool",
+      "typeVersion": 1,
+      "position": [
+        16,
+        -64
+      ],
+      "id": "5d2a97c7-ebda-4bc5-b82f-aa526cc5323a",
+      "name": "Upload a file in Dropbox"
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        112,
+        -64
+      ],
+      "id": "4261f685-45b4-497d-af5d-1b33831d98d3",
+      "name": "Upload file in Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "HFA8dFUuiJNxyN15",
+          "name": "OAuth - [ j.ahmed.ja7a7@gmail.com ]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "trigger": [
+          "message",
+          "any_event"
+        ],
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        112,
+        384
+      ],
+      "id": "f902c17e-2138-453a-a203-5b2e5904df86",
+      "name": "Slack Trigger",
+      "webhookId": "467c5a74-835c-4ebb-90e7-777e7744db06",
+      "credentials": {
+        "slackApi": {
+          "id": "wINUs6vu1geoATGU",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "https://github.com/d0t-J/",
+          "mode": "url"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "d0t-j",
+          "mode": "list",
+          "cachedResultName": "d0t-j",
+          "cachedResultUrl": "https://github.com/d0t-J/d0t-j"
+        },
+        "filePath": "read/README.md",
+        "fileContent": "Way down we go ",
+        "commitMessage": "Firt comsmit"
+      },
+      "type": "n8n-nodes-base.githubTool",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        -64
+      ],
+      "id": "c979ca10-c120-4045-be84-0f7ff659dee5",
+      "name": "Create a file in GitHub",
+      "webhookId": "b050d497-37f3-40fd-b7fd-e394b50eaea6",
+      "credentials": {
+        "githubApi": {
+          "id": "iY7L3YMNJ7qgBjXW",
+          "name": "Token - [ n8n-test @ d0t-J ]"
         }
       }
     }
@@ -377,6 +571,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2025-09-29T12:08:29.000Z",
-  "versionId": "2e04a3ab-a814-4f04-8aba-864078c95d58"
+  "updatedAt": "2025-11-28T12:20:03.000Z",
+  "versionId": "1cc24787-77f3-4572-8260-15c06d4e18e4"
 }
