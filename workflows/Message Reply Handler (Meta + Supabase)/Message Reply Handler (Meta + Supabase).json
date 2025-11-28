@@ -142,7 +142,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 1,
       "position": [
-        -1392,
+        -1408,
         400
       ],
       "id": "c840a6cd-b192-40c5-b328-acf1c9d6f371"
@@ -209,6 +209,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-21T18:38:28.000Z",
-  "versionId": "a54760c4-8bf3-40b9-b596-335b92d05a3d"
+  "updatedAt": "2025-11-27T19:04:59.000Z",
+  "versionId": "10af630b-989b-4a75-93ff-411020fd3b17"
 }
