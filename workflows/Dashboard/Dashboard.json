@@ -88,7 +88,7 @@
       "main": [
         [
           {
-            "node": "Extract from File",
+            "node": "If3",
             "type": "main",
             "index": 0
           }
@@ -207,6 +207,57 @@
           }
         ]
       ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook4": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Create a row3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-11-27T19:40:17.321Z",
@@ -227,7 +278,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -512,
+        -640,
         16
       ],
       "id": "1f0c3bfc-e124-4c55-ab65-0e971ef82d7b",
@@ -293,7 +344,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -288,
+        -416,
         16
       ],
       "id": "58636110-cf98-411b-b908-a4f602a05ddf",
@@ -314,7 +365,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        -64,
+        -192,
         16
       ],
       "id": "8ad9e156-2892-4fdb-a420-55e1611827fa",
@@ -330,7 +381,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -512,
+        -640,
         -304
       ],
       "id": "e7271354-b874-416b-a54d-0678b58678de",
@@ -357,7 +408,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -288,
+        -416,
         -304
       ],
       "id": "241ad294-1aee-46a9-a3b1-c170fb5f0c7b",
@@ -408,7 +459,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -64,
+        -192,
         -304
       ],
       "id": "1d8cbf08-accb-4d9d-bf40-a733e6e6c117",
@@ -424,7 +475,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        384,
+        256,
         -400
       ],
       "id": "17846bf1-e71d-4dc6-bbfe-2e69ea33808b",
@@ -439,7 +490,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        160,
+        32,
         -208
       ],
       "id": "57c3c7a3-9b69-4df2-8bd7-77bd3ae4470c",
@@ -470,7 +521,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        160,
+        32,
         -400
       ],
       "id": "2e3b8cb6-7d60-4907-b46c-781b7ca1074b",
@@ -494,7 +545,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -512,
+        -640,
         240
       ],
       "id": "d51e2e70-b893-44d1-be14-1a3b49d8f8d6",
@@ -509,8 +560,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1.1,
       "position": [
-        -288,
-        240
+        -160,
+        480
       ],
       "id": "2bc72cb5-3621-4175-9746-50c88a28c474",
       "name": "Extract from File"
@@ -574,8 +625,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        384,
-        240
+        512,
+        480
       ],
       "id": "b6c087b1-23d6-4abf-b723-cfe67d9d55d3",
       "name": "Create a row1",
@@ -593,8 +644,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -64,
-        240
+        64,
+        480
       ],
       "id": "f6bfa284-9846-4136-a683-4059349a6716",
       "name": "Code in JavaScript"
@@ -606,8 +657,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        160,
-        240
+        288,
+        480
       ],
       "id": "2f28c512-c9cf-4083-a738-33d9e8fa0860",
       "name": "Code in JavaScript1"
@@ -621,8 +672,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        608,
-        240
+        736,
+        480
       ],
       "id": "a2b00f80-f517-4cf2-9ec5-87d49d6be125",
       "name": "Respond to Webhook3"
@@ -637,7 +688,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -512,
+        -640,
         -720
       ],
       "id": "480641f2-827c-4dd1-96f9-47b6bc2619a8",
@@ -675,7 +726,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        384,
+        256,
         -912
       ],
       "id": "4afef7cc-a5cd-4549-b643-e2a7dc72d5e3",
@@ -732,7 +783,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -64,
+        -192,
         -720
       ],
       "id": "462e1210-c5b3-4450-a986-fb5a0f25eb60",
@@ -747,7 +798,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        160,
+        32,
         -624
       ],
       "id": "c2146a0b-495f-4cdd-9f35-651e313b918d",
@@ -762,7 +813,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        608,
+        480,
         -912
       ],
       "id": "efc3505d-df01-44b3-b4f6-471bff61e6a5",
@@ -778,7 +829,7 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -288,
+        -416,
         -720
       ],
       "id": "aebfe8ed-ff76-46e6-9e26-4f4c0ab62505",
@@ -898,7 +949,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        160,
+        32,
         -816
       ],
       "id": "4fd84473-058b-40b3-b49a-1edb1a21e09b",
@@ -913,11 +964,155 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.4,
       "position": [
-        384,
+        256,
         -720
       ],
       "id": "0f62024c-bbc7-4af9-8e50-bfe8d91f2f23",
       "name": "Respond to Webhook6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "32cc16de-bf3a-42d2-85da-77cf986cd113",
+              "leftValue": "={{ $json.webhookUrl }}",
+              "rightValue": "https://n8n.br3adko4e.tech/webhook-test/CSVrelstionupload2555",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -416,
+        336
+      ],
+      "id": "d3af7760-41d7-4ba7-a614-9d6cd1dc9aa8",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "CSVrelstionupload2555",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "dataCSV"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -640,
+        432
+      ],
+      "id": "a9f67267-5f01-4095-8285-62d10b0f985c",
+      "name": "Webhook4",
+      "webhookId": "6af27e3d-463a-49d0-867d-de0a31761f43"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "dataCSV0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -128,
+        240
+      ],
+      "id": "7e350715-3c0f-4ef8-b463-14890ce302b0",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "tableId": "events",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "planned_datetime",
+              "fieldValue": "={{ $json['connection date'] }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "=related"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "pending"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "=5"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        96,
+        240
+      ],
+      "id": "ccf1e1aa-8d2c-4ed2-bb65-083b5ab2ad65",
+      "name": "Create a row3",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        320,
+        240
+      ],
+      "id": "bf241035-2a98-4280-abec-6a5d5ca75b52",
+      "name": "Respond to Webhook7"
     }
   ],
   "pinData": {},
@@ -936,6 +1131,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-28T12:47:36.000Z",
-  "versionId": "7d4fae07-35d6-4950-813d-3f1adcbca76c"
+  "updatedAt": "2025-11-28T23:58:31.000Z",
+  "versionId": "b03211a6-9233-479a-b10e-0bcb7e429821"
 }
