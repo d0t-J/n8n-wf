@@ -1,0 +1,835 @@
+{
+  "active": false,
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row": {
+      "main": [
+        [
+          {
+            "node": "Get a row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row1": {
+      "main": [
+        [
+          {
+            "node": "Get a row2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Create a row2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a row1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message2": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a row3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-11-28T22:17:14.641Z",
+  "id": "E64HNcx2r1QZ69xM",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Reply handling",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -176
+      ],
+      "id": "95f1db2a-dcdc-4e78-bac7-f3b6f7c60613",
+      "name": "WhatsApp Trigger",
+      "webhookId": "155fd961-c2bb-4a06-b12d-fd8fe8da0671",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "eYgmtaWjn1yzcOpI",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "events",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "=+{{ $json.messages[0].from }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -176
+      ],
+      "id": "46eb3653-d784-47a2-afd4-3b267c66a3b3",
+      "name": "Get a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "event_id",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "cd50d91e-078b-48a8-8d1f-14192c705a39",
+      "name": "Get a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=BORROWER CONTEXT:\n- Full Name: {{ $('Get a row').item.json.full_name }}\n- Phone: {{ $('Get a row').item.json.phone }}\n- Company: {{ $('Get a row').item.json.company }}\n- Outstanding Amount: {{ $('Get a row').item.json.outstanding_amount }} AKZ\n- Due Date: {{ $('Get a row').item.json.credit_due_date }}\n- First Contact: {{ $('Get a row').item.json.planned_datetime }}\n\nCONVERSATION HISTORY:\nFirst Message Sent: \"{{ $('Get a row1').item.json.content }}\"\n\nCURRENT BORROWER REPLY:\n\"{{ $('WhatsApp Trigger').item.json.messages[0].text.body }}\"\n\n---\n\nPlease analyze this reply and provide your response following the system instructions. Remember to:\n1. Address the borrower by name (Mr./Ms. {{ $('Get a row').item.json.full_name }})\n2. Reference the correct outstanding amount (AKZ {{ $('Get a row').item.json.outstanding_amount }})\n3. Reference the due date ({{ $('Get a row').item.json.credit_due_date }})\n4. Output valid JSON with message, decision, and metadata",
+        "options": {
+          "systemMessage": "=You are the PreMaturity Collection Assistant for BDA Credit Department. You handle borrower communications BEFORE payment due dates with precision, professionalism, and intelligent decision-making.\n\n═══════════════════════════════════════════════════════════════════════════════\nCRITICAL ESCALATION FRAMEWORK - READ CAREFULLY\n═══════════════════════════════════════════════════════════════════════════════\n\nYour responses MUST follow a strict three-tier escalation protocol:\n\nTIER 1: AUTO_REPLY (You handle it)\nTIER 2: OPERATOR_REQUEST (Human specialist needed)\nTIER 3: LEGAL_ESCALATION (Legal department required)\n\nYou MUST correctly identify which tier applies and output the corresponding decision value.\n\n═══════════════════════════════════════════════════════════════════════════════\nTIER 3: LEGAL_ESCALATION - MANDATORY TRIGGERS\n═══════════════════════════════════════════════════════════════════════════════\n\nThe following situations REQUIRE immediate legal escalation. These are NON-NEGOTIABLE.\nOutput decision: \"legal_escalation\" for ANY of these:\n\n🔴 CATEGORY 1: THREATS & VIOLENCE\nTrigger phrases (case-insensitive matching):\n- Direct threats: \"I will hurt\", \"I know where\", \"you'll regret\", \"or else\", \"be careful\"\n- Intimidation: \"watch out\", \"I'm coming\", \"you don't know who\", \"I have connections\"\n- Violence keywords: \"kill\", \"harm\", \"hurt\", \"attack\", \"violence\", \"dangerous\", \"threat\"\n- Stalking indicators: \"I know where you live/work\", \"I'm watching\"\n\nExample inputs that MUST trigger legal_escalation:\n- \"I know where your office is\"\n- \"You better watch out\"\n- \"I will hurt someone if you keep calling\"\n- \"This won't end well for you\"\n\n🔴 CATEGORY 2: LEGAL PROCEEDINGS & REPRESENTATION\nTrigger phrases:\n- Lawyer involvement: \"my lawyer\", \"attorney\", \"legal counsel\", \"solicitor\", \"advocate\"\n- Court action: \"see you in court\", \"I'm suing\", \"legal action\", \"take me to court\"\n- Legal threats: \"I will sue\", \"court case\", \"legal proceedings\"\n\nExample inputs that MUST trigger legal_escalation:\n- \"My lawyer will contact you\"\n- \"I'm taking legal action\"\n- \"See you in court\"\n- \"I've hired an attorney\"\n- \"Talk to my lawyer\"\n\n🔴 CATEGORY 3: FRAUD & IDENTITY CLAIMS\nTrigger phrases:\n- Fraud allegations: \"this is fraud\", \"scam\", \"fraudulent\", \"fake loan\", \"illegal\"\n- Identity theft: \"not me\", \"never took this\", \"stolen identity\", \"identity theft\", \"someone used my name\"\n- Forgery claims: \"forged\", \"fake signature\", \"I didn't sign\"\n\nExample inputs that MUST trigger legal_escalation:\n- \"This is fraud\"\n- \"I never took this loan\"\n- \"Someone stole my identity\"\n- \"This is a scam\"\n- \"I didn't sign anything\"\n\n🔴 CATEGORY 4: BANKRUPTCY & INSOLVENCY\nTrigger phrases:\n- \"bankruptcy\", \"bankrupt\", \"filed bankruptcy\", \"insolvency\", \"insolvent\"\n- \"liquidation\", \"receivership\", \"administration\"\n\nExample inputs that MUST trigger legal_escalation:\n- \"I filed for bankruptcy\"\n- \"My company is insolvent\"\n- \"We're in liquidation\"\n\n🔴 CATEGORY 5: PRE-EMPTIVE REFUSAL TO PAY\nThis is CRITICAL for PreMaturity agent - borrower refuses BEFORE due date.\nTrigger phrases:\n- \"I'm not paying\", \"won't pay\", \"refuse to pay\", \"not going to pay\"\n- \"I will not pay\", \"never paying\", \"don't intend to pay\"\n\nExample inputs that MUST trigger legal_escalation:\n- \"I'm not paying this\"\n- \"I refuse to pay\"\n- \"I won't pay you anything\"\n- \"Never paying this debt\"\n\n═══════════════════════════════════════════════════════════════════════════════\nTIER 2: OPERATOR_REQUEST - HUMAN SPECIALIST NEEDED\n═══════════════════════════════════════════════════════════════════════════════\n\nThese situations need human expertise but not legal intervention:\n\n✋ Amount disputes: \"This amount is wrong\", \"I don't owe this much\"\n✋ Extension requests: \"Can I get more time\", \"Need extension\"\n✋ Installment plans: \"Can I pay in parts\", \"Payment plan\"\n✋ Payment history questions: \"I already paid\", \"Not showing my payment\"\n✋ Financial hardship: \"I lost my job\", \"Business is struggling\"\n✋ Complex policy questions you cannot answer\n✋ Hostile tone (rude, frustrated, angry) but NO threats\n✋ Manager/supervisor requests: \"Let me speak to your manager\"\n\n═══════════════════════════════════════════════════════════════════════════════\nTIER 1: AUTO_REPLY - YOU HANDLE IT\n═══════════════════════════════════════════════════════════════════════════════\n\n✅ Greetings: \"Hello\", \"Hi\", \"Good morning\"\n✅ Simple acknowledgments: \"Okay\", \"Noted\", \"Understood\"\n✅ FAQ questions you can answer (see knowledge base below)\n✅ Clarification requests: \"What is this about?\"\n\n═══════════════════════════════════════════════════════════════════════════════\nDECISION-MAKING ALGORITHM\n═══════════════════════════════════════════════════════════════════════════════\n\nSTEP 1: Check TIER 3 (Legal) triggers first - HIGHEST PRIORITY\n   ↓\n   IF ANY legal trigger detected → IMMEDIATELY output \"legal_escalation\"\n   STOP processing. Do not continue to other steps.\n   ↓\nSTEP 2: If no legal triggers, check TIER 2 (Operator) triggers\n   ↓\n   IF operator trigger detected → output \"operator_request\"\n   ↓\nSTEP 3: If neither legal nor operator triggers, handle with auto_reply\n\nIMPORTANT: You must check legal triggers FIRST before anything else.\n\n═══════════════════════════════════════════════════════════════════════════════\nPATTERN MATCHING INSTRUCTIONS\n═══════════════════════════════════════════════════════════════════════════════\n\nWhen analyzing borrower messages:\n\n1. Convert message to lowercase for matching\n2. Check for EXACT phrases first (e.g., \"my lawyer\", \"I'm not paying\")\n3. Check for PARTIAL matches (e.g., message contains \"lawyer\" anywhere)\n4. Check for SEMANTIC meaning even if exact words differ:\n   - \"I have legal representation\" = lawyer involvement\n   - \"This is fake\" = fraud allegation\n   - \"I won't give you a penny\" = refusal to pay\n\n5. DO NOT require perfect grammar or spelling:\n   - \"im not paying\" = \"I'm not paying\" ✓\n   - \"lawer will call\" = \"lawyer will call\" ✓\n   - \"this fraud\" = \"this is fraud\" ✓\n\n6. BE AGGRESSIVE in detecting legal triggers - err on the side of escalation\n   When in doubt between operator_request and legal_escalation → choose legal_escalation\n\n═══════════════════════════════════════════════════════════════════════════════\nYOUR KNOWLEDGE BASE (For AUTO_REPLY Only)\n═══════════════════════════════════════════════════════════════════════════════\n\nYou can answer these questions with auto_reply:\n\n📌 Payment Methods:\nQ: \"How can I pay?\" / \"What are payment options?\"\nA: Bank transfer, online portal, or in-person (Mon-Fri 9AM-5PM). Use company name as reference.\n\n📌 Payment Confirmation:\nQ: \"Where do I send payment?\" / \"What's your account?\"\nA: Provide bank details and online portal information.\n\n📌 General Information:\nQ: \"What are your business hours?\" / \"Where is your office?\"\nA: Mon-Fri 9AM-5PM, [office address]\n\n📌 Amount Clarification (if just asking, not disputing):\nQ: \"How much do I owe?\" / \"What's my balance?\"\nA: Confirm the amount from system data.\n\n📌 Due Date Confirmation:\nQ: \"When is this due?\" / \"What's my deadline?\"\nA: Confirm due date from system data.\n\nIMPORTANT: If question goes beyond these basics → operator_request\n\n═══════════════════════════════════════════════════════════════════════════════\nRESPONSE TONE & STYLE\n═══════════════════════════════════════════════════════════════════════════════\n\nFOR AUTO_REPLY:\n- Professional, warm, helpful\n- Use borrower's name with title (Mr./Ms.)\n- Keep under 3 sentences\n- End with question or clear next step\n\nFOR OPERATOR_REQUEST:\n- Professional, reassuring\n- \"I'll connect you with our specialist\"\n- \"They will contact you within 2 business hours\"\n\nFOR LEGAL_ESCALATION:\n- Formal, serious, brief\n- \"This matter will be forwarded to our legal department\"\n- \"Our legal team will contact you within 24 hours\"\n- NO arguing, NO explaining, NO defending\n- Keep it short and professional\n\n═══════════════════════════════════════════════════════════════════════════════\nMANDATORY OUTPUT FORMAT\n═══════════════════════════════════════════════════════════════════════════════\n\nYou MUST respond with ONLY valid JSON. No other text before or after.\n\n{\n  \"message\": \"Your WhatsApp message here\",\n  \"decision\": \"auto_reply\" | \"operator_request\" | \"legal_escalation\",\n  \"metadata\": {\n    \"category\": \"string - classification of interaction\",\n    \"question_summary\": \"string - brief summary of borrower message\",\n    \"answered_successfully\": boolean,\n    \"escalation_needed\": boolean,\n    \"escalation_reason\": \"string or null - detailed reason for escalation\",\n    \"legal_trigger_detected\": \"string or null - which legal trigger was matched\",\n    \"follow_up_required\": boolean,\n    \"tags\": [\"array\", \"of\", \"relevant\", \"tags\"],\n    \"timestamp\": \"ISO 8601 format\"\n  }\n}\n\n═══════════════════════════════════════════════════════════════════════════════\nLEGAL ESCALATION MESSAGE TEMPLATES\n═══════════════════════════════════════════════════════════════════════════════\n\nUse these EXACT templates for legal_escalation responses:\n\nFOR THREATS/VIOLENCE:\n\"Mr./Ms. {name}, we take all threats seriously. This matter is being forwarded to our legal department immediately. Our legal team will contact you within 24 hours through appropriate channels.\"\n\nFOR LAWYER MENTIONED:\n\"Mr./Ms. {name}, we acknowledge your legal representation. This matter will be handled by our legal department. They will coordinate with your legal counsel within 24 hours.\"\n\nFOR FRAUD CLAIMS:\n\"Mr./Ms. {name}, we take fraud allegations very seriously. This matter will be immediately forwarded to our legal department for thorough investigation. Our legal team will contact you within 24 hours.\"\n\nFOR BANKRUPTCY:\n\"Mr./Ms. {name}, we acknowledge your bankruptcy filing. This matter will be transferred to our legal department to handle through proper legal procedures. They will contact you within 24 hours.\"\n\nFOR REFUSAL TO PAY:\n\"Mr./Ms. {name}, we note your stated refusal to fulfill this payment obligation. This matter will be forwarded to our legal department to determine the appropriate course of action. They will contact you within 24 hours.\"\n\n═══════════════════════════════════════════════════════════════════════════════\nCRITICAL EXAMPLES - STUDY THESE CAREFULLY\n═══════════════════════════════════════════════════════════════════════════════\n\nINPUT: \"My lawyer will call you\"\nDECISION: \"legal_escalation\"\nREASON: Lawyer involvement mentioned\nCATEGORY: \"legal_representation\"\n\nINPUT: \"I'm not paying this\"\nDECISION: \"legal_escalation\"\nREASON: Pre-emptive refusal to pay before due date\nCATEGORY: \"payment_refusal\"\n\nINPUT: \"This is fraud\"\nDECISION: \"legal_escalation\"\nREASON: Fraud allegation\nCATEGORY: \"fraud_claim\"\n\nINPUT: \"I know where your office is. You better stop calling.\"\nDECISION: \"legal_escalation\"\nREASON: Implicit threat with intimidation\nCATEGORY: \"threat_violence\"\n\nINPUT: \"I filed for bankruptcy last week\"\nDECISION: \"legal_escalation\"\nREASON: Bankruptcy declared\nCATEGORY: \"bankruptcy\"\n\nINPUT: \"This amount seems wrong\"\nDECISION: \"operator_request\"\nREASON: Amount dispute, but no legal trigger\nCATEGORY: \"amount_dispute\"\n\nINPUT: \"Can I get an extension?\"\nDECISION: \"operator_request\"\nREASON: Extension request requires manager approval\nCATEGORY: \"extension_request\"\n\nINPUT: \"Hello\"\nDECISION: \"auto_reply\"\nREASON: Simple greeting\nCATEGORY: \"acknowledgment\"\n\nINPUT: \"How can I pay?\"\nDECISION: \"auto_reply\"\nREASON: FAQ question about payment methods\nCATEGORY: \"faq_payment_method\"\n\n═══════════════════════════════════════════════════════════════════════════════\nCONTEXT DATA YOU WILL RECEIVE\n═══════════════════════════════════════════════════════════════════════════════\n\nEach request includes:\n- full_name: Borrower's complete name\n- phone: Contact number\n- company: Associated company/business\n- outstanding_amount: Amount due (in PKR)\n- due_date: Payment deadline\n- first_message_sent: When initial contact was made\n- server_id: System identifier\n- message_id: Conversation identifier\n- first_message: The reminder message sent\n- borrower_reply: Current message to analyze\n\nAlways reference these details in your responses when relevant.\n\n═══════════════════════════════════════════════════════════════════════════════\nFINAL CHECKLIST BEFORE RESPONDING\n═══════════════════════════════════════════════════════════════════════════════\n\nBefore outputting your response, verify:\n\n✓ Did I check ALL legal triggers first?\n✓ If legal trigger found, did I output \"legal_escalation\"?\n✓ Is my JSON valid and properly formatted?\n✓ Did I use the borrower's name in the message?\n✓ Did I use the correct message template for the escalation type?\n✓ Did I fill in the legal_trigger_detected field (if legal escalation)?\n✓ Are all metadata fields populated correctly?\n✓ Is my decision (\"auto_reply\" | \"operator_request\" | \"legal_escalation\") correct?\n\n═══════════════════════════════════════════════════════════════════════════════\n\nRemember: Legal escalation is NOT a failure - it's proper risk management. When in doubt about legal vs operator, choose legal. Better to over-escalate than under-escalate.\n\nYour primary directive: PROTECT THE COMPANY from legal risk by correctly identifying and escalating legal situations."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1568,
+        164
+      ],
+      "id": "a0e0368b-b484-4a86-8400-80e64535b748",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1576,
+        388
+      ],
+      "id": "25df8f90-eec1-4a73-9ad7-6c27294eb591",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "HwHPw7qYO2wdmq2D",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        1704,
+        388
+      ],
+      "id": "3e2c0de6-41ee-488a-9069-943e5bcfd082",
+      "name": "Redis Chat Memory",
+      "credentials": {
+        "redis": {
+          "id": "quzYk8IKq70JmuCU",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// N8N Code Node - Parse Claude API Response\n// This handles JSON that may be wrapped in markdown code blocks\n\nconst items = $input.all();\nconst output = [];\n\nfor (const item of items) {\n  try {\n    // Get the raw response from Claude\n    let rawResponse = item.json.output || item.json.response || item.json;\n    \n    // If it's already an object with nested structure, extract the text\n    if (typeof rawResponse === 'object' && rawResponse.output) {\n      rawResponse = rawResponse.output;\n    }\n    \n    // Convert to string if it's not already\n    let responseText = typeof rawResponse === 'string' ? rawResponse : JSON.stringify(rawResponse);\n    \n    // Remove markdown code blocks (```json and ```)\n    responseText = responseText\n      .replace(/```json\\s*/g, '')\n      .replace(/```\\s*/g, '')\n      .trim();\n    \n    // Parse the JSON\n    const parsedResponse = JSON.parse(responseText);\n    \n    // Extract all fields\n    const message = parsedResponse.message || '';\n    const decision = parsedResponse.decision || 'auto_reply';\n    const metadata = parsedResponse.metadata || {};\n    \n    // Calculate current timestamp if metadata.timestamp is not valid\n    const currentTimestamp = new Date().toISOString();\n    \n    // Build clean output object\n    const cleanOutput = {\n      // Main fields for WhatsApp\n      whatsapp_message: message,\n      decision_type: decision,\n      \n      // Metadata fields\n      category: metadata.category || 'unknown',\n      question_summary: metadata.question_summary || '',\n      answered_successfully: metadata.answered_successfully || false,\n      escalation_needed: metadata.escalation_needed || false,\n      escalation_reason: metadata.escalation_reason || null,\n      follow_up_required: metadata.follow_up_required || false,\n      tags: metadata.tags || [],\n      interaction_timestamp: metadata.timestamp || currentTimestamp,\n      \n      // Original data for database storage\n      raw_claude_response: responseText,\n      \n      // Flags for routing\n      send_to_whatsapp: true,\n      save_to_database: true,\n      create_operator_queue: decision === 'operator_request',\n      notify_legal: decision === 'legal_escalation',\n      \n      // Copy forward original borrower data if it exists\n      borrower_name: item.json.borrower_details?.full_name || item.json.full_name || null,\n      borrower_phone: item.json.borrower_details?.phone || item.json.phone || null,\n      company: item.json.borrower_details?.company || item.json.company || null,\n      outstanding_amount: item.json.borrower_details?.outstanding_amount || item.json.outstanding_amount || null,\n      due_date: item.json.borrower_details?.due_date || item.json.due_date || null,\n      event_id: item.json.event_id || item.json.borrower_details?.event_id || null,\n      message_id: item.json.borrower_details?.message_id || item.json.message_id || null,\n      \n      // Processing metadata\n      processed_at: currentTimestamp,\n      parser_success: true,\n      parser_error: null\n    };\n    \n    output.push({\n      json: cleanOutput\n    });\n    \n  } catch (error) {\n    // Error handling - still output something useful\n    console.error('Error parsing Claude response:', error);\n    \n    output.push({\n      json: {\n        whatsapp_message: 'We apologize for the technical issue. Our team will contact you shortly.',\n        decision_type: 'operator_request',\n        category: 'parser_error',\n        escalation_needed: true,\n        escalation_reason: 'Failed to parse AI response',\n        send_to_whatsapp: true,\n        save_to_database: true,\n        create_operator_queue: true,\n        parser_success: false,\n        parser_error: error.message,\n        raw_input: JSON.stringify(item.json),\n        processed_at: new Date().toISOString()\n      }\n    });\n  }\n}\n\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        164
+      ],
+      "id": "42f7b6e8-875b-4e31-afbf-d7e42c67faf2",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Code in JavaScript').item.json.decision_type }}",
+                    "rightValue": "auto_reply",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "6d8266eb-138e-46c5-a925-4e44b9dba04e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "auto_reply"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a484fd8f-89ed-44ff-a3ea-19a4ad71048c",
+                    "leftValue": "={{ $('Code in JavaScript').item.json.decision_type }}",
+                    "rightValue": "operator_request",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "operator_request"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "861eab3e-9adb-4ef6-b038-8283d53f0637",
+                    "leftValue": "={{ $('Code in JavaScript').item.json.decision_type }}",
+                    "rightValue": "legal_escalation",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "legal_escalation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        2368,
+        148
+      ],
+      "id": "7d46d343-6f14-43a9-bdf1-3e2bcc96045f",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $json.whatsapp_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        2144,
+        164
+      ],
+      "id": "ca8e50de-949a-4491-88a0-f187c257c49a",
+      "name": "Send message2",
+      "webhookId": "0972d59e-a6fa-4b95-9ce9-a6c243bb5f26",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "legal_escalations",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Get a row').item.json.id }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $('Get a row1').item.json.id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Get a row').item.json.phone }}"
+            },
+            {
+              "fieldId": "full_name",
+              "fieldValue": "={{ $('Get a row').item.json.full_name }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $('Get a row').item.json.company }}"
+            },
+            {
+              "fieldId": "outstanding_amount",
+              "fieldValue": "={{ $('Get a row').item.json.outstanding_amount }}"
+            },
+            {
+              "fieldId": "credit_due_date",
+              "fieldValue": "={{ $('Get a row').item.json.credit_due_date }}"
+            },
+            {
+              "fieldId": "reason",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.escalation_reason }}"
+            },
+            {
+              "fieldId": "severity",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.category }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "pending to review"
+            },
+            {
+              "fieldId": "legal_notes",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.tags }}"
+            },
+            {
+              "fieldId": "ai_summary",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.question_summary }}"
+            },
+            {
+              "fieldId": "borrower_message",
+              "fieldValue": "={{ $('WhatsApp Trigger').item.json.messages[0].text.body }}"
+            },
+            {
+              "fieldId": "assigned_to",
+              "fieldValue": "legal team"
+            },
+            {
+              "fieldId": "escalated_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        260
+      ],
+      "id": "c5366162-960d-4f61-993d-8325039bdfb3",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "operator_requests",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Get a row').item.json.id }}"
+            },
+            {
+              "fieldId": "summary",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.question_summary }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        68
+      ],
+      "id": "d861e825-f5f3-4bf1-b2d7-560e5b156a3f",
+      "name": "Create a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "autoreplies",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Get a row').item.json.id }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $('Get a row1').item.json.id }}"
+            },
+            {
+              "fieldId": "borrower_name",
+              "fieldValue": "={{ $('Get a row').item.json.full_name }}"
+            },
+            {
+              "fieldId": "borrower_phone",
+              "fieldValue": "={{ $('Get a row').item.json.phone }}"
+            },
+            {
+              "fieldId": "company",
+              "fieldValue": "={{ $('Get a row').item.json.company }}"
+            },
+            {
+              "fieldId": "outstanding_amount",
+              "fieldValue": "={{ $('Get a row').item.json.outstanding_amount }}"
+            },
+            {
+              "fieldId": "due_date",
+              "fieldValue": "={{ $('Get a row').item.json.credit_due_date }}"
+            },
+            {
+              "fieldId": "whatsapp_message",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.whatsapp_message }}"
+            },
+            {
+              "fieldId": "category",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.category }}"
+            },
+            {
+              "fieldId": "question_summary",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.question_summary }}"
+            },
+            {
+              "fieldId": "tags",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.tags }}"
+            },
+            {
+              "fieldId": "answered_successfully",
+              "fieldValue": "={{ $('Code in JavaScript').item.json.answered_successfully }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        -124
+      ],
+      "id": "5368f93b-69a2-4f6e-b090-87f9a67bc0d7",
+      "name": "Create a row2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "legal_escalations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "event_id",
+              "keyValue": "={{ $('Get a row').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -176
+      ],
+      "id": "a66ad319-2b50-46f5-b587-55b3e2a2b4aa",
+      "name": "Get a row2",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7da57e56-5b5a-4bc4-8ce2-1cd8e99abcef",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        -176
+      ],
+      "id": "6656a410-575b-4ee3-912c-f3f58074c0f9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "textBody": "Your message has already been escalated to the legal team. Our representative will contact you shortly",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        -272
+      ],
+      "id": "45c31c40-79bd-4948-a67d-056a2f80f65b",
+      "name": "Send message",
+      "webhookId": "3f7aaeb7-37e3-4245-b697-529b53544411",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "operator_requests",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "event_id",
+              "keyValue": "={{ $('Get a row').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -80
+      ],
+      "id": "e5179a0e-9d86-4b07-b0da-1ab2cc1dcee6",
+      "name": "Get a row3",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "69589b2a-a5f3-41d1-95c5-7231c90028cc",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        -80
+      ],
+      "id": "5683d627-073c-4eb7-8365-684aa350b46e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+        "textBody": "A request for a human operator has been recorded. Our representative will contact you shortly",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1632,
+        -132
+      ],
+      "id": "f473460b-ddd8-42ce-bc66-7561a676a2b5",
+      "name": "Send message1",
+      "webhookId": "35ce9af5-f1b7-4a36-bfc8-20daf3b1781b",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-11-28T22:17:14.648Z",
+      "createdAt": "2025-11-28T22:17:14.648Z",
+      "role": "workflow:owner",
+      "workflowId": "E64HNcx2r1QZ69xM",
+      "projectId": "POJtR4euQRkudXYs"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-11-28T23:41:36.000Z",
+  "versionId": "00b1a55a-85e2-46f1-a3b8-9552fc21ef73"
+}
