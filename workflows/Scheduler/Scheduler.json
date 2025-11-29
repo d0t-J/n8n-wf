@@ -41,17 +41,6 @@
         ]
       ]
     },
-    "Send template": {
-      "main": [
-        [
-          {
-            "node": "Throttling Node",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Get many rows": {
       "main": [
         [
@@ -78,79 +67,35 @@
       "main": [
         [
           {
-            "node": "Send template",
+            "node": "Send message",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Send template1",
+            "node": "Send message1",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Send template2",
+            "node": "Send message2",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Send template3",
+            "node": "Send message3",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Send template4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send template1": {
-      "main": [
-        [
-          {
-            "node": "Throttling Node",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send template2": {
-      "main": [
-        [
-          {
-            "node": "Throttling Node",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send template3": {
-      "main": [
-        [
-          {
-            "node": "Throttling Node",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Send template4": {
-      "main": [
-        [
-          {
-            "node": "Throttling Node",
+            "node": "Send message4",
             "type": "main",
             "index": 0
           }
@@ -162,6 +107,127 @@
         [
           {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message": {
+      "main": [
+        [
+          {
+            "node": "Create a row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message1": {
+      "main": [
+        [
+          {
+            "node": "Create a row5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message2": {
+      "main": [
+        [
+          {
+            "node": "Create a row6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message3": {
+      "main": [
+        [
+          {
+            "node": "Create a row7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message4": {
+      "main": [
+        [
+          {
+            "node": "Create a row8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row5": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row6": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row7": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a row8": {
+      "main": [
+        [
+          {
+            "node": "Throttling Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Create a row1",
             "type": "main",
             "index": 0
           }
@@ -195,7 +261,7 @@
       "typeVersion": 1,
       "position": [
         -1584,
-        816
+        1152
       ]
     },
     {
@@ -207,8 +273,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        -80,
-        1600
+        112,
+        1584
       ],
       "webhookId": "31a8a5ff-fd86-418c-bc28-015e2e208d5c"
     },
@@ -220,51 +286,10 @@
       "typeVersion": 3,
       "position": [
         -912,
-        816
+        1152
       ],
       "id": "c200cc03-d781-4380-9003-8dc9c6ea0c5f",
       "name": "Loop Over Items"
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "766122066589902",
-        "recipientPhoneNumber": "={{ $json.phone }}",
-        "template": "payment_reminder|en_US",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.name }}"
-                  },
-                  {
-                    "text": "={{ $json.Company_Name }}"
-                  },
-                  {
-                    "text": "={{ $json.Body }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1.1,
-      "position": [
-        -400,
-        800
-      ],
-      "id": "a45e2c44-79d1-4d2e-9821-75fbcd0e324e",
-      "name": "Send template",
-      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "QaNYC2xlzfwmQHf0",
-          "name": "WhatsApp account"
-        }
-      }
     },
     {
       "parameters": {
@@ -285,7 +310,7 @@
       "typeVersion": 1,
       "position": [
         -1360,
-        816
+        1152
       ],
       "id": "6a658f75-3a4b-41e2-bd29-724cabf0bc5d",
       "name": "Get many rows",
@@ -304,7 +329,7 @@
       "typeVersion": 2,
       "position": [
         -1136,
-        816
+        1152
       ],
       "id": "2a241e1d-cdf0-48ac-bec0-f2c5e5634ce2",
       "name": "Code in JavaScript1"
@@ -440,175 +465,11 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.3,
       "position": [
-        -624,
-        1136
+        -688,
+        1104
       ],
       "id": "06028379-0143-40cb-9dee-bb5c44fecb37",
       "name": "Switch"
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "766122066589902",
-        "recipientPhoneNumber": "={{ $json.phone }}",
-        "template": "payment_reminder|en_US",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.name }}"
-                  },
-                  {
-                    "text": "={{ $json.Company_Name }}"
-                  },
-                  {
-                    "text": "={{ $json.Body }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1.1,
-      "position": [
-        -400,
-        992
-      ],
-      "id": "3e2f5dd9-427e-4ae6-b69a-4ae223b36364",
-      "name": "Send template1",
-      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "QaNYC2xlzfwmQHf0",
-          "name": "WhatsApp account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "766122066589902",
-        "recipientPhoneNumber": "={{ $json.phone }}",
-        "template": "payment_reminder|en_US",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.name }}"
-                  },
-                  {
-                    "text": "={{ $json.Company_Name }}"
-                  },
-                  {
-                    "text": "={{ $json.Body }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1.1,
-      "position": [
-        -400,
-        1184
-      ],
-      "id": "ffb912e1-c162-4217-9080-337a387213c0",
-      "name": "Send template2",
-      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "QaNYC2xlzfwmQHf0",
-          "name": "WhatsApp account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "766122066589902",
-        "recipientPhoneNumber": "={{ $json.phone }}",
-        "template": "payment_reminder|en_US",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.name }}"
-                  },
-                  {
-                    "text": "={{ $json.Company_Name }}"
-                  },
-                  {
-                    "text": "={{ $json.Body }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1.1,
-      "position": [
-        -400,
-        1376
-      ],
-      "id": "45093f3e-002a-4a27-9b68-2c12acfc7cda",
-      "name": "Send template3",
-      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "QaNYC2xlzfwmQHf0",
-          "name": "WhatsApp account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "766122066589902",
-        "recipientPhoneNumber": "={{ $json.phone }}",
-        "template": "payment_reminder|en_US",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.name }}"
-                  },
-                  {
-                    "text": "={{ $json.Company_Name }}"
-                  },
-                  {
-                    "text": "={{ $json.Body }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1.1,
-      "position": [
-        -400,
-        1568
-      ],
-      "id": "1264e2ea-75ad-445b-b174-d0f836695fe7",
-      "name": "Send template4",
-      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "QaNYC2xlzfwmQHf0",
-          "name": "WhatsApp account"
-        }
-      }
     },
     {
       "parameters": {
@@ -619,7 +480,7 @@
             {
               "keyName": "id",
               "condition": "eq",
-              "keyValue": "={{ $json.id }}"
+              "keyValue": "={{ $json.event_id }}"
             }
           ]
         },
@@ -635,8 +496,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        -272,
-        608
+        -688,
+        576
       ],
       "id": "05ba45ea-39fa-44ff-b5c3-caf8c1e97298",
       "name": "Update a row",
@@ -649,16 +510,420 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "https://n8n.br3adko4e.tech/webhook-test/6aebfff6-3291-4b83-a684-1e02242946f2",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Auth",
+              "value": "123456789"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $input.all() }}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -48,
-        608
+        -448,
+        576
       ],
-      "id": "daefdb8f-4b74-4fc8-9883-621ba3f7ea35",
+      "id": "d977585d-9098-4bb6-a5fb-a38131c8a3f6",
       "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Switch').item.json.id }}"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $('Switch').item.json.server_id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Switch').item.json.generated_message }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "provider_message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "direction",
+              "fieldValue": "=outbound"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        768
+      ],
+      "id": "3bdded98-0701-42ad-a7f7-e160c4899b6b",
+      "name": "Create a row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.generated_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        768
+      ],
+      "id": "a45e2c44-79d1-4d2e-9821-75fbcd0e324e",
+      "name": "Send message",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.generated_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        960
+      ],
+      "id": "3e2f5dd9-427e-4ae6-b69a-4ae223b36364",
+      "name": "Send message1",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.generated_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        1152
+      ],
+      "id": "ffb912e1-c162-4217-9080-337a387213c0",
+      "name": "Send message2",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.generated_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        1344
+      ],
+      "id": "45093f3e-002a-4a27-9b68-2c12acfc7cda",
+      "name": "Send message3",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "766122066589902",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "={{ $json.generated_message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        -464,
+        1536
+      ],
+      "id": "1264e2ea-75ad-445b-b174-d0f836695fe7",
+      "name": "Send message4",
+      "webhookId": "863951b0-0f3c-40a1-b835-1b3c7af38c83",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "QaNYC2xlzfwmQHf0",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Switch').item.json.id }}"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $('Switch').item.json.server_id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Switch').item.json.generated_message }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "provider_message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "direction",
+              "fieldValue": "=outbound"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        960
+      ],
+      "id": "6894ce33-8fa5-4e28-8bc6-120bc47b0fef",
+      "name": "Create a row5",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Switch').item.json.id }}"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $('Switch').item.json.server_id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Switch').item.json.generated_message }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "provider_message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "direction",
+              "fieldValue": "=outbound"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        1152
+      ],
+      "id": "a839bb34-3efe-4680-9ef8-44b08356bcae",
+      "name": "Create a row6",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Switch').item.json.id }}"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $('Switch').item.json.server_id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Switch').item.json.generated_message }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "provider_message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "direction",
+              "fieldValue": "=outbound"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        1344
+      ],
+      "id": "8642865c-e2a5-49a4-919d-9b7438302416",
+      "name": "Create a row7",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "event_id",
+              "fieldValue": "={{ $('Switch').item.json.id }}"
+            },
+            {
+              "fieldId": "server_id",
+              "fieldValue": "={{ $('Switch').item.json.server_id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Switch').item.json.generated_message }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "provider_message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "direction",
+              "fieldValue": "=outbound"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        1536
+      ],
+      "id": "f000fce5-196f-4d84-9fc4-d3b516116ac6",
+      "name": "Create a row8",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $('Loop Over Items').item.json.id }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $('Update a row').item.json.status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        576
+      ],
+      "id": "69c1de09-b1de-464d-8b6b-a90337015845",
+      "name": "Create a row1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "KjM7GVXVYPrZNNF8",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -677,6 +942,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-11-28T17:53:12.000Z",
-  "versionId": "85d23c26-2cb0-4385-b455-3438e0f54f6d"
+  "updatedAt": "2025-11-28T18:58:20.000Z",
+  "versionId": "ec4812b1-0c99-4a47-8727-c6c1c532a609"
 }
